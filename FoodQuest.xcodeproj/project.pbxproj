@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20174B071D95E5CF0056BB9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B061D95E5CF0056BB9F /* main.m */; };
+		20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B091D95E5CF0056BB9F /* AppDelegate.m */; };
+		20174B0D1D95E5CF0056BB9F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B0C1D95E5CF0056BB9F /* FirstViewController.m */; };
+		20174B101D95E5CF0056BB9F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B0F1D95E5CF0056BB9F /* SecondViewController.m */; };
+		20174B131D95E5CF0056BB9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20174B111D95E5CF0056BB9F /* Main.storyboard */; };
+		20174B151D95E5CF0056BB9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20174B141D95E5CF0056BB9F /* Assets.xcassets */; };
+		20174B181D95E5CF0056BB9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		20174B021D95E5CF0056BB9F /* FoodQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20174B061D95E5CF0056BB9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20174B081D95E5CF0056BB9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		20174B091D95E5CF0056BB9F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		20174B0B1D95E5CF0056BB9F /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		20174B0C1D95E5CF0056BB9F /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		20174B0E1D95E5CF0056BB9F /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		20174B0F1D95E5CF0056BB9F /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		20174B121D95E5CF0056BB9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		20174B141D95E5CF0056BB9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20174B171D95E5CF0056BB9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20174B191D95E5CF0056BB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20174AFF1D95E5CF0056BB9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20174AF91D95E5CF0056BB9F = {
+			isa = PBXGroup;
+			children = (
+				20174B041D95E5CF0056BB9F /* FoodQuest */,
+				20174B031D95E5CF0056BB9F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20174B031D95E5CF0056BB9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20174B021D95E5CF0056BB9F /* FoodQuest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20174B041D95E5CF0056BB9F /* FoodQuest */ = {
+			isa = PBXGroup;
+			children = (
+				20174B081D95E5CF0056BB9F /* AppDelegate.h */,
+				20174B091D95E5CF0056BB9F /* AppDelegate.m */,
+				20174B0B1D95E5CF0056BB9F /* FirstViewController.h */,
+				20174B0C1D95E5CF0056BB9F /* FirstViewController.m */,
+				20174B0E1D95E5CF0056BB9F /* SecondViewController.h */,
+				20174B0F1D95E5CF0056BB9F /* SecondViewController.m */,
+				20174B111D95E5CF0056BB9F /* Main.storyboard */,
+				20174B141D95E5CF0056BB9F /* Assets.xcassets */,
+				20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */,
+				20174B191D95E5CF0056BB9F /* Info.plist */,
+				20174B051D95E5CF0056BB9F /* Supporting Files */,
+			);
+			path = FoodQuest;
+			sourceTree = "<group>";
+		};
+		20174B051D95E5CF0056BB9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20174B061D95E5CF0056BB9F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20174B011D95E5CF0056BB9F /* FoodQuest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20174B1C1D95E5CF0056BB9F /* Build configuration list for PBXNativeTarget "FoodQuest" */;
+			buildPhases = (
+				20174AFE1D95E5CF0056BB9F /* Sources */,
+				20174AFF1D95E5CF0056BB9F /* Frameworks */,
+				20174B001D95E5CF0056BB9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoodQuest;
+			productName = FoodQuest;
+			productReference = 20174B021D95E5CF0056BB9F /* FoodQuest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20174AFA1D95E5CF0056BB9F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Behavioral Cybernetics";
+				TargetAttributes = {
+					20174B011D95E5CF0056BB9F = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = V5J6HWM76E;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 20174AFD1D95E5CF0056BB9F /* Build configuration list for PBXProject "FoodQuest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20174AF91D95E5CF0056BB9F;
+			productRefGroup = 20174B031D95E5CF0056BB9F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20174B011D95E5CF0056BB9F /* FoodQuest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20174B001D95E5CF0056BB9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20174B181D95E5CF0056BB9F /* LaunchScreen.storyboard in Resources */,
+				20174B151D95E5CF0056BB9F /* Assets.xcassets in Resources */,
+				20174B131D95E5CF0056BB9F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20174AFE1D95E5CF0056BB9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20174B101D95E5CF0056BB9F /* SecondViewController.m in Sources */,
+				20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */,
+				20174B0D1D95E5CF0056BB9F /* FirstViewController.m in Sources */,
+				20174B071D95E5CF0056BB9F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20174B111D95E5CF0056BB9F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20174B121D95E5CF0056BB9F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20174B171D95E5CF0056BB9F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20174B1A1D95E5CF0056BB9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		20174B1B1D95E5CF0056BB9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20174B1D1D95E5CF0056BB9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V5J6HWM76E;
+				INFOPLIST_FILE = FoodQuest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.FoodQuest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		20174B1E1D95E5CF0056BB9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V5J6HWM76E;
+				INFOPLIST_FILE = FoodQuest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.FoodQuest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20174AFD1D95E5CF0056BB9F /* Build configuration list for PBXProject "FoodQuest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20174B1A1D95E5CF0056BB9F /* Debug */,
+				20174B1B1D95E5CF0056BB9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20174B1C1D95E5CF0056BB9F /* Build configuration list for PBXNativeTarget "FoodQuest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20174B1D1D95E5CF0056BB9F /* Debug */,
+				20174B1E1D95E5CF0056BB9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20174AFA1D95E5CF0056BB9F /* Project object */;
+}
