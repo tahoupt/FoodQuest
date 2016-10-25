@@ -1,0 +1,3 @@
+[submodule "ResearchKit"]
+	path = ResearchKit
+	url = https://github.com/tahoupt/ResearchKit.git

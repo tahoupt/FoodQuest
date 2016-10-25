@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A27DFF1DBFD45100E48450 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 13A27DFE1DBFD45100E48450 /* .gitmodules */; };
 		20174B071D95E5CF0056BB9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B061D95E5CF0056BB9F /* main.m */; };
 		20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B091D95E5CF0056BB9F /* AppDelegate.m */; };
 		20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */; };
@@ -1278,6 +1279,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13A27DFE1DBFD45100E48450 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		20174B021D95E5CF0056BB9F /* FoodQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20174B061D95E5CF0056BB9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20174B081D95E5CF0056BB9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2534,6 +2536,7 @@
 			isa = PBXGroup;
 			children = (
 				2082A07A1D9B253200D121C4 /* foodpics.h */,
+				13A27DFE1DBFD45100E48450 /* .gitmodules */,
 				20174B331D97079B0056BB9F /* Images */,
 				20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */,
 				20174B041D95E5CF0056BB9F /* FoodQuest */,
@@ -4047,6 +4050,7 @@
 				2098F1B21D9AA1310095D9B3 /* 0090.jpg in Resources */,
 				2098EE971D9AA12E0095D9B3 /* 0885.jpg in Resources */,
 				2098F1931D9AA1310095D9B3 /* 0121.jpg in Resources */,
+				13A27DFF1DBFD45100E48450 /* .gitmodules in Resources */,
 				2098EEDF1D9AA12F0095D9B3 /* 0813.jpg in Resources */,
 				2098F0F31D9AA1300095D9B3 /* 0281.jpg in Resources */,
 				2098F0C21D9AA1300095D9B3 /* 0330.jpg in Resources */,
