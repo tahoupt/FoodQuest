@@ -63,8 +63,10 @@
         ORKConsentSection *overviewSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeOverview];
         overviewSection.title = @"Overview";
-        overviewSection.summary = @"Welcome to FoodQuest.";
-        overviewSection.content = @"The content to show in learn more ...";
+        overviewSection.summary = @"Welcome to FoodQuest.";        
+        NSString *overviewPath = [[NSBundle mainBundle] pathForResource:@"overview_content" ofType:@"html"]; 
+        overviewSection.htmlContent = [NSString stringWithContentsOfFile:overviewPath encoding:NSUTF8StringEncoding error:nil];
+
         
     //--------------------------------------------------------------------------------
         
@@ -72,7 +74,8 @@
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeDataGathering];
         dataGatheringSection.title = @"Data Gathering";
         dataGatheringSection.summary = @"The summary about the section goes here ...";
-        dataGatheringSection.content = @"The content to show in learn more ...";
+        NSString *dataGatheringPath = [[NSBundle mainBundle] pathForResource:@"dataGathering_content" ofType:@"html"]; 
+        dataGatheringSection.htmlContent = [NSString stringWithContentsOfFile:dataGatheringPath encoding:NSUTF8StringEncoding error:nil];
         
     //--------------------------------------------------------------------------------
 
@@ -80,7 +83,8 @@
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypePrivacy];
         privacySection.title = @"Privacy";
         privacySection.summary = @"The summary about the section goes here ...";
-        privacySection.content = @"The content to show in learn more ...";
+        NSString *privacyPath = [[NSBundle mainBundle] pathForResource:@"privacy_content" ofType:@"html"]; 
+        privacySection.htmlContent = [NSString stringWithContentsOfFile:privacyPath encoding:NSUTF8StringEncoding error:nil];
 
     //--------------------------------------------------------------------------------
 
@@ -88,7 +92,8 @@
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeDataUse];
         dataUseSection.title = @"Data Use";
         dataUseSection.summary = @"The summary about the section goes here ...";
-        dataUseSection.content = @"The content to show in learn more ...";
+        NSString *dataUsePath = [[NSBundle mainBundle] pathForResource:@"dataUse_content" ofType:@"html"]; 
+        dataUseSection.htmlContent = [NSString stringWithContentsOfFile:dataUsePath encoding:NSUTF8StringEncoding error:nil];
 
 
     //--------------------------------------------------------------------------------
@@ -97,31 +102,31 @@
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeTimeCommitment];
         timeSection.title = @"Time Commitment";
         timeSection.summary = @"The summary about the section goes here ...";
-        timeSection.content = @"The content to show in learn more ...";
-
+        NSString *timePath = [[NSBundle mainBundle] pathForResource:@"time_content" ofType:@"html"]; 
+        timeSection.htmlContent = [NSString stringWithContentsOfFile:timePath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
 
      ORKConsentSection *surveySection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeStudySurvey];
         surveySection.title = @"Surveys";
         surveySection.summary = @"The summary about the section goes here ...";
-        surveySection.content = @"The content to show in learn more ...";
-
+        NSString *surveyPath = [[NSBundle mainBundle] pathForResource:@"survey_content" ofType:@"html"]; 
+        surveySection.htmlContent = [NSString stringWithContentsOfFile:surveyPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
 
      ORKConsentSection *tasksSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeStudyTasks];
         tasksSection.title = @"Tasks";
         tasksSection.summary = @"The summary about the section goes here ...";
-        tasksSection.content = @"The content to show in learn more ...";
-
+        NSString *tasksPath = [[NSBundle mainBundle] pathForResource:@"tasks_content" ofType:@"html"]; 
+        tasksSection.htmlContent = [NSString stringWithContentsOfFile:tasksPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
      ORKConsentSection *withdrawalSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeWithdrawing];
         withdrawalSection.title = @"Withdrawing";
         withdrawalSection.summary = @"The summary about the section goes here ...";
-        withdrawalSection.content = @"The content to show in learn more ...";
-
+        NSString *withdrawalPath = [[NSBundle mainBundle] pathForResource:@"withdrawal_content" ofType:@"html"]; 
+        withdrawalSection.htmlContent = [NSString stringWithContentsOfFile:withdrawalPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
         
         

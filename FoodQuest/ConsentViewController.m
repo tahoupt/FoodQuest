@@ -48,37 +48,42 @@
 -(void)startConsentReviewTask; {
 
 
-ORKConsentDocument *consent = [[ORKConsentDocument alloc] init];
+
+    ORKConsentDocument *consent = [[ORKConsentDocument alloc] init];
     consent.title = @"FoodQuest Consent";
-    consent.signaturePageTitle = @"Consent";
+    consent.signaturePageTitle = @"FoodQuest Signature for Consent";
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"consent_review" ofType:@"html"]; 
+    consent.htmlReviewContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    
     
     ORKConsentSignature *nameSignature = [ORKConsentSignature signatureForPersonWithTitle:nil dateFormatString:nil identifier:@"subjectSignatureType"];
     nameSignature.requiresName = YES;
-    
+
     [consent addSignature:nameSignature];
 
 
     ORKConsentSignature *sigSignature = [ORKConsentSignature signatureForPersonWithTitle:nil dateFormatString:nil identifier:@"subjectSignatureImage"];
     sigSignature.requiresSignatureImage = YES;
+    
     [consent addSignature:sigSignature];
 
     
 
-    ORKConsentReviewStep *reviewStep =
-      [[ORKConsentReviewStep alloc] initWithIdentifier:kConsentReviewIdentifier
-                                             signature:consent.signatures[0]
-                                            inDocument:consent];
-    reviewStep.text = @"Consent text for food quest goes here";
+    ORKConsentReviewStep *reviewStep = [[ORKConsentReviewStep alloc] initWithIdentifier:kConsentReviewIdentifier
+        signature:consent.signatures[0] 
+        inDocument:consent];
+    
+    reviewStep.text = @"Consent for Food Quest";     
+     
     reviewStep.reasonForConsent = @"By agreeing, you confirm that you have read and understand the information in the overview, and that you wish to take part in this research study.";
     
-   // consent.htmlReviewContent can hold content, instead of using overview steps
+  
     
     
-       ORKOrderedTask *task =
-      [[ORKOrderedTask alloc] initWithIdentifier:@"consent_task" steps:@[reviewStep]];
+    ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:@"consent_task" steps:@[reviewStep]];
 
-    ORKTaskViewController *taskViewController =
-      [[ORKTaskViewController alloc] initWithTask:task taskRunUUID:nil];
+    ORKTaskViewController *taskViewController =  [[ORKTaskViewController alloc] initWithTask:task taskRunUUID:nil];
     taskViewController.delegate = self;
     [self presentViewController:taskViewController animated:YES completion:nil];
 
