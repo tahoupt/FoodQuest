@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1320A7271DC11E46009C442C /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1320A7221DC11E33009C442C /* ResearchKit.framework */; };
+		1320A7281DC11E52009C442C /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1320A7221DC11E33009C442C /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13A27DFF1DBFD45100E48450 /* .gitmodules in Resources */ = {isa = PBXBuildFile; fileRef = 13A27DFE1DBFD45100E48450 /* .gitmodules */; };
 		20174B071D95E5CF0056BB9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B061D95E5CF0056BB9F /* main.m */; };
 		20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B091D95E5CF0056BB9F /* AppDelegate.m */; };
@@ -15,8 +17,6 @@
 		20174B131D95E5CF0056BB9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20174B111D95E5CF0056BB9F /* Main.storyboard */; };
 		20174B151D95E5CF0056BB9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20174B141D95E5CF0056BB9F /* Assets.xcassets */; };
 		20174B181D95E5CF0056BB9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */; };
-		20174B291D95E65E0056BB9F /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20174B261D95E62D0056BB9F /* ResearchKit.framework */; };
-		20174B2A1D95E65E0056BB9F /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20174B261D95E62D0056BB9F /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20174B381D9707B00056BB9F /* cheeseburger.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20174B361D9707B00056BB9F /* cheeseburger.jpeg */; };
 		20174B391D9707B00056BB9F /* salad.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20174B371D9707B00056BB9F /* salad.jpeg */; };
 		2017BDC51DAAFE3F00421D25 /* clipboard_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */; };
@@ -1271,23 +1271,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		20174B251D95E62D0056BB9F /* PBXContainerItemProxy */ = {
+		1320A7211DC11E33009C442C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */;
+			containerPortal = 1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B183A5951A8535D100C76870;
 			remoteInfo = ResearchKit;
 		};
-		20174B271D95E62D0056BB9F /* PBXContainerItemProxy */ = {
+		1320A7231DC11E33009C442C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */;
+			containerPortal = 1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
 			remoteInfo = ResearchKitTests;
 		};
-		20174B2B1D95E65E0056BB9F /* PBXContainerItemProxy */ = {
+		1320A7251DC11E3C009C442C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */;
+			containerPortal = 1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B183A4731A8535D100C76870;
 			remoteInfo = ResearchKit;
@@ -1301,7 +1301,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20174B2A1D95E65E0056BB9F /* ResearchKit.framework in Embed Frameworks */,
+				1320A7281DC11E52009C442C /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1309,6 +1309,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		13A27DFE1DBFD45100E48450 /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
 		20174B021D95E5CF0056BB9F /* FoodQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20174B061D95E5CF0056BB9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1322,8 +1323,6 @@
 		20174B141D95E5CF0056BB9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20174B171D95E5CF0056BB9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20174B191D95E5CF0056BB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ../ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
-		20174B311D95EA9D0056BB9F /* ResearchKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResearchKit.h; path = ../../ResearchKit/ResearchKit/ResearchKit.h; sourceTree = "<group>"; };
 		20174B361D9707B00056BB9F /* cheeseburger.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cheeseburger.jpeg; path = images/cheeseburger.jpeg; sourceTree = "<group>"; };
 		20174B371D9707B00056BB9F /* salad.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = salad.jpeg; path = images/salad.jpeg; sourceTree = "<group>"; };
 		2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clipboard_icon.png; path = images/clipboard_icon.png; sourceTree = "<group>"; };
@@ -2583,7 +2582,7 @@
 		20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTabBarControllerViewController.m; sourceTree = "<group>"; };
 		20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cheeseburger_selected.jpeg; path = images/cheeseburger_selected.jpeg; sourceTree = "<group>"; };
 		20D06E151D98A13400231A28 /* salad_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = salad_selected.jpeg; path = images/salad_selected.jpeg; sourceTree = "<group>"; };
-		20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKScaleRangeDescriptionLabel.h; path = ../../ResearchKit/ResearchKit/Common/ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
+		20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKScaleRangeDescriptionLabel.h; path = ../ResearchKit/ResearchKit/Common/ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2591,6 +2590,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1320A7271DC11E46009C442C /* ResearchKit.framework in Frameworks */,
 				208E7BE31DC015E900DC4F13 /* MessageUI.framework in Frameworks */,
 				20C027281DB1BA290056A9A8 /* GoogleSymbolUtilities.framework in Frameworks */,
 				20C0271C1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework in Frameworks */,
@@ -2601,7 +2601,6 @@
 				20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */,
 				20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */,
 				20C027261DB1BA290056A9A8 /* FirebaseInstanceID.framework in Frameworks */,
-				20174B291D95E65E0056BB9F /* ResearchKit.framework in Frameworks */,
 				20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */,
 				20C027241DB1BA290056A9A8 /* FirebaseAnalytics.framework in Frameworks */,
 			);
@@ -2610,6 +2609,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1320A71C1DC11E33009C442C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1320A7221DC11E33009C442C /* ResearchKit.framework */,
+				1320A7241DC11E33009C442C /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		20174AF91D95E5CF0056BB9F = {
 			isa = PBXGroup;
 			children = (
@@ -2618,7 +2626,7 @@
 				2082A07A1D9B253200D121C4 /* foodpics.h */,
 				13A27DFE1DBFD45100E48450 /* .gitmodules */,
 				20174B331D97079B0056BB9F /* Images */,
-				20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */,
+				1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */,
 				20174B041D95E5CF0056BB9F /* FoodQuest */,
 				20174B031D95E5CF0056BB9F /* Products */,
 				20C027161DB1B7790056A9A8 /* Firebase */,
@@ -2641,7 +2649,6 @@
 				20C027301DB27F390056A9A8 /* FQConstants.h */,
 				20C027311DB281100056A9A8 /* FQUtilities.m */,
 				20C027331DB281330056A9A8 /* FQUtilities.h */,
-				20174B311D95EA9D0056BB9F /* ResearchKit.h */,
 				20174B081D95E5CF0056BB9F /* AppDelegate.h */,
 				20174B091D95E5CF0056BB9F /* AppDelegate.m */,
 				20174B0B1D95E5CF0056BB9F /* OverviewViewController.h */,
@@ -2672,15 +2679,6 @@
 				20174B061D95E5CF0056BB9F /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		20174B201D95E62C0056BB9F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				20174B261D95E62D0056BB9F /* ResearchKit.framework */,
-				20174B281D95E62D0056BB9F /* ResearchKitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		20174B331D97079B0056BB9F /* Images */ = {
@@ -3971,7 +3969,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				20174B2C1D95E65E0056BB9F /* PBXTargetDependency */,
+				1320A7261DC11E3C009C442C /* PBXTargetDependency */,
 			);
 			name = FoodQuest;
 			productName = FoodQuest;
@@ -3990,6 +3988,7 @@
 					20174B011D95E5CF0056BB9F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = V5J6HWM76E;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -4007,8 +4006,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 20174B201D95E62C0056BB9F /* Products */;
-					ProjectRef = 20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */;
+					ProductGroup = 1320A71C1DC11E33009C442C /* Products */;
+					ProjectRef = 1320A71B1DC11E33009C442C /* ResearchKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -4019,18 +4018,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		20174B261D95E62D0056BB9F /* ResearchKit.framework */ = {
+		1320A7221DC11E33009C442C /* ResearchKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchKit.framework;
-			remoteRef = 20174B251D95E62D0056BB9F /* PBXContainerItemProxy */;
+			remoteRef = 1320A7211DC11E33009C442C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		20174B281D95E62D0056BB9F /* ResearchKitTests.xctest */ = {
+		1320A7241DC11E33009C442C /* ResearchKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ResearchKitTests.xctest;
-			remoteRef = 20174B271D95E62D0056BB9F /* PBXContainerItemProxy */;
+			remoteRef = 1320A7231DC11E33009C442C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -5303,10 +5302,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		20174B2C1D95E65E0056BB9F /* PBXTargetDependency */ = {
+		1320A7261DC11E3C009C442C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ResearchKit;
-			targetProxy = 20174B2B1D95E65E0056BB9F /* PBXContainerItemProxy */;
+			targetProxy = 1320A7251DC11E3C009C442C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5433,6 +5432,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bcybernetics.food-e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -5451,6 +5451,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bcybernetics.food-e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
