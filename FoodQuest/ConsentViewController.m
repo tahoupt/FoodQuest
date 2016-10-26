@@ -7,6 +7,7 @@
 //
 
 #import "ConsentViewController.h"
+#import "YesNoAction.h"
 
 @interface ConsentViewController ()
 
@@ -49,30 +50,30 @@
 
 
 
-    ORKConsentDocument *consent = [[ORKConsentDocument alloc] init];
-    consent.title = @"FoodQuest Consent";
-    consent.signaturePageTitle = @"FoodQuest Signature for Consent";
+    _consent = [[ORKConsentDocument alloc] init];
+    _consent.title = @"FoodQuest Consent";
+    _consent.signaturePageTitle = @"FoodQuest Signature for Consent";
     NSString *path = [[NSBundle mainBundle] pathForResource:@"consent_review" ofType:@"html"]; 
-    consent.htmlReviewContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    _consent.htmlReviewContent = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     
     
     ORKConsentSignature *nameSignature = [ORKConsentSignature signatureForPersonWithTitle:nil dateFormatString:nil identifier:@"subjectSignatureType"];
     nameSignature.requiresName = YES;
 
-    [consent addSignature:nameSignature];
+    [_consent addSignature:nameSignature];
 
 
     ORKConsentSignature *sigSignature = [ORKConsentSignature signatureForPersonWithTitle:nil dateFormatString:nil identifier:@"subjectSignatureImage"];
     sigSignature.requiresSignatureImage = YES;
     
-    [consent addSignature:sigSignature];
+    [_consent addSignature:sigSignature];
 
     
 
     ORKConsentReviewStep *reviewStep = [[ORKConsentReviewStep alloc] initWithIdentifier:kConsentReviewIdentifier
-        signature:consent.signatures[0] 
-        inDocument:consent];
+        signature:_consent.signatures[0] 
+        inDocument:_consent];
     
     reviewStep.text = @"Consent for Food Quest";     
      
@@ -95,8 +96,34 @@
        didFinishWithReason:(ORKTaskViewControllerFinishReason)reason
                      error:(NSError *)error {
 
+
+    if (reason  != ORKTaskViewControllerFinishReasonCompleted) {
+        return;
+    }
     ORKTaskResult *taskResult = [taskViewController result];
     // You could do something with the result here.
+
+
+ORKStepResult *stepResult = [taskResult stepResultForStepIdentifier:@"ConsentReviewStep"];
+
+  ORKConsentSignatureResult *signatureResult = (ORKConsentSignatureResult *)[stepResult.results firstObject];
+  
+    [signatureResult applyToDocument:_consent];
+
+     [_consent makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
+     
+            self.pdfFile = new_pdfFile;
+        // write pdf to temp directory
+        
+             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+             NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodQuestConsent.pdf"];
+             [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
+
+
+            [self wantsPDFEmailed];
+
+
+        }];    
 
     // Then, dismiss the task view controller.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -107,5 +134,67 @@
 
 }
     
+-(void)wantsPDFEmailed; {
+
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Signed Consent Form"
+                               message:@"Would you like the signed consent form emailed to you as a PDF file?"
+                               preferredStyle:UIAlertControllerStyleAlert];
+ 
+    YesNoAction* defaultAction = [YesNoAction actionWithTitle:@"Yes, Send Email"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) { [((YesNoAction *)action).parent yesAction]; }];
+ 
+   
+    YesNoAction* cancelAction = [YesNoAction actionWithTitle:@"No"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction * action) {}];  
+                                                          
+    defaultAction.parent = self;
+    cancelAction.parent = self;
+
+    [alert addAction:defaultAction];
+    [alert addAction:cancelAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void)yesAction; {
+
+    [self sendPDFEmail];
+
+}
+
+-(void)sendPDFEmail {
+
+       if (![MFMailComposeViewController canSendMail]) {
+           NSLog(@"Mail services are not available.");
+           return;
+        }
+
+        MFMailComposeViewController* pdfEmail = [[MFMailComposeViewController alloc] init];
+        pdfEmail.mailComposeDelegate = self;
+         
+        // Configure the fields of the interface.
+        [pdfEmail setToRecipients:@[@"address@example.com"]];
+        [pdfEmail setSubject:@"Signed FoodQuest Consent Form"];
+        [pdfEmail setMessageBody:@"" isHTML:NO];
+         
+        [pdfEmail addAttachmentData:self.pdfFile mimeType:@"application/pdf" fileName:@"FoodQuestConsent.pdf"];
+
+
+        // Present the view controller modally.
+        [self presentViewController:pdfEmail animated:YES completion:nil];
+
+
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+   // Check the result or perform other tasks.
+ 
+   // Dismiss the mail compose view controller.
+   [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

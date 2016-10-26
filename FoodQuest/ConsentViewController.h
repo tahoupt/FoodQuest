@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+
 #import "ResearchKit/ResearchKit.h"
 
 
-@interface ConsentViewController : UIViewController <ORKTaskViewControllerDelegate>
+@interface ConsentViewController : UIViewController <ORKTaskViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
+@property ORKConsentDocument *consent;
+@property NSData *pdfFile;
+
+-(void)sendPDFEmail; 
+-(void)yesAction;
 
 @end
