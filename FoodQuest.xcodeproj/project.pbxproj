@@ -19,8 +19,24 @@
 		20174B2A1D95E65E0056BB9F /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20174B261D95E62D0056BB9F /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20174B381D9707B00056BB9F /* cheeseburger.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20174B361D9707B00056BB9F /* cheeseburger.jpeg */; };
 		20174B391D9707B00056BB9F /* salad.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20174B371D9707B00056BB9F /* salad.jpeg */; };
+		2017BDC51DAAFE3F00421D25 /* clipboard_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */; };
+		2017BDC61DAAFE3F00421D25 /* scale_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC21DAAFE3F00421D25 /* scale_icon.png */; };
+		2017BDC71DAAFE3F00421D25 /* sign_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC31DAAFE3F00421D25 /* sign_icon.png */; };
+		2017BDC81DAAFE3F00421D25 /* preference_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC41DAAFE3F00421D25 /* preference_icon.png */; };
+		2017BDCD1DAB0EF300421D25 /* HedonicScaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */; };
 		20190F051D9B0F68008D9802 /* credits.md in Sources */ = {isa = PBXBuildFile; fileRef = 20190F041D9B0F68008D9802 /* credits.md */; };
+		20755A731DB446A5007373C3 /* consent_review.html in Resources */ = {isa = PBXBuildFile; fileRef = 20755A721DB446A5007373C3 /* consent_review.html */; };
 		2082A07E1D9B2D0300D121C4 /* foodquest_launch750_1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */; };
+		208E7BD71DC0045100DC4F13 /* withdrawal_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */; };
+		208E7BD81DC0045100DC4F13 /* datagathering_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD01DC0045100DC4F13 /* datagathering_content.html */; };
+		208E7BD91DC0045100DC4F13 /* overview_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD11DC0045100DC4F13 /* overview_content.html */; };
+		208E7BDA1DC0045100DC4F13 /* privacy_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD21DC0045100DC4F13 /* privacy_content.html */; };
+		208E7BDB1DC0045100DC4F13 /* tasks_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD31DC0045100DC4F13 /* tasks_content.html */; };
+		208E7BDC1DC0045100DC4F13 /* survey_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD41DC0045100DC4F13 /* survey_content.html */; };
+		208E7BDD1DC0045100DC4F13 /* time_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD51DC0045100DC4F13 /* time_content.html */; };
+		208E7BDE1DC0045100DC4F13 /* dataUse_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD61DC0045100DC4F13 /* dataUse_content.html */; };
+		208E7BE31DC015E900DC4F13 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208E7BE21DC015E900DC4F13 /* MessageUI.framework */; };
+		208E7BE61DC03EC000DC4F13 /* YesNoAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 208E7BE51DC03EC000DC4F13 /* YesNoAction.m */; };
 		2098ED511D9AA12E0095D9B3 /* 1314.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8961D9AA10E0095D9B3 /* 1314.jpg */; };
 		2098ED521D9AA12E0095D9B3 /* 1313.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8971D9AA10E0095D9B3 /* 1313.jpg */; };
 		2098ED531D9AA12E0095D9B3 /* 1312.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8981D9AA10E0095D9B3 /* 1312.jpg */; };
@@ -1235,6 +1251,20 @@
 		2098F20E1D9AA8F30095D9B3 /* ConsentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */; };
 		20A1415A1DA3D9F2009C8AE5 /* no_preference_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */; };
 		20A1415B1DA3D9F2009C8AE5 /* no_preference.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141591DA3D9F2009C8AE5 /* no_preference.png */; };
+		20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */; };
+		20C0271B1DB1B7BD0056A9A8 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */; };
+		20C0271C1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */; };
+		20C027241DB1BA290056A9A8 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0271E1DB1BA290056A9A8 /* FirebaseAnalytics.framework */; };
+		20C027251DB1BA290056A9A8 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0271F1DB1BA290056A9A8 /* FirebaseCore.framework */; };
+		20C027261DB1BA290056A9A8 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027201DB1BA290056A9A8 /* FirebaseInstanceID.framework */; };
+		20C027271DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027211DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework */; };
+		20C027281DB1BA290056A9A8 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027221DB1BA290056A9A8 /* GoogleSymbolUtilities.framework */; };
+		20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027231DB1BA290056A9A8 /* GoogleUtilities.framework */; };
+		20C0272B1DB1BC2B0056A9A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */; };
+		20C0272E1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */; };
+		20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */; };
+		20C027321DB281100056A9A8 /* FQUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C027311DB281100056A9A8 /* FQUtilities.m */; };
+		20C027351DB3C9EB0056A9A8 /* FEQHedonicScaleSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C027341DB3C9EA0056A9A8 /* FEQHedonicScaleSlider.m */; };
 		20D06E0E1D985CF000231A28 /* FoodTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */; };
 		20D06E161D98A13400231A28 /* cheeseburger_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */; };
 		20D06E171D98A13400231A28 /* salad_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E151D98A13400231A28 /* salad_selected.jpeg */; };
@@ -1296,9 +1326,27 @@
 		20174B311D95EA9D0056BB9F /* ResearchKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResearchKit.h; path = ../../ResearchKit/ResearchKit/ResearchKit.h; sourceTree = "<group>"; };
 		20174B361D9707B00056BB9F /* cheeseburger.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cheeseburger.jpeg; path = images/cheeseburger.jpeg; sourceTree = "<group>"; };
 		20174B371D9707B00056BB9F /* salad.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = salad.jpeg; path = images/salad.jpeg; sourceTree = "<group>"; };
+		2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clipboard_icon.png; path = images/clipboard_icon.png; sourceTree = "<group>"; };
+		2017BDC21DAAFE3F00421D25 /* scale_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scale_icon.png; path = images/scale_icon.png; sourceTree = "<group>"; };
+		2017BDC31DAAFE3F00421D25 /* sign_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sign_icon.png; path = images/sign_icon.png; sourceTree = "<group>"; };
+		2017BDC41DAAFE3F00421D25 /* preference_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = preference_icon.png; path = images/preference_icon.png; sourceTree = "<group>"; };
+		2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HedonicScaleController.h; sourceTree = "<group>"; };
+		2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HedonicScaleController.m; sourceTree = "<group>"; };
 		20190F041D9B0F68008D9802 /* credits.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = credits.md; sourceTree = "<group>"; };
+		20755A721DB446A5007373C3 /* consent_review.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = consent_review.html; path = html/consent_review.html; sourceTree = "<group>"; };
 		2082A07A1D9B253200D121C4 /* foodpics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = foodpics.h; path = FoodQuest/foodpics.h; sourceTree = "<group>"; };
 		2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foodquest_launch750_1334.png; path = images/foodquest_launch750_1334.png; sourceTree = "<group>"; };
+		208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = withdrawal_content.html; path = html/withdrawal_content.html; sourceTree = "<group>"; };
+		208E7BD01DC0045100DC4F13 /* datagathering_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = datagathering_content.html; path = html/datagathering_content.html; sourceTree = "<group>"; };
+		208E7BD11DC0045100DC4F13 /* overview_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = overview_content.html; path = html/overview_content.html; sourceTree = "<group>"; };
+		208E7BD21DC0045100DC4F13 /* privacy_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy_content.html; path = html/privacy_content.html; sourceTree = "<group>"; };
+		208E7BD31DC0045100DC4F13 /* tasks_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = tasks_content.html; path = html/tasks_content.html; sourceTree = "<group>"; };
+		208E7BD41DC0045100DC4F13 /* survey_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = survey_content.html; path = html/survey_content.html; sourceTree = "<group>"; };
+		208E7BD51DC0045100DC4F13 /* time_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = time_content.html; path = html/time_content.html; sourceTree = "<group>"; };
+		208E7BD61DC0045100DC4F13 /* dataUse_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = dataUse_content.html; path = html/dataUse_content.html; sourceTree = "<group>"; };
+		208E7BE21DC015E900DC4F13 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		208E7BE41DC03EC000DC4F13 /* YesNoAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YesNoAction.h; sourceTree = "<group>"; };
+		208E7BE51DC03EC000DC4F13 /* YesNoAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YesNoAction.m; sourceTree = "<group>"; };
 		2098E8961D9AA10E0095D9B3 /* 1314.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1314.jpg; path = images/FoodPics_extended_72dpi/1314.jpg; sourceTree = "<group>"; };
 		2098E8971D9AA10E0095D9B3 /* 1313.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1313.jpg; path = images/FoodPics_extended_72dpi/1313.jpg; sourceTree = "<group>"; };
 		2098E8981D9AA10E0095D9B3 /* 1312.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1312.jpg; path = images/FoodPics_extended_72dpi/1312.jpg; sourceTree = "<group>"; };
@@ -2514,10 +2562,28 @@
 		2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsentViewController.m; sourceTree = "<group>"; };
 		20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference_selected.png; path = images/no_preference_selected.png; sourceTree = "<group>"; };
 		20A141591DA3D9F2009C8AE5 /* no_preference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference.png; path = images/no_preference.png; sourceTree = "<group>"; };
+		20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
+		20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = "<group>"; };
+		20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		20C0271D1DB1B8330056A9A8 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		20C0271E1DB1BA290056A9A8 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		20C0271F1DB1BA290056A9A8 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
+		20C027201DB1BA290056A9A8 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		20C027211DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		20C027221DB1BA290056A9A8 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		20C027231DB1BA290056A9A8 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
+		20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseRemoteConfig.framework; sourceTree = "<group>"; };
+		20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleIPhoneUtilities.framework; sourceTree = "<group>"; };
+		20C027301DB27F390056A9A8 /* FQConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FQConstants.h; sourceTree = "<group>"; };
+		20C027311DB281100056A9A8 /* FQUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQUtilities.m; sourceTree = "<group>"; };
+		20C027331DB281330056A9A8 /* FQUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FQUtilities.h; sourceTree = "<group>"; };
+		20C027341DB3C9EA0056A9A8 /* FEQHedonicScaleSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FEQHedonicScaleSlider.m; sourceTree = "<group>"; };
 		20D06E0C1D985CF000231A28 /* FoodTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTabBarControllerViewController.h; sourceTree = "<group>"; };
 		20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTabBarControllerViewController.m; sourceTree = "<group>"; };
 		20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cheeseburger_selected.jpeg; path = images/cheeseburger_selected.jpeg; sourceTree = "<group>"; };
 		20D06E151D98A13400231A28 /* salad_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = salad_selected.jpeg; path = images/salad_selected.jpeg; sourceTree = "<group>"; };
+		20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKScaleRangeDescriptionLabel.h; path = ../../ResearchKit/ResearchKit/Common/ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2525,7 +2591,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208E7BE31DC015E900DC4F13 /* MessageUI.framework in Frameworks */,
+				20C027281DB1BA290056A9A8 /* GoogleSymbolUtilities.framework in Frameworks */,
+				20C0271C1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework in Frameworks */,
+				20C027271DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework in Frameworks */,
+				20C0271B1DB1B7BD0056A9A8 /* FirebaseAuth.framework in Frameworks */,
+				20C027251DB1BA290056A9A8 /* FirebaseCore.framework in Frameworks */,
+				20C0272E1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework in Frameworks */,
+				20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */,
+				20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */,
+				20C027261DB1BA290056A9A8 /* FirebaseInstanceID.framework in Frameworks */,
 				20174B291D95E65E0056BB9F /* ResearchKit.framework in Frameworks */,
+				20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */,
+				20C027241DB1BA290056A9A8 /* FirebaseAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2535,12 +2613,16 @@
 		20174AF91D95E5CF0056BB9F = {
 			isa = PBXGroup;
 			children = (
+				20755A741DB446AF007373C3 /* html */,
+				20C027341DB3C9EA0056A9A8 /* FEQHedonicScaleSlider.m */,
 				2082A07A1D9B253200D121C4 /* foodpics.h */,
 				13A27DFE1DBFD45100E48450 /* .gitmodules */,
 				20174B331D97079B0056BB9F /* Images */,
 				20174B1F1D95E62C0056BB9F /* ResearchKit.xcodeproj */,
 				20174B041D95E5CF0056BB9F /* FoodQuest */,
 				20174B031D95E5CF0056BB9F /* Products */,
+				20C027161DB1B7790056A9A8 /* Firebase */,
+				208E7BE11DC015E800DC4F13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2555,6 +2637,10 @@
 		20174B041D95E5CF0056BB9F /* FoodQuest */ = {
 			isa = PBXGroup;
 			children = (
+				20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */,
+				20C027301DB27F390056A9A8 /* FQConstants.h */,
+				20C027311DB281100056A9A8 /* FQUtilities.m */,
+				20C027331DB281330056A9A8 /* FQUtilities.h */,
 				20174B311D95EA9D0056BB9F /* ResearchKit.h */,
 				20174B081D95E5CF0056BB9F /* AppDelegate.h */,
 				20174B091D95E5CF0056BB9F /* AppDelegate.m */,
@@ -2562,6 +2648,8 @@
 				20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */,
 				2098F20C1D9AA8F30095D9B3 /* ConsentViewController.h */,
 				2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */,
+				2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */,
+				2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */,
 				20174B0E1D95E5CF0056BB9F /* PreferenceViewController.h */,
 				20174B0F1D95E5CF0056BB9F /* PreferenceViewController.m */,
 				20174B111D95E5CF0056BB9F /* Main.storyboard */,
@@ -2572,6 +2660,8 @@
 				20174B191D95E5CF0056BB9F /* Info.plist */,
 				20174B051D95E5CF0056BB9F /* Supporting Files */,
 				20190F041D9B0F68008D9802 /* credits.md */,
+				208E7BE41DC03EC000DC4F13 /* YesNoAction.h */,
+				208E7BE51DC03EC000DC4F13 /* YesNoAction.m */,
 			);
 			path = FoodQuest;
 			sourceTree = "<group>";
@@ -2597,6 +2687,10 @@
 			isa = PBXGroup;
 			children = (
 				20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */,
+				2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */,
+				2017BDC21DAAFE3F00421D25 /* scale_icon.png */,
+				2017BDC31DAAFE3F00421D25 /* sign_icon.png */,
+				2017BDC41DAAFE3F00421D25 /* preference_icon.png */,
 				20A141591DA3D9F2009C8AE5 /* no_preference.png */,
 				2098E8961D9AA10E0095D9B3 /* 1314.jpg */,
 				2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */,
@@ -3818,6 +3912,50 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		20755A741DB446AF007373C3 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				20755A721DB446A5007373C3 /* consent_review.html */,
+				208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */,
+				208E7BD01DC0045100DC4F13 /* datagathering_content.html */,
+				208E7BD11DC0045100DC4F13 /* overview_content.html */,
+				208E7BD21DC0045100DC4F13 /* privacy_content.html */,
+				208E7BD31DC0045100DC4F13 /* tasks_content.html */,
+				208E7BD41DC0045100DC4F13 /* survey_content.html */,
+				208E7BD51DC0045100DC4F13 /* time_content.html */,
+				208E7BD61DC0045100DC4F13 /* dataUse_content.html */,
+			);
+			name = html;
+			sourceTree = "<group>";
+		};
+		208E7BE11DC015E800DC4F13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				208E7BE21DC015E900DC4F13 /* MessageUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20C027161DB1B7790056A9A8 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */,
+				20C0271D1DB1B8330056A9A8 /* Firebase.h */,
+				20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */,
+				20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */,
+				20C0271E1DB1BA290056A9A8 /* FirebaseAnalytics.framework */,
+				20C0271F1DB1BA290056A9A8 /* FirebaseCore.framework */,
+				20C027201DB1BA290056A9A8 /* FirebaseInstanceID.framework */,
+				20C027211DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework */,
+				20C027221DB1BA290056A9A8 /* GoogleSymbolUtilities.framework */,
+				20C027231DB1BA290056A9A8 /* GoogleUtilities.framework */,
+				20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */,
+				20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */,
+				20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3909,6 +4047,7 @@
 				2098EFC21D9AA12F0095D9B3 /* 0586.jpg in Resources */,
 				2098EFA41D9AA12F0095D9B3 /* 0616.jpg in Resources */,
 				2098EF921D9AA12F0095D9B3 /* 0634.jpg in Resources */,
+				20C0272B1DB1BC2B0056A9A8 /* GoogleService-Info.plist in Resources */,
 				2098EFD71D9AA12F0095D9B3 /* 0565.jpg in Resources */,
 				2098EF441D9AA12F0095D9B3 /* 0712.jpg in Resources */,
 				2098F1B61D9AA1310095D9B3 /* 0086.jpg in Resources */,
@@ -3916,6 +4055,7 @@
 				2098EDAB1D9AA12E0095D9B3 /* 1224.jpg in Resources */,
 				2098F0801D9AA1300095D9B3 /* 0396.jpg in Resources */,
 				2098EF1B1D9AA12F0095D9B3 /* 0753.jpg in Resources */,
+				208E7BD71DC0045100DC4F13 /* withdrawal_content.html in Resources */,
 				2098EECF1D9AA12F0095D9B3 /* 0829.jpg in Resources */,
 				2098F01F1D9AA1300095D9B3 /* 0493.jpg in Resources */,
 				2098F04B1D9AA1300095D9B3 /* 0449.jpg in Resources */,
@@ -3954,6 +4094,7 @@
 				2098ED9E1D9AA12E0095D9B3 /* 1237.jpg in Resources */,
 				2098EEB91D9AA12F0095D9B3 /* 0851.jpg in Resources */,
 				2098F06F1D9AA1300095D9B3 /* 0413.jpg in Resources */,
+				208E7BDE1DC0045100DC4F13 /* dataUse_content.html in Resources */,
 				2098EE221D9AA12E0095D9B3 /* 1105.jpg in Resources */,
 				2098EF3C1D9AA12F0095D9B3 /* 0720.jpg in Resources */,
 				2098EE0F1D9AA12E0095D9B3 /* 1124.jpg in Resources */,
@@ -4066,6 +4207,7 @@
 				2098ED691D9AA12E0095D9B3 /* 1290.jpg in Resources */,
 				2098F0CF1D9AA1300095D9B3 /* 0317.jpg in Resources */,
 				2098F16E1D9AA1310095D9B3 /* 0158.jpg in Resources */,
+				208E7BDB1DC0045100DC4F13 /* tasks_content.html in Resources */,
 				2098EEA21D9AA12F0095D9B3 /* 0874.jpg in Resources */,
 				2098EEF71D9AA12F0095D9B3 /* 0789.jpg in Resources */,
 				2098F0941D9AA1300095D9B3 /* 0376.jpg in Resources */,
@@ -4094,6 +4236,7 @@
 				2098EEF11D9AA12F0095D9B3 /* 0795.jpg in Resources */,
 				2098F1F31D9AA1310095D9B3 /* 0025.jpg in Resources */,
 				2098EFAA1D9AA12F0095D9B3 /* 0610.jpg in Resources */,
+				208E7BD81DC0045100DC4F13 /* datagathering_content.html in Resources */,
 				2098F0DD1D9AA1300095D9B3 /* 0303.jpg in Resources */,
 				2098EE541D9AA12E0095D9B3 /* 1055.jpg in Resources */,
 				2098EF621D9AA12F0095D9B3 /* 0682.jpg in Resources */,
@@ -4156,6 +4299,7 @@
 				2098F07A1D9AA1300095D9B3 /* 0402.jpg in Resources */,
 				2098EE261D9AA12E0095D9B3 /* 1101.jpg in Resources */,
 				2098EE211D9AA12E0095D9B3 /* 1106.jpg in Resources */,
+				208E7BDD1DC0045100DC4F13 /* time_content.html in Resources */,
 				2098EF011D9AA12F0095D9B3 /* 0779.jpg in Resources */,
 				2098F07B1D9AA1300095D9B3 /* 0401.jpg in Resources */,
 				2098F0401D9AA1300095D9B3 /* 0460.jpg in Resources */,
@@ -4228,6 +4372,7 @@
 				2098F0C01D9AA1300095D9B3 /* 0332.jpg in Resources */,
 				2098F1161D9AA1300095D9B3 /* 0246.jpg in Resources */,
 				2098F16D1D9AA1310095D9B3 /* 0159.jpg in Resources */,
+				208E7BDC1DC0045100DC4F13 /* survey_content.html in Resources */,
 				2098F15F1D9AA1310095D9B3 /* 0173.jpg in Resources */,
 				2098F0EC1D9AA1300095D9B3 /* 0288.jpg in Resources */,
 				2098EE511D9AA12E0095D9B3 /* 1058.jpg in Resources */,
@@ -4307,6 +4452,7 @@
 				2098EE581D9AA12E0095D9B3 /* 1051.jpg in Resources */,
 				2098EE961D9AA12E0095D9B3 /* 0886.jpg in Resources */,
 				2098F0EE1D9AA1300095D9B3 /* 0286.jpg in Resources */,
+				20755A731DB446A5007373C3 /* consent_review.html in Resources */,
 				2098EDB31D9AA12E0095D9B3 /* 1216.jpg in Resources */,
 				2098EFA71D9AA12F0095D9B3 /* 0613.jpg in Resources */,
 				2098F1C11D9AA1310095D9B3 /* 0075.jpg in Resources */,
@@ -4472,6 +4618,7 @@
 				2098F11E1D9AA1300095D9B3 /* 0238.jpg in Resources */,
 				2098F04D1D9AA1300095D9B3 /* 0447.jpg in Resources */,
 				2098EEFA1D9AA12F0095D9B3 /* 0786.jpg in Resources */,
+				208E7BD91DC0045100DC4F13 /* overview_content.html in Resources */,
 				2098F1A81D9AA1310095D9B3 /* 0100.jpg in Resources */,
 				2098F14E1D9AA1310095D9B3 /* 0190.jpg in Resources */,
 				2098EE5A1D9AA12E0095D9B3 /* 1049.jpg in Resources */,
@@ -4708,6 +4855,7 @@
 				2098EFEE1D9AA12F0095D9B3 /* 0542.jpg in Resources */,
 				2098F1531D9AA1310095D9B3 /* 0185.jpg in Resources */,
 				2098F1961D9AA1310095D9B3 /* 0118.jpg in Resources */,
+				2017BDC51DAAFE3F00421D25 /* clipboard_icon.png in Resources */,
 				2098EEFF1D9AA12F0095D9B3 /* 0781.jpg in Resources */,
 				2098EEE01D9AA12F0095D9B3 /* 0812.jpg in Resources */,
 				2098F0701D9AA1300095D9B3 /* 0412.jpg in Resources */,
@@ -4808,6 +4956,7 @@
 				2098F1F11D9AA1310095D9B3 /* 0027.jpg in Resources */,
 				2098ED721D9AA12E0095D9B3 /* 1281.jpg in Resources */,
 				2098F0951D9AA1300095D9B3 /* 0375.jpg in Resources */,
+				2017BDC81DAAFE3F00421D25 /* preference_icon.png in Resources */,
 				2098EDDE1D9AA12E0095D9B3 /* 1173.jpg in Resources */,
 				2098EFA61D9AA12F0095D9B3 /* 0614.jpg in Resources */,
 				2098F03D1D9AA1300095D9B3 /* 0463.jpg in Resources */,
@@ -4909,6 +5058,7 @@
 				2098EF061D9AA12F0095D9B3 /* 0774.jpg in Resources */,
 				2098F15D1D9AA1310095D9B3 /* 0175.jpg in Resources */,
 				2098EED01D9AA12F0095D9B3 /* 0828.jpg in Resources */,
+				2017BDC61DAAFE3F00421D25 /* scale_icon.png in Resources */,
 				2098EEAD1D9AA12F0095D9B3 /* 0863.jpg in Resources */,
 				2098EF3D1D9AA12F0095D9B3 /* 0719.jpg in Resources */,
 				2098EDF91D9AA12E0095D9B3 /* 1146.jpg in Resources */,
@@ -4918,8 +5068,10 @@
 				2098F07D1D9AA1300095D9B3 /* 0399.jpg in Resources */,
 				2098F07F1D9AA1300095D9B3 /* 0397.jpg in Resources */,
 				2098F0B81D9AA1300095D9B3 /* 0340.jpg in Resources */,
+				2017BDC71DAAFE3F00421D25 /* sign_icon.png in Resources */,
 				2098EF001D9AA12F0095D9B3 /* 0780.jpg in Resources */,
 				2098EF221D9AA12F0095D9B3 /* 0746.jpg in Resources */,
+				208E7BDA1DC0045100DC4F13 /* privacy_content.html in Resources */,
 				2098F0511D9AA1300095D9B3 /* 0443.jpg in Resources */,
 				2098F16B1D9AA1310095D9B3 /* 0161.jpg in Resources */,
 				2098EE811D9AA12E0095D9B3 /* 1010.jpg in Resources */,
@@ -5134,11 +5286,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208E7BE61DC03EC000DC4F13 /* YesNoAction.m in Sources */,
 				20D06E0E1D985CF000231A28 /* FoodTabBarControllerViewController.m in Sources */,
+				2017BDCD1DAB0EF300421D25 /* HedonicScaleController.m in Sources */,
 				2098F20E1D9AA8F30095D9B3 /* ConsentViewController.m in Sources */,
+				20C027351DB3C9EB0056A9A8 /* FEQHedonicScaleSlider.m in Sources */,
 				20174B101D95E5CF0056BB9F /* PreferenceViewController.m in Sources */,
 				20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */,
 				20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */,
+				20C027321DB281100056A9A8 /* FQUtilities.m in Sources */,
 				20190F051D9B0F68008D9802 /* credits.md in Sources */,
 				20174B071D95E5CF0056BB9F /* main.m in Sources */,
 			);
@@ -5268,9 +5424,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V5J6HWM76E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FoodQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.FoodQuest;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bcybernetics.food-e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -5281,9 +5442,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V5J6HWM76E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FoodQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.FoodQuest;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bcybernetics.food-e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

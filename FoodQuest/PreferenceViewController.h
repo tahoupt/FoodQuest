@@ -15,7 +15,6 @@
 
 @interface PreferenceViewController : UIViewController <ORKTaskViewControllerDelegate>
 
-
 -(UIImage*) framedImageNamed:(NSString *) imageName;
 -(ORKImageChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2;
 @end

@@ -8,8 +8,17 @@
 
 #import "PreferenceViewController.h"
 #import "foodpics.h"
+#import "Firebase.h"
+#import "FQUtilities.h"
 
-@interface PreferenceViewController ()
+
+
+@interface PreferenceViewController () {
+  FIRDatabaseHandle _firebaseRefHandle;
+}
+
+@property (strong, nonatomic) FIRDatabaseReference *firebaseRef;
+@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
 
 @end
 
@@ -18,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self configureDatabase];
 }
 
 
@@ -40,7 +51,7 @@
 
 
     ORKInstructionStep *instructionStep =
-      [[ORKInstructionStep alloc] initWithIdentifier:@"identifier"];
+      [[ORKInstructionStep alloc] initWithIdentifier:@"instruction"];
       
     instructionStep.title = @"Preference Survey";
     instructionStep.text = @"This survey will ask you about your food preferences.";
@@ -59,11 +70,11 @@
     
 #define numFoodPictures 896
 #define numObjectPictures 418
-#define numPreferenceSteps 1
+#define numPreferenceSteps 3
 
     for (NSInteger i = 0; i < numPreferenceSteps; i++) {
     
-        NSString *identifier = [NSString stringWithFormat:@"IndexPreference_%ld",i];
+        NSString *identifier = [NSString stringWithFormat:@"preference_%ld",i];
         
         
         // NOTE: we need to make modified ORKImageChoiceAnswerFormat into a subclass
@@ -75,22 +86,7 @@
 
     }
     
-//    ORKScaleAnswerFormat *scaleFormat = [[ORKScaleAnswerFormat alloc] initWithMaximumValue:10 minimumValue:-10 defaultValue:0 step:2  vertical:YES maximumValueDescription:@"Delicious" minimumValueDescription:@"Disgusting"];
-//    
-//    ORKQuestionStep *ratingStep = [ORKQuestionStep questionStepWithIdentifier:kIdentifierPrefence title:@"How would you rate this food?"  answer:scaleFormat];
-//        
-//        [steps addObject:ratingStep];
 
-// NOTE: we need to make modified ORKScaleSliderView into a subclass with a subclass
-// of ORKContinuousScaleAnswerFormat --> ContinuousLinearMagnitudeScale
-
-// NOTE: this should be rewritten to include scalelabels array and imageName
-   ORKContinuousScaleAnswerFormat *scaleFormat2 = [[ORKContinuousScaleAnswerFormat alloc] initWithMaximumValue:100 minimumValue:-100 defaultValue:0 maximumFractionDigits:0 vertical:YES maximumValueDescription:@"Top" minimumValueDescription:@"Bottom"];
-    
-    ORKQuestionStep *ratingStep2 = [ORKQuestionStep questionStepWithIdentifier:kIdentifierPrefence2 title:@"How would you rate this food?"  answer:scaleFormat2];
-
-    
-    [steps addObject:ratingStep2];
 
     
     ORKOrderedTask *task =
@@ -109,6 +105,15 @@
 
     ORKTaskResult *taskResult = [taskViewController result];
     // You could do something with the result here.
+    
+    
+    NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
+    
+    // some user identifier, but anonymized?
+    resultDictionary[@"user_id"] = @"thoupt"; 
+    
+    [self saveResultToFirebase:resultDictionary];
+    
 
     // Then, dismiss the task view controller.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -173,5 +178,18 @@
 
 }
 
+- (void)configureDatabase {
+  _firebaseRef = [[FIRDatabase database] reference];
+}
 
+
+
+- (void)saveResultToFirebase:(NSDictionary *)result_data {
+
+  // Push data to Firebase Database
+  [[[_firebaseRef child:@"preferences"] childByAutoId] setValue:result_data];
+}
 @end
+
+
+
