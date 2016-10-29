@@ -13,4 +13,7 @@
 #define kFirebaseDirectory @"preferences"
 #define kAppIdentifier @"Food
 
+// user default keys
+#define kUserDefaultUserIDKey @"UserID"
+
 #endif /* FQConstants_h */

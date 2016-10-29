@@ -88,10 +88,8 @@
     // You could do something with the result here.
 
 
-  NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
     
-    // some user identifier, but anonymized?
-    resultDictionary[@"user_id"] = @"thoupt"; 
     
     [self saveResultToFirebase:resultDictionary];
     

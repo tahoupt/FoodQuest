@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Firebase.h"
+#import "FQConstants.h"
 
 
 @interface AppDelegate ()
@@ -16,6 +17,25 @@
 
 @implementation AppDelegate
 
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions; {
+
+        // if launched using an URL scheme ("foodquest://?<userid>"), only launch if coming from safari or mail
+        if (nil != [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
+        
+            if (nil != [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey]) {
+            
+                if ([[launchOptions valueForKey:UIApplicationLaunchOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilemail"] || [[launchOptions valueForKey:UIApplicationLaunchOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilesafari"]) {
+
+                    return YES;
+
+                }
+}
+            else return NO;
+        }
+        
+        return YES;
+
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -25,6 +45,46 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options; {
+
+    // respond to the URL scheme ("foodquest://?<userid>"), and store the userid in UserDefaults
+    
+    // NOTE: check is we already have a userid in user defaults, but up warning if its going to change?
+    
+    // NOTE: include some checking of someother key (or structure of userid) 
+    // to make sure its a valid userid and authentically sent by experimenter? 
+
+    NSLog(@"Calling Application Bundle ID: %@", [options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey]);
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+  
+    // if launched using an URL scheme ("foodquest://?<userid>"), only launch if coming from safari or mail
+
+    if ([[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilemail"] || [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilesafari"]) {
+
+        NSString *newUserID = [[url query] copy];
+        
+        // NOTE: validate newUserID
+
+        NSString *oldUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey ];
+        
+        if (nil != oldUserID) {
+            if (![oldUserID isEqualToString:newUserID]) {
+            
+                // NOTE: put up alert asking if we want to overwrite the oldUserID
+                return NO;
+            }
+            else {
+                return YES;
+            }
+        }
+
+        [[NSUserDefaults standardUserDefaults] setObject:newUserID forKey:kUserDefaultUserIDKey ];
+
+    }
+  
+    return NO;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -51,6 +111,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+
 
 
 @end

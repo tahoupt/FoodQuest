@@ -10,16 +10,11 @@
 #import "foodpics.h"
 #import "Firebase.h"
 #import "FQUtilities.h"
+#import "FQConstants.h"
 
 
 
-@interface PreferenceViewController () {
-  FIRDatabaseHandle _firebaseRefHandle;
-}
-
-@property (strong, nonatomic) FIRDatabaseReference *firebaseRef;
-@property (nonatomic, strong) FIRRemoteConfig *remoteConfig;
-
+@interface PreferenceViewController () 
 @end
 
 @implementation PreferenceViewController
@@ -28,7 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self configureDatabase];
 }
 
 
@@ -86,8 +80,6 @@
 
     }
     
-
-
     
     ORKOrderedTask *task =
       [[ORKOrderedTask alloc] initWithIdentifier:@"preferenceTask" steps:steps];
@@ -109,8 +101,6 @@
     
     NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
     
-    // some user identifier, but anonymized?
-    resultDictionary[@"user_id"] = @"thoupt"; 
     
     [self saveResultToFirebase:resultDictionary];
     
@@ -178,16 +168,22 @@
 
 }
 
-- (void)configureDatabase {
-  _firebaseRef = [[FIRDatabase database] reference];
-}
-
 
 
 - (void)saveResultToFirebase:(NSDictionary *)result_data {
 
-  // Push data to Firebase Database
-  [[[_firebaseRef child:@"preferences"] childByAutoId] setValue:result_data];
+    // only save to database if we have recruitment userid
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
+  
+    if (nil != userID){
+        
+      FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+      
+      // Push data to Firebase Database
+      [[[firebaseRef child:@"preferences"] childByAutoId] setValue:result_data];
+
+    }
+  
 }
 @end
 

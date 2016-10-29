@@ -7,10 +7,18 @@
 //
 
 #import "FQUtilities.h"
+#import "FQConstants.h"
+
 
 NSMutableDictionary *TaskResultToDictionary(ORKTaskResult *taskResult) {
 
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+    
+    // NOTE: for debugging purposes, assign temp id
+    if (nil == userID) { userID = @"thoupt"; }
+    d[@"user_id"] = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
     
     d[@"task_id"] = taskResult.identifier;
     d[@"start_time"] = [NSNumber numberWithDouble:[taskResult.startDate timeIntervalSince1970]];;

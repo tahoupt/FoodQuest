@@ -36,6 +36,9 @@
 		208E7BDE1DC0045100DC4F13 /* dataUse_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD61DC0045100DC4F13 /* dataUse_content.html */; };
 		208E7BE31DC015E900DC4F13 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208E7BE21DC015E900DC4F13 /* MessageUI.framework */; };
 		208E7BE61DC03EC000DC4F13 /* YesNoAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 208E7BE51DC03EC000DC4F13 /* YesNoAction.m */; };
+		209285911DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209285901DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework */; };
+		2092859E1DC3C5B500FC3472 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209285951DC3C5B500FC3472 /* FirebaseStorage.framework */; };
+		209285A91DC3FB5600FC3472 /* SubjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209285A81DC3FB5600FC3472 /* SubjectInfoController.m */; };
 		2098ED511D9AA12E0095D9B3 /* 1314.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8961D9AA10E0095D9B3 /* 1314.jpg */; };
 		2098ED521D9AA12E0095D9B3 /* 1313.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8971D9AA10E0095D9B3 /* 1313.jpg */; };
 		2098ED531D9AA12E0095D9B3 /* 1312.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2098E8981D9AA10E0095D9B3 /* 1312.jpg */; };
@@ -1345,6 +1348,10 @@
 		208E7BE21DC015E900DC4F13 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		208E7BE41DC03EC000DC4F13 /* YesNoAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YesNoAction.h; sourceTree = "<group>"; };
 		208E7BE51DC03EC000DC4F13 /* YesNoAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YesNoAction.m; sourceTree = "<group>"; };
+		209285901DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		209285951DC3C5B500FC3472 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = "<group>"; };
+		209285A71DC3FB5600FC3472 /* SubjectInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectInfoController.h; sourceTree = "<group>"; };
+		209285A81DC3FB5600FC3472 /* SubjectInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectInfoController.m; sourceTree = "<group>"; };
 		2098E8961D9AA10E0095D9B3 /* 1314.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1314.jpg; path = images/FoodPics_extended_72dpi/1314.jpg; sourceTree = "<group>"; };
 		2098E8971D9AA10E0095D9B3 /* 1313.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1313.jpg; path = images/FoodPics_extended_72dpi/1313.jpg; sourceTree = "<group>"; };
 		2098E8981D9AA10E0095D9B3 /* 1312.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1312.jpg; path = images/FoodPics_extended_72dpi/1312.jpg; sourceTree = "<group>"; };
@@ -2597,7 +2604,9 @@
 				20C027251DB1BA290056A9A8 /* FirebaseCore.framework in Frameworks */,
 				20C0272E1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework in Frameworks */,
 				20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */,
+				209285911DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework in Frameworks */,
 				20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */,
+				2092859E1DC3C5B500FC3472 /* FirebaseStorage.framework in Frameworks */,
 				20C027261DB1BA290056A9A8 /* FirebaseInstanceID.framework in Frameworks */,
 				20174B291D95E65E0056BB9F /* ResearchKit.framework in Frameworks */,
 				20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */,
@@ -2649,6 +2658,8 @@
 				2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */,
 				20174B0E1D95E5CF0056BB9F /* PreferenceViewController.h */,
 				20174B0F1D95E5CF0056BB9F /* PreferenceViewController.m */,
+				209285A71DC3FB5600FC3472 /* SubjectInfoController.h */,
+				209285A81DC3FB5600FC3472 /* SubjectInfoController.m */,
 				20174B111D95E5CF0056BB9F /* Main.storyboard */,
 				20D06E0C1D985CF000231A28 /* FoodTabBarControllerViewController.h */,
 				20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */,
@@ -3938,6 +3949,8 @@
 			children = (
 				20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */,
 				20C0271D1DB1B8330056A9A8 /* Firebase.h */,
+				209285951DC3C5B500FC3472 /* FirebaseStorage.framework */,
+				209285901DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework */,
 				20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */,
 				20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */,
 				20C0271E1DB1BA290056A9A8 /* FirebaseAnalytics.framework */,
@@ -5292,6 +5305,7 @@
 				20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */,
 				20C027321DB281100056A9A8 /* FQUtilities.m in Sources */,
 				20190F051D9B0F68008D9802 /* credits.md in Sources */,
+				209285A91DC3FB5600FC3472 /* SubjectInfoController.m in Sources */,
 				20174B071D95E5CF0056BB9F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

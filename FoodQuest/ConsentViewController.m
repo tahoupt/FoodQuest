@@ -8,10 +8,19 @@
 
 #import "ConsentViewController.h"
 #import "YesNoAction.h"
+#import "Firebase.h"
+#import "FQUtilities.h"
+#import "FQConstants.h"
 
-@interface ConsentViewController ()
+
+@interface ConsentViewController () {
+
+}
+
+
 
 @end
+
 
 @implementation ConsentViewController
 
@@ -44,10 +53,19 @@
 
 
 
-#define kConsentReviewIdentifier @"consentReview"
+#define kConsentReviewStepIdentifier @"consentReview"
+#define kConsentSharingIdentifier @"consentSharing"
+#define kparticipantEmailIdentifier @"participantEmail"
 
 -(void)startConsentReviewTask; {
 
+
+//    ORKConsentSharingStep *sharingStep =
+//          [[ORKConsentSharingStep alloc] initWithIdentifier:kConsentSharingIdentifier
+//                               investigatorShortDescription:@"MyInstitution"
+//                                investigatorLongDescription:@"MyInstitution and its partners"
+//                              localizedLearnMoreHTMLContent:@"Lorem ipsum..."];
+//                          
 
 
     _consent = [[ORKConsentDocument alloc] init];
@@ -71,7 +89,7 @@
 
     
 
-    ORKConsentReviewStep *reviewStep = [[ORKConsentReviewStep alloc] initWithIdentifier:kConsentReviewIdentifier
+    ORKConsentReviewStep *reviewStep = [[ORKConsentReviewStep alloc] initWithIdentifier:kConsentReviewStepIdentifier
         signature:_consent.signatures[0] 
         inDocument:_consent];
     
@@ -97,77 +115,125 @@
                      error:(NSError *)error {
 
 
-    if (reason  != ORKTaskViewControllerFinishReasonCompleted) {
-        return;
-    }
-    ORKTaskResult *taskResult = [taskViewController result];
-    // You could do something with the result here.
-
-
-ORKStepResult *stepResult = [taskResult stepResultForStepIdentifier:@"ConsentReviewStep"];
-
-  ORKConsentSignatureResult *signatureResult = (ORKConsentSignatureResult *)[stepResult.results firstObject];
-  
-    [signatureResult applyToDocument:_consent];
-
-     [_consent makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
-     
-            self.pdfFile = new_pdfFile;
-        // write pdf to temp directory
+        if (reason  != ORKTaskViewControllerFinishReasonCompleted) {
+            return;
+        }
         
-             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-             NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodQuestConsent.pdf"];
-             [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
+        ORKTaskResult *taskResult = [taskViewController result];
+        // You could do something with the result here.
 
+        ORKStepResult *stepResult = [taskResult stepResultForStepIdentifier:kConsentReviewStepIdentifier];
 
+        ORKConsentSignatureResult *signatureResult = (ORKConsentSignatureResult *)[stepResult.results firstObject];
+      
+      // NOTE: IMPORTANT ! apply signatureResult to a copy of the consent document!
+       ORKConsentDocument *consentCopy = [_consent copy];
+       
+        [signatureResult applyToDocument:consentCopy];
+        
+        NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+        
+        if (nil == user_id) {
+            // note: put up alert that without recruitment user_id, consent won't be saved.
+            return;
+        }
+
+        [consentCopy makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
+         
+            self.pdfFile = new_pdfFile;
+                
+    //        // write pdf to temp directory
+    //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodQuestConsent.pdf"];
+    //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
+
+            [self putPDFinFirebaseStorage];
+            
             [self wantsPDFEmailed];
 
 
         }];    
 
-    // Then, dismiss the task view controller.
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    // go back to main table view
-    [self.tabBarController setSelectedIndex:0];
-    // or set selectedViewContoller
+        // Then, dismiss the task view controller.
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        // go back to main table view
+        [self.tabBarController setSelectedIndex:0];
+        // or set selectedViewContoller
 
 }
+
+
+-(void) putPDFinFirebaseStorage; {
+
+        // Create a path to "consent/<userid>_consent.pdf"
+        NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+        NSString *consent_file_path = [NSString stringWithFormat:@"consent/%@_consent.pdf",user_id];
+            
+        // Get a reference to the storage service, using the default Firebase App
+        FIRStorage *storage = [FIRStorage storage];
+        FIRStorageReference *consentDocRef = [storage referenceWithPath:consent_file_path];
+
+
+    //    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info.plist" ofType:@"plist"];
+    //    NSDictionary *googleServiceInfo = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    //    NSString *storageBucketName = [googleServiceInfo objectForKey:@"STORAGE_BUCKET"];
+    //    NSString *storageURL = [NSString stringWithFormat:@"gs://%@",storageBucketName];
+    //
+    //
+    //    // Create a storage reference from our storage service
+    //    FIRStorageReference *storageRef = [storage referenceForURL:storageURL];
+
+        
+        // Upload the file to the path
+        
+        FIRStorageUploadTask *uploadTask = [consentDocRef putData:self.pdfFile metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                // Metadata contains file metadata such as size, content-type, and download URL.
+                // NOTE: store this url in the user's firebase database entry
+                NSURL *downloadURL = metadata.downloadURL;
+            }
+        }];
+}
+
+
     
 -(void)wantsPDFEmailed; {
 
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Signed Consent Form"
-                               message:@"Would you like the signed consent form emailed to you as a PDF file?"
-                               preferredStyle:UIAlertControllerStyleAlert];
- 
-    YesNoAction* defaultAction = [YesNoAction actionWithTitle:@"Yes, Send Email"
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) { [((YesNoAction *)action).parent yesAction]; }];
- 
-   
-    YesNoAction* cancelAction = [YesNoAction actionWithTitle:@"No"
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * action) {}];  
-                                                          
-    defaultAction.parent = self;
-    cancelAction.parent = self;
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Signed Consent Form"
+                                   message:@"Would you like the signed consent form emailed to you as a PDF file?"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+     
+        YesNoAction* defaultAction = [YesNoAction actionWithTitle:@"Yes, Send Email"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) { [((YesNoAction *)action).parent yesAction]; }];
+     
+       
+        YesNoAction* cancelAction = [YesNoAction actionWithTitle:@"No"
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:^(UIAlertAction * action) {}];  
+                                                              
+        defaultAction.parent = self;
+        cancelAction.parent = self;
 
-    [alert addAction:defaultAction];
-    [alert addAction:cancelAction];
+        [alert addAction:defaultAction];
+        [alert addAction:cancelAction];
 
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
 
 }
 
 -(void)yesAction; {
 
-    [self sendPDFEmail];
+        [self sendPDFEmail];
 
 }
 
 -(void)sendPDFEmail {
 
-       if (![MFMailComposeViewController canSendMail]) {
+        if (![MFMailComposeViewController canSendMail]) {
            NSLog(@"Mail services are not available.");
            return;
         }
@@ -191,10 +257,10 @@ ORKStepResult *stepResult = [taskResult stepResultForStepIdentifier:@"ConsentRev
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-   // Check the result or perform other tasks.
- 
-   // Dismiss the mail compose view controller.
-   [self dismissViewControllerAnimated:YES completion:nil];
+       // Check the result or perform other tasks.
+     
+       // Dismiss the mail compose view controller.
+       [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
