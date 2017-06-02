@@ -11,7 +11,7 @@
 
 
 #define kFirebaseDirectory @"preferences"
-#define kAppIdentifier @"Food
+#define kAppIdentifier @"FoodQuest"
 
 // user default keys
 #define kUserDefaultUserIDKey @"UserID"

@@ -1,0 +1,80 @@
+label: "PHQ-8"
+
+title: "Personal Health Questionnaire Depression Scale (PHQ-8)"
+
+identifier: phq8
+
+instructions: "Over the last two weeks, how often have you been bothered by any of the following problems?"
+
+comment: |
+     This is an adaptation of the PHQ-9 scale. Since this scale is self-administered in our studies, question #9, "How often during the past 2 weeks were you bothered by thoughts that you would be better off dead, or of hurting yourself in some way?", was deleted.
+
+scoring: |
+    If two consecutive numbers are circled, score the higher (more distress) number. If the numbers are not consecutive, do not score the item. Score is the sum of the 8 items. If more than 1 item missing, set the value of the scale to missing. A score of 10 or greater is considered major depression, 20 or more is severe major depression.
+
+
+reference: "Kroenke K, Strine TW, Spritzer RL, Williams JB, Berry JT, Mokdad AH. The PHQ-8 as a measure of current depression in the general population. J Affect Disord. 2009; 114(1-3):163-73. PMID 18752852"
+
+permissions: "This scale is free to use without permission."
+
+revision_history: |
+    Yaml-encoded from http://patienteducation.stanford.edu/research/phq.pdf by T. Houpt  2017-3-29. "In the past two weeks were you bothered by" has been added to the front of each stem (slightly truncated instruction to try to get to fit)
+
+sections:
+
+     - title:
+       key:
+      
+       answers: &freq_choices
+            - text: Not at all
+              value: 0
+            - text: Several days
+              value: 1
+            - text: More than half the days
+              value: 2
+            - text: Nearly every day
+              value: 3
+
+       questions:
+
+            - key: interest
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nLittle interest or pleasure in doing things?"
+
+            - key: depressed
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nFeeling down, depressed, or hopeless?"
+
+            - key: sleep
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nTrouble falling or staying asleep, or sleeping too much?"
+              
+            - key: energy
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nFeeling tired or having little energy?"
+
+            - key: appetite
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nPoor appetite or overeating?"
+
+            - key: failure
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nFeeling bad about yourself, or that you are a failure, or have let yourself or your family down ?"
+
+            - key: concentration
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nTrouble concentrating on things, such as reading the newspaper or watching television?"
+
+            - key: kinetics
+              type: multiple_choice
+              answers: *freq_choices
+              stem: "In the past two weeks were you bothered by:\nMoving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?"
+              
+              

@@ -1,0 +1,258 @@
+label: "EAT-26"
+
+title: "Eating Attitudes Test (EAT-26)"
+
+identifier: eat26
+
+
+reference: "Garner DM, Olmsted MP, Bohr Y, Garfinkel PE. (1982) The eating attitudes test: psychometric features and clinical correlates. Psychological Medicine, 12, 871-878 PMID 6961471"
+
+permissions: "© Copyright: EAT-26 D. Garner"
+
+revision_history: "Retrieved and yaml-encoded by T. Houpt from http://eat-26.com/Form/ on 2017-3-5. Note that Part C instructions modified slightly ('in the last 6 months' added to each question stem). Fixed capitalization in part B stems."
+
+comment: 
+
+scoring: | 
+    
+    see http://www.eat-26.com/scoring.php
+    Test Items and Total Test Score:
+    • Items 1-25 are scored as follows: Always = 3; Usually = 2; Often = 1; Other answers = 0
+    • Item 26 is scored in the opposite direction (Never = 3 etc.)
+    • Total Test Score: Add item scores for a "total test score."
+    • Is the total 20 or more?  If Yes, make a referral
+    
+    Behavioral Questions:
+    • Did the respondent check any of the boxes as shown below?   No   Yes, make a referral
+    binge: multimonthly
+    vomited: unimonthly
+    laxatives: unimonthly
+    exercise: daily
+    weight_loss: yes
+    
+sections:
+
+    - title: "Part A"
+      instructions: "Complete the following questions"
+      questions:
+          - key: birth_date
+            stem: "Birth Date"
+            type: date_of_birth
+            
+          - key: gender
+            stem: "Gender"
+            type: gender
+            
+          - key: height
+            stem: "Height"
+            type: height # vs length_cm
+            
+          - key: current_weight
+            stem: "Current Weight"
+            type: weight # vs weight_kg
+            
+          - key: highest_weight
+            stem: "Highest Weight (excluding pregnancy)"
+            type: weight
+
+          - key: lowest_weight
+            stem: "Lowest Adult Weight"
+            type: weight
+
+          - key: ideal_weight
+            stem: "Ideal Weight"
+            type: weight
+            
+
+    - title: Part B
+      instructions: "Select a response for each of the following statements"
+      answers: &frequency_choices
+            - text: Always
+              value: always
+            - text: Usually
+              value: usually
+            - text: Often
+              value: often
+            - text: Sometimes
+              value: sometimes
+            - text: Rarely
+              value: rarely
+            - text: Never
+              value: never
+              
+      questions:
+            - key: B1
+              stem: "I am terrified about being overweight."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B2
+              stem: "I avoid eating when I am hungry."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B3
+              stem: "I find myself preoccupied with food."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B4
+              stem: "I have gone on eating binges where I feel that I may not be able to stop."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B5
+              stem: "I cut my food into small pieces."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B6
+              stem: "I am aware of the calorie content of foods that I eat."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B7
+              stem: "I particularly avoid food with a high carbohydrate content (i.e. bread, rice, potatoes, etc.)"
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B8
+              stem: "I feel that others would prefer if I ate more."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B9
+              stem: "I vomit after I have eaten."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B10
+              stem: "I feel extremely guilty after eating."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B11
+              stem: "I am occupied with a desire to be thinner."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B12
+              stem: "I think about burning up calories when I exercise."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B13
+              stem: "Other people think that I am too thin."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B14
+              stem: "I am preoccupied with the thought of having fat on my body."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B15
+              stem: "I take longer than others to eat my meals."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B16
+              stem: "I avoid foods with sugar in them."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B17
+              stem: "I eat diet foods."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B18
+              stem: "I feel that food controls my life."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B19
+              stem: "I display self-control around food."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B20
+              stem: "I feel that others pressure me to eat."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B21
+              stem: "I give too much time and thought to food."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B22
+              stem: "I feel uncomfortable after eating sweets."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B23
+              stem: "I engage in dieting behavior."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B24
+              stem: "I like my stomach to be empty."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B25
+              stem: "I have the impulse to vomit after meals."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: B26 # score backwards from other questions
+              stem: "I Enjoy trying new rich foods."
+              type: multiple_choice
+              answers: *frequency_choices              
+              
+    - title: "Part C: Behavioral Questions"
+      answers: &timing_choices
+            - text: Never
+              value: never
+            - text: Once a month or less
+              value: monthly
+            - text: 2-3 times a month 
+              value: multimonthly
+            - text: Once a week 
+              value: weekly
+            - text: 2-6 times a week 
+              value: multiweekly
+            - text: Once a day or more
+              value: daily
+      questions:
+
+          - key: binges 
+            stem: "In the past 6 months have you: Gone on eating binges where you feel that you may not be able to stop? (Defined as eating much more than most people would under the same circumstances and feeling that eating is out of control.)"
+            type: multiple_choice
+            answers: *timing_choices
+
+          - key: vomited
+            stem: "In the past 6 months have you: Ever made yourself sick (vomited) to control your weight or shape?"
+            type: multiple_choice
+            answers: *timing_choices
+
+          - key: laxatives
+            stem: "In the past 6 months have you: Ever used laxatives, diet pills or diuretics (water pills) to control your weight or shape?"
+            type: multiple_choice
+            answers: *timing_choices
+
+          - key: exercise
+            stem: "In the past 6 months have you: Exercised more than 60 minutes a day to lose or to control your weight?"
+            type: multiple_choice
+            answers: *timing_choices
+
+          - key: weight_loss
+            stem: "Have you lost 20 pounds or more in the past 6 months?"
+            type: boolean
+
+          - key: ed_treatment
+            stem: "Have you ever been treated for an eating disorder?"
+            type: boolean
+
+

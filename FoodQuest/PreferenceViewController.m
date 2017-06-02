@@ -13,6 +13,15 @@
 #import "FQConstants.h"
 
 
+#import "ImagePreferenceStepViewController.h"
+#import "ImagePreferenceQuestionView.h"
+#import "ImagePreferenceChoice.h"
+#import "ImagePreferenceChoiceAnswerFormat.h"
+
+
+//---------------------------------------------------------------
+//---------------------------------------------------------------
+
 
 @interface PreferenceViewController () 
 @end
@@ -57,7 +66,7 @@
 //
 //    ORKImageChoice *image2 =  [ORKImageChoice choiceWithNormalImage: [UIImage imageNamed:@"salad.jpeg"] selectedImage: [self framedImageNamed:@"salad.jpeg"] text:@"salad" value:@"salad"];
 //         
-//    ORKImageChoiceAnswerFormat *imageFormat = [[ORKImageChoiceAnswerFormat alloc]initWithImageChoices:@[image1,image2] ];
+//    ImagePreferenceChoiceAnswerFormat *imageFormat = [[ImagePreferenceChoiceAnswerFormat alloc]initWithImageChoices:@[image1,image2] ];
 //
 //    ORKQuestionStep *preferenceStep = [ORKQuestionStep questionStepWithIdentifier:kIdentifierFoodChoice title:@"Which food would you prefer right now?"  answer:imageFormat];
 //    
@@ -71,8 +80,8 @@
         NSString *identifier = [NSString stringWithFormat:@"preference_%ld",i];
         
         
-        // NOTE: we need to make modified ORKImageChoiceAnswerFormat into a subclass
-        ORKImageChoiceAnswerFormat *randomFoodImageFormat = [self randomFoodImageChoice];
+        // NOTE: we need to make modified ImagePreferenceChoiceAnswerFormat into a subclass
+        ImagePreferenceChoiceAnswerFormat *randomFoodImageFormat = [self randomFoodImageChoice];
 
         ORKQuestionStep *preferenceStep = [ORKQuestionStep questionStepWithIdentifier:identifier title:@"Which food would you prefer right now?"  answer:randomFoodImageFormat];
         
@@ -99,7 +108,7 @@
     // You could do something with the result here.
     
     
-    NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult);
     
     
     [self saveResultToFirebase:resultDictionary];
@@ -134,27 +143,35 @@
 }
 
 
--(ORKImageChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2; {
+-(ImagePreferenceChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2 showNoPreferenceButton:(BOOL)noPrefFlag;  {
 
-
-    NSString *imageName1 = [NSString stringWithFormat:@"%04ld.jpg",index1];
-    NSString *imageName2 = [NSString stringWithFormat:@"%04ld.jpg",index2];
-    NSString *value1 =  [NSString stringWithFormat:@"%04ld",index1];
-    NSString *value2 =  [NSString stringWithFormat:@"%04ld",index2];
+NSString *imageName1 = [NSString stringWithFormat:@"%ld.jpg",index1];
+    NSString *imageName2 = [NSString stringWithFormat:@"%ld.jpg",index2];
+    NSString *value1 =  [NSString stringWithFormat:@"%ld",index1];
+    NSString *value2 =  [NSString stringWithFormat:@"%ld",index2];
 
     
-    ORKImageChoice *image1 = [ORKImageChoice choiceWithNormalImage: [UIImage imageNamed:imageName1] selectedImage:[self framedImageNamed:imageName1] text:value1 value:value1];
+    ImagePreferenceChoice *image1 = [ImagePreferenceChoice choiceWithNormalImage: [UIImage imageNamed:imageName1] selectedImage:[self framedImageNamed:imageName1] text:value1 value:value1];
 
-    ORKImageChoice *image2 =  [ORKImageChoice choiceWithNormalImage: [UIImage imageNamed:imageName2] selectedImage: [self framedImageNamed:imageName2] text:value2 value:value2];
+    ImagePreferenceChoice *image2 =  [ImagePreferenceChoice choiceWithNormalImage: [UIImage imageNamed:imageName2] selectedImage: [self framedImageNamed:imageName2] text:value2 value:value2];
          
-    ORKImageChoiceAnswerFormat *imageFormat = [[ORKImageChoiceAnswerFormat alloc] initWithImageChoices:@[image1,image2] ];
- 
+    ImagePreferenceChoiceAnswerFormat *imageFormat = [[ImagePreferenceChoiceAnswerFormat alloc] initWithImageChoices:@[image1,image2] ];
+    
+    [imageFormat setAllowNoPreference:NO];
+     [imageFormat setShowSelectedAnswer:NO];
 
     return imageFormat;
 
 }
 
--(ORKImageChoiceAnswerFormat *)randomFoodImageChoice; {
+-(ImagePreferenceChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2 ;  {
+
+    return [self imageChoiceWithImageIndex1:index1 andImageIndex2:index2 showNoPreferenceButton:NO];
+ 
+
+}
+
+-(ImagePreferenceChoiceAnswerFormat *)randomFoodImageChoice; {
 
     NSInteger index1 = arc4random_uniform(numFoodPictures) + 1;
     NSInteger index2 = arc4random_uniform(numFoodPictures) + 1;
@@ -164,7 +181,37 @@
         index2 = arc4random_uniform(numFoodPictures) + 1;
     }
     
+    
     return [self imageChoiceWithImageIndex1:index1 andImageIndex2:index2];
+
+}
+
+
+- (nullable ORKStepViewController *)taskViewController:(ORKTaskViewController *)taskViewController viewControllerForStep:(ORKStep *)step; {
+
+    // return a custom view controller
+    
+    NSLog(@"Step ID: %@", [step identifier]);
+    
+    
+    // see bug in line 468 of ORKQuestionStepViewController assert
+    
+     if (!step || ![step isKindOfClass:[ORKQuestionStep class]]) {
+     
+        return nil;
+    }
+     
+     return nil;
+     
+//    ImagePreferenceStepViewController *stepViewCtrlr = [[ImagePreferenceStepViewController alloc] initWithStep:step];
+//    
+//    ImagePreferenceQuestionView *selectionView = [ [ImagePreferenceQuestionView alloc] initWithImageChoiceAnswerFormat:[self randomFoodImageChoice] answer:nil];
+//
+//  //  ImagePreferenceQuestionView *selectionView = [[ImagePreferenceQuestionView alloc] init];
+//
+//    [stepViewCtrlr setCustomQuestionView:selectionView ];
+//    return stepViewCtrlr;
+
 
 }
 

@@ -1,0 +1,144 @@
+label: "PANAS"
+
+title: "The Positive and Negative Affect Schedule (PANAS)"
+
+identifier: panas
+
+instructions: "This scale consists of a number of words that describe different feelings and emotions. Read each item and then select the appropriate answer  Indicate To what extent do you feel this way right now, that is, at the present moment."
+
+comment: |
+    from Watson 1988: 
+    
+    We have used PANAS with the following time instructions:
+
+    Moment (you feel this way right now, that is,at the present moment) 
+    Today (you have felt this way today)
+    Past few days (you have felt this way during the past few days)
+    Week (you have felt this way during the past week)
+    Past few weeks  (you have felt this way during the past few weeks)
+    Year (you have felt this way during the past year)
+    General (you generally feel this way,that is, how you feel on the average)
+    
+reference:  "Watson, D., Clark, L. A., & Tellegan, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. PMID 3397865"
+
+permissions: "Copyright © 1988 by the American Psychological Association."
+
+revision_history: "Yaml-encoded from Watson 1988 reference by T. Houpt  2017-3-8. modified instructions for iOS version (eg select answer, rather than mark answer) "
+
+sections:
+      - title:
+        key:
+      
+        answers: &intensity_choices
+            - text: extremely
+              value: 4
+            - text: quite a bit
+              value: 3
+            - text: moderately
+              value: 2
+            - text: a little
+              value: 1
+            - text: very slightly or not at all
+              value: 0
+              
+        questions:
+
+            - key: interested
+              stem: "To what extent do you feel:\ninterested"
+              type: multiple_choice
+              answers: *intensity_choices
+
+            - key: distressed
+              stem: "To what extent do you feel:\ndistressed"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: excited
+              stem: "To what extent do you feel:\nexcited"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: upset
+              stem: "To what extent do you feel:\nupset"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: strong
+              stem: "To what extent do you feel:\nstrong"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: guilty
+              stem: "To what extent do you feel:\nguilty"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: scared
+              stem: "To what extent do you feel:\nscared"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: hostile
+              stem: "To what extent do you feel:\nhostile"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: enthusiastic
+              stem: "To what extent do you feel:\nenthusiastic "
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: proud
+              stem: "To what extent do you feel:\nproud"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: irritable
+              stem: "To what extent do you feel:\nirritable"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: alert
+              stem: "To what extent do you feel:\nalert"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: ashamed
+              stem: "To what extent do you feel:\nashamed"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: inspired
+              stem: "To what extent do you feel:\ninspired"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: nervous
+              stem: "To what extent do you feel:\nnervous"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: determined
+              stem: "To what extent do you feel:\ndetermined "
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: attentive
+              stem: "To what extent do you feel:\nattentive "
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: jittery
+              stem: "To what extent do you feel:\njittery"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: active
+              stem: "To what extent do you feel:\nactive"
+              type: multiple_choice
+              answers: *intensity_choices
+              
+            - key: afraid
+              stem: "To what extent do you feel:\nafraid"
+              type: multiple_choice
+              answers: *intensity_choices

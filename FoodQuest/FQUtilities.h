@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "ResearchKit/ResearchKit.h"
 
-NSMutableDictionary *TaskResultToDictionary(ORKTaskResult *taskResult);
-
+NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult);
+void SaveResultToFirebase(NSDictionary *result_data);
 
 #endif /* FQUtilities_h */

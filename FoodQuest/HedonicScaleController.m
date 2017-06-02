@@ -7,6 +7,7 @@
 //
 
 #import "HedonicScaleController.h"
+#import "ImageHedonicScaleAnswerFormat.h"
 #import "foodpics.h"
 #import "Firebase.h"
 #import "FQUtilities.h"
@@ -16,6 +17,8 @@
  @interface HedonicScaleController () {
   FIRDatabaseHandle _firebaseRefHandle;
   NSMutableArray<LMSScaleLabel *> *_hedonicScaleLabels;
+  
+   NSMutableArray<LMSScaleLabel *> *_natickScaleLabels;
   
 }
 
@@ -39,10 +42,6 @@
 -(void)viewDidAppear:(BOOL)animated; {
 
 
- 
-    [self setUpHedonicScaleLabels];
-    
-
 
     NSMutableArray *steps = [NSMutableArray array];
 
@@ -61,13 +60,21 @@
   // NOTE: we need to make modified ORKScaleSliderView into a subclass with a subclass
 // of ORKContinuousScaleAnswerFormat --> ContinuousLinearMagnitudeScale
 
-// NOTE: this should be rewritten to include scalelabels array and imageName
-   ORKContinuousScaleAnswerFormat *scaleFormat = [[ORKContinuousScaleAnswerFormat alloc] initWithMaximumValue:100 minimumValue:-100 defaultValue:0 maximumFractionDigits:0 vertical:YES maximumValueDescription:@"Top" minimumValueDescription:@"Bottom"];
+   
+   LHSImageScaleAnswerFormat *scaleFormat =  [[LHSImageScaleAnswerFormat alloc]initWithImageIndex:213 imageType:@"jpg" imageLabel:@"" showImageLabel:YES];
     
     ORKQuestionStep *ratingStep = [ORKQuestionStep questionStepWithIdentifier:kIdentifierRating title:@"How would you rate this food?"  answer:scaleFormat];
 
     
     [steps addObject:ratingStep];
+
+   NatickImageScaleAnswerFormat *natickFormat =  [[NatickImageScaleAnswerFormat alloc]initWithImageIndex:220 imageType:@"jpg" imageLabel:@""  showImageLabel:YES];
+    
+    ORKQuestionStep *natickRatingStep = [ORKQuestionStep questionStepWithIdentifier:@"natickrating" title:@"How would you rate this food?"  answer:natickFormat];
+
+    
+    [steps addObject:natickRatingStep];
+
 
     
     ORKOrderedTask *task =
@@ -88,7 +95,7 @@
     // You could do something with the result here.
 
 
-    NSMutableDictionary *resultDictionary = TaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult);
     
     
     [self saveResultToFirebase:resultDictionary];
@@ -116,44 +123,4 @@
   [[[_firebaseRef child:@"hedonics"] childByAutoId] setValue:result_data];
 }
 
--(void)setUpHedonicScaleLabels; {
-
- NSArray *LHS_labels = @[
-        
-            @"Most Liked Imaginable",
-            @"Like Extremely",
-            @"Like Very Much",
-            @"Like Moderately",
-            @"Like Slightly",
-            @"Dislike Slightly",
-            @"Dislike Moderately",
-            @"Dislike Very Much",
-            @"Dislike Extremely",
-            @"Most Disliked Imaginable"
-
-        ];
-
-
-        NSArray *LHS_scale_s = @[
-            @100.00,
-            @65.72,
-            @44.43,
-            @17.82,
-            @6.25,
-            @-5.92,
-            @-17.59,
-            @-41.58,
-            @-62.89,
-            @-100.00
-        ];
-
-        _hedonicScaleLabels = [NSMutableArray array];
-
-//        for (int i = 0; i< [LHS_labels count]; i++) {
-//           LMSScaleLabel *scale_label = [[LMSScaleLabel alloc] initWithText:[LHS_labels objectAtIndex:i ] andPosition:  [[LHS_scale_s objectAtIndex:i ] doubleValue]];
-//            [_hedonicScaleLabels addObject: scale_label];
-//
-//        }
-
-}
 @end

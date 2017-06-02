@@ -135,25 +135,27 @@
         
         if (nil == user_id) {
             // note: put up alert that without recruitment user_id, consent won't be saved.
-            return;
+
         }
+        else {
 
-        [consentCopy makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
-         
-            self.pdfFile = new_pdfFile;
+            [consentCopy makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
+             
+                self.pdfFile = new_pdfFile;
+                    
+        //        // write pdf to temp directory
+        //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodQuestConsent.pdf"];
+        //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
+
+                [self putPDFinFirebaseStorage];
                 
-    //        // write pdf to temp directory
-    //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodQuestConsent.pdf"];
-    //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
-
-            [self putPDFinFirebaseStorage];
-            
-            [self wantsPDFEmailed];
+                [self wantsPDFEmailed];
 
 
-        }];    
+            }];    
 
+        }
         // Then, dismiss the task view controller.
         [self dismissViewControllerAnimated:YES completion:nil];
         

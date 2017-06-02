@@ -11,11 +11,12 @@
 
 
 
-
+@class ImagePreferenceChoiceAnswerFormat;
 
 @interface PreferenceViewController : UIViewController <ORKTaskViewControllerDelegate>
 
 -(UIImage*) framedImageNamed:(NSString *) imageName;
--(ORKImageChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2;
+-(ImagePreferenceChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2;
+-(ImagePreferenceChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2 showNoPreferenceButton:(BOOL)noPrefFlag;
 @end
 

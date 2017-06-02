@@ -37,8 +37,11 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Give permission to share basic health information for FoodSurv app</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
+		<string></string>
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarTintParameters</key>

@@ -1,39 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Select Survey-->
         <scene sceneID="yBZ-0P-fcj">
             <objects>
-                <tableViewController id="5Yt-1u-DEk" sceneMemberID="viewController">
+                <tableViewController title="Select Survey" id="5Yt-1u-DEk" customClass="SelectSurveyTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="a0l-jj-Qmo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0kK-eZ-q7R">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="surveyCell" textLabel="5lK-wv-uO4" style="IBUITableViewCellStyleDefault" id="Ltx-ia-cCH" customClass="SurveyTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kK-eZ-q7R" id="lD5-30-vJ8">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ltx-ia-cCH" id="e2Y-6I-teM">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5lK-wv-uO4">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="surveyCell"/>
+                                <connections>
+                                    <segue destination="BOc-wf-qK5" kind="show" id="fSY-dK-rGW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="5Yt-1u-DEk" id="RSY-Rl-lsC"/>
-                            <outlet property="delegate" destination="5Yt-1u-DEk" id="tuM-XH-dcw"/>
+                            <outlet property="dataSource" destination="5Yt-1u-DEk" id="f3n-Rg-O1v"/>
+                            <outlet property="delegate" destination="5Yt-1u-DEk" id="xpC-g0-ope"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Surveys" id="IIb-OI-NBS"/>
                     <navigationItem key="navigationItem" id="LID-GO-0TO"/>
+                    <connections>
+                        <outlet property="view" destination="a0l-jj-Qmo" id="DL1-Cf-6dA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FmL-WR-fIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3344.8000000000002" y="-891.00449775112452"/>
+            <point key="canvasLocation" x="1778" y="-897"/>
+        </scene>
+        <!--Survey View Controller-->
+        <scene sceneID="049-I0-Lae">
+            <objects>
+                <viewController id="BOc-wf-qK5" customClass="SurveyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X83-r8-U6E"/>
+                        <viewControllerLayoutGuide type="bottom" id="oPx-wM-E5O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pZ2-Sc-GAd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCf-ga-yco" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3999" y="-897"/>
         </scene>
         <!--Overview-->
         <scene sceneID="hNz-n2-bh7">
@@ -54,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="806" y="-317"/>
         </scene>
         <!--Preference-->
         <scene sceneID="wg7-f3-ORb">
@@ -130,7 +169,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="CnK-eF-Vk3" kind="relationship" relationship="viewControllers" id="GaD-1h-QS6"/>
+                        <segue destination="CnK-eF-Vk3" kind="relationship" relationship="viewControllers" id="nEX-PJ-4Mz"/>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="yRQ-ml-k9d" kind="relationship" relationship="viewControllers" id="WuE-eM-Epx"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
@@ -141,19 +180,23 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Navi-->
+        <!--Survey List-->
         <scene sceneID="kAP-D5-3wv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CnK-eF-Vk3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Navi" id="vAH-XX-SFF"/>
+                <navigationController title="Survey List" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" toolbarHidden="NO" id="CnK-eF-Vk3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Surveys" image="clipboard_icon.png" id="vAH-XX-SFF"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iA1-Mu-gqy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iA1-Mu-gqy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="vSp-7d-nfL">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="5Yt-1u-DEk" kind="relationship" relationship="rootViewController" id="Afc-O4-X0v"/>
+                        <segue destination="5Yt-1u-DEk" kind="relationship" relationship="rootViewController" id="7xM-i0-fWR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPi-lS-K86" userLabel="First Responder" sceneMemberID="firstResponder"/>
