@@ -15,6 +15,8 @@
 #import "FQUtilities.h"
 #import "FQConstants.h"
 #import "FQSurvey.h"
+#import "FQSurveyParser.h"
+
 #import <YAML/YAMLSerialization.h>
 
 
@@ -46,7 +48,11 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
 
-BOOL healthkitPermission = NO;
+
+    [super viewDidAppear:animated];
+
+    FQSurveyParser *parser = [[FQSurveyParser alloc] initWithSurvey:_survey];
+
 
     if ([HKHealthStore isHealthDataAvailable]) {
 
@@ -79,11 +85,7 @@ HKCharacteristicTypeIdentifierBiologicalSex
 
 // assume that self.survey has been set by calling view
 
-    NSLocale *locale = [NSLocale currentLocale]; 
-    BOOL isMetric = [[locale objectForKey:NSLocaleUsesMetricSystem] boolValue];
 
-    NSString *weightUnits = isMetric ? @"kg" : @"lbs";
-    NSString *lengthUnits = isMetric ? @"cm" : @"inches";
 
     NSMutableArray *steps = [NSMutableArray array];
 
@@ -118,8 +120,20 @@ HKCharacteristicTypeIdentifierBiologicalSex
     
         for (NSDictionary *question in [section objectForKey:@"questions"]) {
         
-            ORKAnswerFormat *answerFormat;
+            ORKAnswerFormat *answerFormat = [parser parseSurveyQuestion:question];
             
+            
+ /*           
+ 
+ BOOL healthkitPermission = NO;
+
+    NSLocale *locale = [NSLocale currentLocale]; 
+    BOOL isMetric = [[locale objectForKey:NSLocaleUsesMetricSystem] boolValue];
+
+    NSString *weightUnits = isMetric ? @"kg" : @"lbs";
+    NSString *lengthUnits = isMetric ? @"cm" : @"inches";
+    
+    
             if ([question objectForKey:@"key"] == nil ) {
                 NSLog(@"bad key");
                 answerFormat = nil;
@@ -257,6 +271,9 @@ HKCharacteristicTypeIdentifierBiologicalSex
                 NSLog(@"unknown answer type");
                 answerFormat = nil;
             }
+
+*/
+
 
             if (answerFormat == nil ) {
                 // eiher unknown question type, or its a random question type that might need repeating
@@ -420,9 +437,15 @@ HKCharacteristicTypeIdentifierBiologicalSex
     if (ORKTaskViewControllerFinishReasonFailed == reason) {
         // error detected
     
+        // TODO:
+        // SaveErrorResultToFirebase(resultDictionary);
+
     }
     else if (ORKTaskViewControllerFinishReasonDiscarded == reason) {
         // cancelled, and user asked for result s to be discarded
+
+        // TODO:
+        // SaveCancelledResultToFirebase(resultDictionary);
 
     }
     else if (ORKTaskViewControllerFinishReasonCompleted == reason || ORKTaskViewControllerFinishReasonSaved == reason ) {

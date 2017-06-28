@@ -11,6 +11,13 @@
 #import "Firebase.h"
 
 
+@implementation NSString(FQSurvey)
+  -(NSString *) stringValue {
+  return self;
+}
+@end
+
+
 NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
 
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
@@ -60,7 +67,15 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
             }
             else if ([stepResult.results[0] isKindOfClass:[ORKChoiceQuestionResult class]] ) {
                         if (nil != ((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers[0]) {
-                            sr[@"answer"] = [((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers[0] stringValue];
+                        
+                            ORKChoiceQuestionResult *choiceResult =(ORKChoiceQuestionResult *)stepResult.results[0];
+                        
+                        
+                            NSString *answer =  [choiceResult.choiceAnswers[0] stringValue];
+                            
+                            sr[@"answer"] = answer;
+                            
+                         //  sr[@"answer"] = [((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers[0] stringValue];
                         }
             }
             else if ([stepResult.results[0] isKindOfClass:[ORKLocationQuestionResult class]] ) {

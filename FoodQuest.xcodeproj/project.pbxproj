@@ -1241,7 +1241,9 @@
 		2017BDC81DAAFE3F00421D25 /* preference_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2017BDC41DAAFE3F00421D25 /* preference_icon.png */; };
 		2017BDCD1DAB0EF300421D25 /* HedonicScaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */; };
 		20190F051D9B0F68008D9802 /* credits.md in Sources */ = {isa = PBXBuildFile; fileRef = 20190F041D9B0F68008D9802 /* credits.md */; };
+		20366FAA1F04233A00A33B4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20366FA91F04233A00A33B4D /* GoogleService-Info.plist */; };
 		20755A731DB446A5007373C3 /* consent_review.html in Resources */ = {isa = PBXBuildFile; fileRef = 20755A721DB446A5007373C3 /* consent_review.html */; };
+		207AFC091EFF181800484375 /* FQSurveyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 207AFC081EFF181800484375 /* FQSurveyParser.m */; };
 		2082A07E1D9B2D0300D121C4 /* foodquest_launch750_1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */; };
 		208E7BD71DC0045100DC4F13 /* withdrawal_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */; };
 		208E7BD81DC0045100DC4F13 /* datagathering_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD01DC0045100DC4F13 /* datagathering_content.html */; };
@@ -1272,7 +1274,6 @@
 		20C027271DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027211DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework */; };
 		20C027281DB1BA290056A9A8 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027221DB1BA290056A9A8 /* GoogleSymbolUtilities.framework */; };
 		20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027231DB1BA290056A9A8 /* GoogleUtilities.framework */; };
-		20C0272B1DB1BC2B0056A9A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */; };
 		20C0272E1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */; };
 		20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */; };
 		20C027321DB281100056A9A8 /* FQUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C027311DB281100056A9A8 /* FQUtilities.m */; };
@@ -2617,7 +2618,10 @@
 		2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HedonicScaleController.h; sourceTree = "<group>"; };
 		2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HedonicScaleController.m; sourceTree = "<group>"; };
 		20190F041D9B0F68008D9802 /* credits.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = credits.md; sourceTree = "<group>"; };
+		20366FA91F04233A00A33B4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		20755A721DB446A5007373C3 /* consent_review.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = consent_review.html; path = html/consent_review.html; sourceTree = "<group>"; };
+		207AFC071EFF181800484375 /* FQSurveyParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQSurveyParser.h; sourceTree = "<group>"; };
+		207AFC081EFF181800484375 /* FQSurveyParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQSurveyParser.m; sourceTree = "<group>"; };
 		2082A07A1D9B253200D121C4 /* foodpics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = foodpics.h; path = FoodQuest/foodpics.h; sourceTree = "<group>"; };
 		2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foodquest_launch750_1334.png; path = images/foodquest_launch750_1334.png; sourceTree = "<group>"; };
 		208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = withdrawal_content.html; path = html/withdrawal_content.html; sourceTree = "<group>"; };
@@ -2657,7 +2661,6 @@
 		20C027211DB1BA290056A9A8 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
 		20C027221DB1BA290056A9A8 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		20C027231DB1BA290056A9A8 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = "<group>"; };
-		20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		20C0272C1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseRemoteConfig.framework; sourceTree = "<group>"; };
 		20C0272D1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleIPhoneUtilities.framework; sourceTree = "<group>"; };
 		20C027301DB27F390056A9A8 /* FQConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FQConstants.h; sourceTree = "<group>"; };
@@ -2748,6 +2751,8 @@
 				20C027301DB27F390056A9A8 /* FQConstants.h */,
 				20C027311DB281100056A9A8 /* FQUtilities.m */,
 				20C027331DB281330056A9A8 /* FQUtilities.h */,
+				207AFC071EFF181800484375 /* FQSurveyParser.h */,
+				207AFC081EFF181800484375 /* FQSurveyParser.m */,
 				20174B311D95EA9D0056BB9F /* ResearchKit.h */,
 				20174B081D95E5CF0056BB9F /* AppDelegate.h */,
 				20174B091D95E5CF0056BB9F /* AppDelegate.m */,
@@ -4068,7 +4073,7 @@
 		20C027161DB1B7790056A9A8 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				20C0272A1DB1BC2B0056A9A8 /* GoogleService-Info.plist */,
+				20366FA91F04233A00A33B4D /* GoogleService-Info.plist */,
 				20C0271D1DB1B8330056A9A8 /* Firebase.h */,
 				209285951DC3C5B500FC3472 /* FirebaseStorage.framework */,
 				209285901DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework */,
@@ -4121,7 +4126,7 @@
 				TargetAttributes = {
 					20174B011D95E5CF0056BB9F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = LW2P2NFSR6;
+						DevelopmentTeam = F67L2YUZ54;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -4310,7 +4315,6 @@
 				200246A81EDA195E0009769F /* 857.jpg in Resources */,
 				200245D51EDA195D0009769F /* 646.jpg in Resources */,
 				200243B61EDA195B0009769F /* 103.jpg in Resources */,
-				20C0272B1DB1BC2B0056A9A8 /* GoogleService-Info.plist in Resources */,
 				200246231EDA195E0009769F /* 724.jpg in Resources */,
 				200247461EDA195F0009769F /* 1118.jpg in Resources */,
 				2002459D1EDA195D0009769F /* 590.jpg in Resources */,
@@ -5280,6 +5284,7 @@
 				2002436C1EDA195B0009769F /* 29.jpg in Resources */,
 				200246441EDA195E0009769F /* 757.jpg in Resources */,
 				200246D01EDA195E0009769F /* 1000.jpg in Resources */,
+				20366FAA1F04233A00A33B4D /* GoogleService-Info.plist in Resources */,
 				200243DC1EDA195C0009769F /* 141.jpg in Resources */,
 				200245381EDA195D0009769F /* 489.jpg in Resources */,
 				200243DB1EDA195B0009769F /* 140.jpg in Resources */,
@@ -5464,6 +5469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				207AFC091EFF181800484375 /* FQSurveyParser.m in Sources */,
 				2091C6271EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m in Sources */,
 				208E7BE61DC03EC000DC4F13 /* YesNoAction.m in Sources */,
 				20FE27D21E8D99A800630E8D /* SurveyTableViewCell.m in Sources */,
@@ -5617,7 +5623,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LW2P2NFSR6;
+				DEVELOPMENT_TEAM = F67L2YUZ54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -5625,7 +5631,7 @@
 				INFOPLIST_FILE = FoodQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.food;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.foodsurve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -5635,7 +5641,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LW2P2NFSR6;
+				DEVELOPMENT_TEAM = F67L2YUZ54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -5643,7 +5649,7 @@
 				INFOPLIST_FILE = FoodQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.food;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bcybernetics.foodsurve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -5,7 +5,7 @@ title: "Personal Health Questionnaire Depression Scale (PHQ-8)"
 identifier: phq8
 
 instructions: "Over the last two weeks, how often have you been bothered by any of the following problems?"
-
+    
 comment: |
      This is an adaptation of the PHQ-9 scale. Since this scale is self-administered in our studies, question #9, "How often during the past 2 weeks were you bothered by thoughts that you would be better off dead, or of hurting yourself in some way?", was deleted.
 

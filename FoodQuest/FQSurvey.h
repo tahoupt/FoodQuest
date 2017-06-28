@@ -11,17 +11,57 @@
 
 // yaml survey question-answer types
 
-#define kFQSurveyMultipleChoiceType @"multiple_choice"
+
+// HealthKit
 #define kFQSurveyGenderType @"gender"
 #define kFQSurveyHeightType @"height"
 #define kFQSurveyWeightType @"weight"
-#define kFQSurveyBooleanType @"boolean"
-#define kFQSurveyIntegerType @"integer"
-#define kFQSurveyDecimalType @"decimal"
+
+// image preference specific
 #define kFQSurveyImagePairType @"image_pair"
 #define kFQSurveyRandomImagePairsType @"random_image_pairs"
 #define kFQSurveyHedonicScaleType @"hedonic_rating"
 #define kFQSurveyRandomHedonicScaleType @"random_hedonic_rating"
+
+
+#define kFQSurveyMultipleChoiceType @"multiple_choice" // TextChoice
+#define kFQSurveyBooleanType @"boolean"
+#define kFQSurveyIntegerType @"integer"
+#define kFQSurveyDecimalType @"decimal"
+
+
+#define kFQSurveyTimeOfDayType @"time_of_day"
+#define kFQSurveyLocationType @"location"
+#define kFQSurveyTimeIntervalType @"time_interval"
+#define kFQSurveyValueType @"value"
+#define kFQSurveyScaleType @"scale"
+#define kFQSurveyContinuousScaleType @"continuous_scale"
+#define kFQSurveyEmailType @"email"
+#define kFQSurveyImageChoiceType @"image_choice"
+#define kFQSurveyTextScaleType @"text_scale"
+#define kFQSurveyValuePickerType @"value_picker"
+
+/* ORKAnswerFormats: 
+ORKBooleanAnswerFormat
+ORKContinuousScaleAnswerFormat
+ORKDateAnswerFormat
+ORKEmailAnswerFormat
+ORKHealthKitCharacteristicTypeAnswerFormat
+ORKHealthKitQuantityTypeAnswerFormat
+ORKImageChoiceAnswerFormat
+ORKLocationAnswerFormat
+ORKNumericAnswerFormat
+ORKScaleAnswerFormat
+ORKTextAnswerFormat
+ORKConfirmTextAnswerFormat
+ORKTextChoiceAnswerFormat
+ORKTextScaleAnswerFormat
+ORKTimeIntervalAnswerFormat
+ORKTimeOfDayAnswerFormat
+ORKValuePickerAnswerFormat
+*/
+
+
 
 #define kFQLabeledMagnitudeSurveyScaleType @"lms"
 #define kFQNatickSurveyScaleType @"natick"

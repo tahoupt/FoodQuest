@@ -15,4 +15,11 @@
 NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult);
 void SaveResultToFirebase(NSDictionary *result_data);
 
+
+@interface NSString(FQSurvey)
+-(NSString *) stringValue;
+@end
+
+
+
 #endif /* FQUtilities_h */
