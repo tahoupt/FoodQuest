@@ -44,101 +44,101 @@ sections:
         questions:
 
             - key: interested
-              stem: "To what extent do you feel:\ninterested"
+              stem: "To what extent do you feel:\n\ninterested"
               type: multiple_choice
               answers: *intensity_choices
 
             - key: distressed
-              stem: "To what extent do you feel:\ndistressed"
+              stem: "To what extent do you feel:\n\ndistressed"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: excited
-              stem: "To what extent do you feel:\nexcited"
+              stem: "To what extent do you feel:\n\nexcited"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: upset
-              stem: "To what extent do you feel:\nupset"
+              stem: "To what extent do you feel:\n\nupset"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: strong
-              stem: "To what extent do you feel:\nstrong"
+              stem: "To what extent do you feel:\n\nstrong"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: guilty
-              stem: "To what extent do you feel:\nguilty"
+              stem: "To what extent do you feel:\n\nguilty"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: scared
-              stem: "To what extent do you feel:\nscared"
+              stem: "To what extent do you feel:\n\nscared"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: hostile
-              stem: "To what extent do you feel:\nhostile"
+              stem: "To what extent do you feel:\n\nhostile"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: enthusiastic
-              stem: "To what extent do you feel:\nenthusiastic "
+              stem: "To what extent do you feel:\n\nenthusiastic "
               type: multiple_choice
               answers: *intensity_choices
               
             - key: proud
-              stem: "To what extent do you feel:\nproud"
+              stem: "To what extent do you feel:\n\nproud"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: irritable
-              stem: "To what extent do you feel:\nirritable"
+              stem: "To what extent do you feel:\n\nirritable"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: alert
-              stem: "To what extent do you feel:\nalert"
+              stem: "To what extent do you feel:\n\nalert"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: ashamed
-              stem: "To what extent do you feel:\nashamed"
+              stem: "To what extent do you feel:\n\nashamed"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: inspired
-              stem: "To what extent do you feel:\ninspired"
+              stem: "To what extent do you feel:\n\ninspired"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: nervous
-              stem: "To what extent do you feel:\nnervous"
+              stem: "To what extent do you feel:\n\nnervous"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: determined
-              stem: "To what extent do you feel:\ndetermined "
+              stem: "To what extent do you feel:\n\ndetermined "
               type: multiple_choice
               answers: *intensity_choices
               
             - key: attentive
-              stem: "To what extent do you feel:\nattentive "
+              stem: "To what extent do you feel:\n\nattentive "
               type: multiple_choice
               answers: *intensity_choices
               
             - key: jittery
-              stem: "To what extent do you feel:\njittery"
+              stem: "To what extent do you feel:\n\njittery"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: active
-              stem: "To what extent do you feel:\nactive"
+              stem: "To what extent do you feel:\n\nactive"
               type: multiple_choice
               answers: *intensity_choices
               
             - key: afraid
-              stem: "To what extent do you feel:\nafraid"
+              stem: "To what extent do you feel:\n\nafraid"
               type: multiple_choice
               answers: *intensity_choices

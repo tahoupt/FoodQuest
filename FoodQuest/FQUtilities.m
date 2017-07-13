@@ -9,7 +9,7 @@
 #import "FQUtilities.h"
 #import "FQConstants.h"
 #import "Firebase.h"
-
+#import <YAML/YAMLSerialization.h>
 
 @implementation NSString(FQSurvey)
   -(NSString *) stringValue {
@@ -18,7 +18,69 @@
 @end
 
 
-NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
+NSDictionary *surveyWithID(NSString *surveyID){
+
+    // TODO: add error check and return nil if an error
+    
+    NSString * surveysPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"surveys"];
+    
+    NSString *surveyName = [NSString stringWithFormat:@"%@.yaml", surveyID];
+    
+    NSString* path = [surveysPath stringByAppendingPathComponent:surveyName];
+    
+    NSString *yamlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+
+    NSError * error;
+
+    NSMutableArray *yamlObjects = [YAMLSerialization
+                                        objectsWithYAMLString: yamlString
+                                        options:  kYAMLReadOptionStringScalars
+                                        error: &error];
+                                                    
+                                                    
+    return [yamlObjects firstObject];                                               
+    
+
+
+}
+
+
+
+
+NSDictionary *QuestionFromIdentifier(NSString *key,NSDictionary *survey) {
+
+
+    if (nil == survey ) { return nil; }
+    
+    NSArray *sections = [survey objectForKey:@"sections"];
+    
+    for (NSDictionary *section in sections) {
+    
+        NSDictionary *questions = [section objectForKey:@"questions"];
+        
+            for (NSDictionary *question in questions) {
+            
+                NSString *question_key = [question objectForKey:@"key"];
+            
+                if ([key isEqualToString:question_key]) {
+                
+                    return question;
+                
+                }
+                
+            
+            }
+    
+    }
+    
+    return nil;
+
+
+}
+
+
+
+NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDictionary *survey) {
 
     NSMutableDictionary *d = [NSMutableDictionary dictionary];
     
@@ -26,9 +88,9 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
     
     // NOTE: for debugging purposes, assign temp id
     if (nil == userID) { userID = @"thoupt"; }
-    d[@"user_id"] = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+    d[@"user_id"] = userID;
     
-    d[@"key"] = taskResult.identifier;
+    d[@"survey_key"] = taskResult.identifier;
     d[@"start_time"] = [[NSNumber numberWithDouble:[taskResult.startDate timeIntervalSince1970]] stringValue];
     d[@"end_time"] = [[NSNumber numberWithDouble:[taskResult.endDate timeIntervalSince1970]] stringValue];
 
@@ -40,6 +102,9 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
         
             NSMutableDictionary *sr = [NSMutableDictionary dictionary];
             sr[@"key"] = stepResult.identifier;
+            NSDictionary *question = QuestionFromIdentifier(stepResult.identifier,survey);
+            
+           if (nil != question) {  sr[@"type"] = [question objectForKey:@"type"]; }
             double start_time = [stepResult.startDate timeIntervalSince1970]; 
             double end_time = [stepResult.endDate timeIntervalSince1970];
             double latency = end_time - start_time;
@@ -57,16 +122,19 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
             // ORKImageScaleQuestionResult
             // capture other types of results? text,date of birth, height, weight, sex
             
+            sr[@"answer"] = @"**skipped**";
+
+            
             if (0 < [stepResult.results count]) {
 
 
             if ([stepResult.results[0] isKindOfClass:[ORKBooleanQuestionResult class]] ) {
 
-                 sr[@"answer"] =  ((ORKBooleanQuestionResult *)stepResult.results[0]).booleanAnswer  ? @"true" : @"false";
+                 sr[@"answer"] =  [((ORKBooleanQuestionResult *)stepResult.results[0]).booleanAnswer boolValue] ? @"true" : @"false";
                  
             }
             else if ([stepResult.results[0] isKindOfClass:[ORKChoiceQuestionResult class]] ) {
-                        if (nil != ((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers[0]) {
+                        if (0 < [((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers count]) {
                         
                             ORKChoiceQuestionResult *choiceResult =(ORKChoiceQuestionResult *)stepResult.results[0];
                         
@@ -77,6 +145,7 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
                             
                          //  sr[@"answer"] = [((ORKChoiceQuestionResult *)stepResult.results[0]).choiceAnswers[0] stringValue];
                         }
+                        
             }
             else if ([stepResult.results[0] isKindOfClass:[ORKLocationQuestionResult class]] ) {
 
@@ -106,7 +175,7 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
                             imageIndex = floor(scaleValue / 1000.0);
                             imageRating = scaleValue - (imageIndex * 1000.0);                     
                         }
-                        sr[@"answer"] = [NSString stringWithFormat:@"%ld=%lf", imageIndex, imageRating ];
+                        sr[@"answer"] = [NSString stringWithFormat:@"%ld=%lf", (long)imageIndex, imageRating ];
                         
             }
             else if ([stepResult.results[0] isKindOfClass:[ORKTextQuestionResult class]] ) {
@@ -124,28 +193,23 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult) {
                     NSInteger hour = [((ORKTimeOfDayQuestionResult *)stepResult.results[0]).dateComponentsAnswer  hour];
                     NSInteger minute = [((ORKTimeOfDayQuestionResult *)stepResult.results[0]).dateComponentsAnswer  minute];
 
-                    sr[@"answer"] =  [NSString stringWithFormat:@"%ld:%ld",hour,minute];
+                    sr[@"answer"] =  [NSString stringWithFormat:@"%ld:%ld",(long)hour, (long)minute];
 
             }
 
         } // > 0 results for this step
-        else { // no results, so skipped
-        
-            sr[@"answer"] = @"**skipped**";
-        }
-
+        // if no results, then skipped (which is default value for sr[@"answer"]
+       
             
         results[stepResult.identifier] = sr;
 
             
-        
-
-
     } // next step
     
-    NSLog(@"results: %@",results);
     
     d[@"step_results"] = results;
+
+    NSLog(@"task dictionary: %@",d);
 
     return d;
 
@@ -156,12 +220,17 @@ void SaveResultToFirebase(NSDictionary *result_data) {
     // only save to database if we have recruitment userid
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
   
+  
+    // TODO: put up alert that they need to sign up to save results
+    if (nil == userID) { userID = @"thoupt"; }
+    
+
     if (nil != userID){
         
       FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
       
       // Push data to Firebase Database
-      [[[firebaseRef child:@"FoodSurve"] childByAutoId] setValue:result_data];
+      [[[[firebaseRef child:kFirebaseDirectory] child:@"results"] childByAutoId] setValue:result_data];
 
     }
   

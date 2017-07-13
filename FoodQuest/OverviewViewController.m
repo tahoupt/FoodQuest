@@ -7,6 +7,7 @@
 //
 
 #import "OverviewViewController.h"
+#import "FQConstants.h"
 
 @interface OverviewViewController ()
 
@@ -34,9 +35,9 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
 
-
-    UIViewController *presenter = self.presentingViewController;
+    [super viewDidAppear:animated];
     [self startConsentTask];
+
 }
 
 
@@ -62,9 +63,9 @@
         
         ORKConsentSection *overviewSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeOverview];
-        overviewSection.title = @"Overview";
-        overviewSection.summary = @"Welcome to FoodQuest.";        
-        NSString *overviewPath = [[NSBundle mainBundle] pathForResource:@"overview_content" ofType:@"html"]; 
+        overviewSection.title = kOverviewTitle;
+        overviewSection.summary = kOverviewSummary;        
+        NSString *overviewPath = [[NSBundle mainBundle] pathForResource:kOverviewHTMLFile ofType:@"html"]; 
         overviewSection.htmlContent = [NSString stringWithContentsOfFile:overviewPath encoding:NSUTF8StringEncoding error:nil];
 
         
@@ -72,27 +73,27 @@
         
         ORKConsentSection *dataGatheringSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeDataGathering];
-        dataGatheringSection.title = @"Data Gathering";
-        dataGatheringSection.summary = @"The summary about the section goes here ...";
-        NSString *dataGatheringPath = [[NSBundle mainBundle] pathForResource:@"dataGathering_content" ofType:@"html"]; 
+        dataGatheringSection.title = kDataGatheringTitle;
+        dataGatheringSection.summary = kDataGatheringSummary;
+        NSString *dataGatheringPath = [[NSBundle mainBundle] pathForResource:kDataGatheringHTMLFile ofType:@"html"]; 
         dataGatheringSection.htmlContent = [NSString stringWithContentsOfFile:dataGatheringPath encoding:NSUTF8StringEncoding error:nil];
         
     //--------------------------------------------------------------------------------
 
        ORKConsentSection *privacySection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypePrivacy];
-        privacySection.title = @"Privacy";
-        privacySection.summary = @"The summary about the section goes here ...";
-        NSString *privacyPath = [[NSBundle mainBundle] pathForResource:@"privacy_content" ofType:@"html"]; 
+        privacySection.title = kPrivacyTitle;
+        privacySection.summary = kPrivacySummary;
+        NSString *privacyPath = [[NSBundle mainBundle] pathForResource:kPrivacyHTMLFile ofType:@"html"]; 
         privacySection.htmlContent = [NSString stringWithContentsOfFile:privacyPath encoding:NSUTF8StringEncoding error:nil];
 
     //--------------------------------------------------------------------------------
 
      ORKConsentSection *dataUseSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeDataUse];
-        dataUseSection.title = @"Data Use";
-        dataUseSection.summary = @"The summary about the section goes here ...";
-        NSString *dataUsePath = [[NSBundle mainBundle] pathForResource:@"dataUse_content" ofType:@"html"]; 
+        dataUseSection.title = kDataUseTitle;
+        dataUseSection.summary = kDataUseSummary;
+        NSString *dataUsePath = [[NSBundle mainBundle] pathForResource:kDataUseHTMLFile ofType:@"html"]; 
         dataUseSection.htmlContent = [NSString stringWithContentsOfFile:dataUsePath encoding:NSUTF8StringEncoding error:nil];
 
 
@@ -100,38 +101,35 @@
 
      ORKConsentSection *timeSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeTimeCommitment];
-        timeSection.title = @"Time Commitment";
-        timeSection.summary = @"The summary about the section goes here ...";
-        NSString *timePath = [[NSBundle mainBundle] pathForResource:@"time_content" ofType:@"html"]; 
+        timeSection.title = kTimeTitle;
+        timeSection.summary = kTimeSummary;
+        NSString *timePath = [[NSBundle mainBundle] pathForResource:kTimeHTMLFile ofType:@"html"]; 
         timeSection.htmlContent = [NSString stringWithContentsOfFile:timePath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
 
      ORKConsentSection *surveySection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeStudySurvey];
-        surveySection.title = @"Surveys";
-        surveySection.summary = @"The summary about the section goes here ...";
-        NSString *surveyPath = [[NSBundle mainBundle] pathForResource:@"survey_content" ofType:@"html"]; 
+        surveySection.title = kSurveyTitle;
+        surveySection.summary = kSurveySummary;
+        NSString *surveyPath = [[NSBundle mainBundle] pathForResource:kSurveyHTMLFile ofType:@"html"]; 
         surveySection.htmlContent = [NSString stringWithContentsOfFile:surveyPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
 
      ORKConsentSection *tasksSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeStudyTasks];
-        tasksSection.title = @"Tasks";
-        tasksSection.summary = @"The summary about the section goes here ...";
-        NSString *tasksPath = [[NSBundle mainBundle] pathForResource:@"tasks_content" ofType:@"html"]; 
+        tasksSection.title = kTaskTitle;
+        tasksSection.summary = kTaskSummary;
+        NSString *tasksPath = [[NSBundle mainBundle] pathForResource:kTaskHTMLFile ofType:@"html"]; 
         tasksSection.htmlContent = [NSString stringWithContentsOfFile:tasksPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
      ORKConsentSection *withdrawalSection =
           [[ORKConsentSection alloc] initWithType:ORKConsentSectionTypeWithdrawing];
-        withdrawalSection.title = @"Withdrawing";
-        withdrawalSection.summary = @"The summary about the section goes here ...";
-        NSString *withdrawalPath = [[NSBundle mainBundle] pathForResource:@"withdrawal_content" ofType:@"html"]; 
+        withdrawalSection.title = kWithdrawalTitle;
+        withdrawalSection.summary = kWithdrawalSummary;
+        NSString *withdrawalPath = [[NSBundle mainBundle] pathForResource:kWithdrawalHTMLFile ofType:@"html"]; 
         withdrawalSection.htmlContent = [NSString stringWithContentsOfFile:withdrawalPath encoding:NSUTF8StringEncoding error:nil];
     //--------------------------------------------------------------------------------
         
-        
-
-
     // Create additional section objects for later sections
     document.sections = @[overviewSection,dataGatheringSection,privacySection,dataUseSection,timeSection,surveySection,tasksSection,withdrawalSection];
 
@@ -165,8 +163,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     // go back to main table view
-    [self.tabBarController setSelectedIndex:0];
-    // or set selectedViewContoller
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
 }
 

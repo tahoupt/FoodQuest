@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>FoodSurvé</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,27 +24,35 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.bcybernetics.foodquest</string>
+			<string>com.bcybernetics.foodsurve</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>FoodQuest</string>
+				<string>foodsurve</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>FoodSurvé uses the ResearchKit framework, which may request permission to use the camera to collect data for some surveys</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Give permission to share basic health information for FoodSurv app</string>
+	<string>FoodSurvé requests permission to access your HealthKit data in order to correlate food preferences and diet choices with activity, weight, etc.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>FoodSurvé requests permission to access your HealthKit data in order to correlate food preferences and diet choices with activity, weight, etc.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FoodSurvé uses the ResearchKit framework, which may request permission to use the microphone to collect data for some surveys</string>
+	<key>NSMotionUsageDescription</key>
+	<string>FoodSurvé uses the ResearchKit framework, which may request permission to use the motion sensor to collect data for some surveys</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string></string>
 		<string>armv7</string>
+		<string>healthkit</string>
 	</array>
 	<key>UIStatusBarTintParameters</key>
 	<dict>

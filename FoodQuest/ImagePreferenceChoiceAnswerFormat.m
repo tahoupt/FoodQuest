@@ -33,10 +33,10 @@
 
 -(id)initWithImageIndex1:(NSInteger)index1 imageLabel1:(NSString *)label1 andImageIndex2:(NSInteger)index2 imageLabel2:(NSString *)label2 imageType:(NSString *)extension showImageLabels:(BOOL)showLabelFlag showNoPreferenceButton:(BOOL)noPrefFlag showAnswer:(BOOL)showAnswerFlag; {
 
-    NSString *imageName1 = [NSString stringWithFormat:@"%ld.%@",index1,extension];
-    NSString *imageName2 = [NSString stringWithFormat:@"%ld.%@",index2,extension];
-    NSString *value1 =  [NSString stringWithFormat:@"%ld",index1];
-    NSString *value2 =  [NSString stringWithFormat:@"%ld",index2];
+    NSString *imageName1 = [NSString stringWithFormat:@"%ld.%@",(long)index1,extension];
+    NSString *imageName2 = [NSString stringWithFormat:@"%ld.%@",(long)index2,extension];
+    NSString *value1 =  [NSString stringWithFormat:@"%ld",(long)index1];
+    NSString *value2 =  [NSString stringWithFormat:@"%ld",(long)index2];
 
     
     ImagePreferenceChoice *image1 = [ImagePreferenceChoice choiceWithNormalImage: [UIImage imageNamed:imageName1] selectedImage:[self framedImageNamed:imageName1] text:label1 value:value1];

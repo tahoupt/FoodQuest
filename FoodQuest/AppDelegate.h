@@ -7,11 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SelectSurveyTableViewController;
+@class SurveyViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property UIStoryboard *storyboard;
+
+
+@property  (strong, nonatomic) UINavigationController * menuNavigationController;
+
+@property  (strong, nonatomic) UITableViewController * menuViewController;
+@property  (strong, nonatomic) SelectSurveyTableViewController * surveyTableController;
+
+@property  (strong, nonatomic) SurveyViewController *surveyViewController;
 
 @end
 

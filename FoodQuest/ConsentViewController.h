@@ -14,10 +14,15 @@
 
 @interface ConsentViewController : UIViewController <ORKTaskViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
+@property ORKTaskViewController *taskViewController;
 @property ORKConsentDocument *consent;
 @property NSData *pdfFile;
 
+@property UIAlertController* alert;
+
 -(void)sendPDFEmail; 
+-(void)wantsPDFEmailed;
 -(void)yesAction;
+-(void)noAction;
 
 @end

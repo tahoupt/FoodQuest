@@ -16,6 +16,14 @@
 #define kFQSurveyGenderType @"gender"
 #define kFQSurveyHeightType @"height"
 #define kFQSurveyWeightType @"weight"
+#define kFQSurveyDateOfBirthType @"date_of_birth"
+
+// these are not really questions, but we can include them in survey results...
+#define kFQSurveyDietaryCaloriesType @"dietary_calorie_energy"
+#define kFQSurveyActiveEnergyType @"active_energy_burn"
+#define kFQSurveyBasalEnergyType @"basal_energy_burn"
+#define kFQSurveyStepCountType @"step_count"
+
 
 // image preference specific
 #define kFQSurveyImagePairType @"image_pair"
@@ -23,13 +31,15 @@
 #define kFQSurveyHedonicScaleType @"hedonic_rating"
 #define kFQSurveyRandomHedonicScaleType @"random_hedonic_rating"
 
+// generic
+#define kFQSurveyMultipleChoiceType @"multiple_choice" // TextChoice with single answer
+#define kFQSurveyMultipleChoiceMultipleAnswersType @"multiple_choice_multiple" // TextChoice with multiple answer
 
-#define kFQSurveyMultipleChoiceType @"multiple_choice" // TextChoice
 #define kFQSurveyBooleanType @"boolean"
 #define kFQSurveyIntegerType @"integer"
 #define kFQSurveyDecimalType @"decimal"
 
-
+// other researchkit types
 #define kFQSurveyTimeOfDayType @"time_of_day"
 #define kFQSurveyLocationType @"location"
 #define kFQSurveyTimeIntervalType @"time_interval"
@@ -40,6 +50,8 @@
 #define kFQSurveyImageChoiceType @"image_choice"
 #define kFQSurveyTextScaleType @"text_scale"
 #define kFQSurveyValuePickerType @"value_picker"
+#define kFQSurveyInstructionType @"instruction"
+    // expects "instructions" value; uses stem as title
 
 /* ORKAnswerFormats: 
 ORKBooleanAnswerFormat
@@ -66,7 +78,6 @@ ORKValuePickerAnswerFormat
 #define kFQLabeledMagnitudeSurveyScaleType @"lms"
 #define kFQNatickSurveyScaleType @"natick"
 
-#define kFQSurveyDateOfBirthType @"date_of_birth"
 
 #define kWeightUnits @"lbs"
 

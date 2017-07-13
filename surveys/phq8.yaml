@@ -40,41 +40,41 @@ sections:
             - key: interest
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nLittle interest or pleasure in doing things?"
+              stem: "In the past two weeks were you bothered by:\n\nLittle interest or pleasure in doing things?"
 
             - key: depressed
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nFeeling down, depressed, or hopeless?"
+              stem: "In the past two weeks were you bothered by:\n\nFeeling down, depressed, or hopeless?"
 
             - key: sleep
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nTrouble falling or staying asleep, or sleeping too much?"
+              stem: "In the past two weeks were you bothered by:\n\nTrouble falling or staying asleep, or sleeping too much?"
               
             - key: energy
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nFeeling tired or having little energy?"
+              stem: "In the past two weeks were you bothered by:\n\nFeeling tired or having little energy?"
 
             - key: appetite
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nPoor appetite or overeating?"
+              stem: "In the past two weeks were you bothered by:\n\nPoor appetite or overeating?"
 
             - key: failure
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nFeeling bad about yourself, or that you are a failure, or have let yourself or your family down ?"
+              stem: "In the past two weeks were you bothered by:\n\nFeeling bad about yourself, or that you are a failure, or have let yourself or your family down ?"
 
             - key: concentration
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nTrouble concentrating on things, such as reading the newspaper or watching television?"
+              stem: "In the past two weeks were you bothered by:\n\nTrouble concentrating on things, such as reading the newspaper or watching television?"
 
             - key: kinetics
               type: multiple_choice
               answers: *freq_choices
-              stem: "In the past two weeks were you bothered by:\nMoving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?"
+              stem: "In the past two weeks were you bothered by:\n\nMoving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?"
               
               

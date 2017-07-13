@@ -1224,6 +1224,7 @@
 		2005EBF91E72EBB900331D86 /* FQSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 2005EBF81E72EBB900331D86 /* FQSurvey.m */; };
 		2005EC0C1E7377B300331D86 /* SelectSurveyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */; };
 		20089AEC1E96FFB2000164CF /* SurveyTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */; };
+		200929A41F0BF3E000DD6168 /* overview_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 200929A31F0BF3E000DD6168 /* overview_icon.png */; };
 		20174B071D95E5CF0056BB9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B061D95E5CF0056BB9F /* main.m */; };
 		20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B091D95E5CF0056BB9F /* AppDelegate.m */; };
 		20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */; };
@@ -1242,9 +1243,14 @@
 		2017BDCD1DAB0EF300421D25 /* HedonicScaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */; };
 		20190F051D9B0F68008D9802 /* credits.md in Sources */ = {isa = PBXBuildFile; fileRef = 20190F041D9B0F68008D9802 /* credits.md */; };
 		20366FAA1F04233A00A33B4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20366FA91F04233A00A33B4D /* GoogleService-Info.plist */; };
+		20366FAD1F04317200A33B4D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20366FAC1F04317200A33B4D /* HealthKit.framework */; };
 		20755A731DB446A5007373C3 /* consent_review.html in Resources */ = {isa = PBXBuildFile; fileRef = 20755A721DB446A5007373C3 /* consent_review.html */; };
 		207AFC091EFF181800484375 /* FQSurveyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 207AFC081EFF181800484375 /* FQSurveyParser.m */; };
 		2082A07E1D9B2D0300D121C4 /* foodquest_launch750_1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */; };
+		208CE6111F0D933600163009 /* text_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 208CE6101F0D933600163009 /* text_icon.png */; };
+		208CE61A1F0D966600163009 /* settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 208CE6191F0D966600163009 /* settings_icon.png */; };
+		208CE61C1F0D99CC00163009 /* eligibility_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 208CE61B1F0D99CC00163009 /* eligibility_icon.png */; };
+		208CE61F1F0D9DAC00163009 /* EligibilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 208CE61E1F0D9DAC00163009 /* EligibilityViewController.m */; };
 		208E7BD71DC0045100DC4F13 /* withdrawal_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */; };
 		208E7BD81DC0045100DC4F13 /* datagathering_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD01DC0045100DC4F13 /* datagathering_content.html */; };
 		208E7BD91DC0045100DC4F13 /* overview_content.html in Resources */ = {isa = PBXBuildFile; fileRef = 208E7BD11DC0045100DC4F13 /* overview_content.html */; };
@@ -1259,12 +1265,12 @@
 		2091C6241EBAA3BE00F35227 /* ImagePreferenceStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091C6231EBAA3BE00F35227 /* ImagePreferenceStepViewController.m */; };
 		2091C6271EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091C6261EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m */; };
 		2091C62A1EBAC0A800F35227 /* ImagePreferenceChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2091C6291EBAC0A800F35227 /* ImagePreferenceChoice.m */; };
-		209285911DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209285901DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework */; };
 		2092859E1DC3C5B500FC3472 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209285951DC3C5B500FC3472 /* FirebaseStorage.framework */; };
 		209285A91DC3FB5600FC3472 /* SubjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209285A81DC3FB5600FC3472 /* SubjectInfoController.m */; };
 		2098F20E1D9AA8F30095D9B3 /* ConsentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */; };
 		20A1415A1DA3D9F2009C8AE5 /* no_preference_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */; };
 		20A1415B1DA3D9F2009C8AE5 /* no_preference.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141591DA3D9F2009C8AE5 /* no_preference.png */; };
+		20BB06591F16F42800F7D06B /* eligibility_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BB06581F16F42800F7D06B /* eligibility_icon2.png */; };
 		20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */; };
 		20C0271B1DB1B7BD0056A9A8 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */; };
 		20C0271C1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */; };
@@ -1282,6 +1288,8 @@
 		20D06E161D98A13400231A28 /* cheeseburger_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */; };
 		20D06E171D98A13400231A28 /* salad_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E151D98A13400231A28 /* salad_selected.jpeg */; };
 		20E881911ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */; };
+		20FDED5B1F1409FF00479C62 /* WithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */; };
+		20FDED5D1F14105400479C62 /* withdraw_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FDED5C1F14105400479C62 /* withdraw_icon.png */; };
 		20FE27CF1E8D767C00630E8D /* surveys in Resources */ = {isa = PBXBuildFile; fileRef = 20FE27CE1E8D767C00630E8D /* surveys */; };
 		20FE27D21E8D99A800630E8D /* SurveyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FE27D11E8D99A800630E8D /* SurveyTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -1366,8 +1374,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20174B2A1D95E65E0056BB9F /* ResearchKit.framework in Embed Frameworks */,
 				2005EBEF1E70E9AB00331D86 /* YAML.framework in Embed Frameworks */,
+				20174B2A1D95E65E0056BB9F /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2595,6 +2603,7 @@
 		2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSurveyTableViewController.m; sourceTree = "<group>"; };
 		20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyTaskViewController.h; sourceTree = "<group>"; };
 		20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyTaskViewController.m; sourceTree = "<group>"; };
+		200929A31F0BF3E000DD6168 /* overview_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = overview_icon.png; path = images/overview_icon.png; sourceTree = "<group>"; };
 		20174B021D95E5CF0056BB9F /* FoodQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20174B061D95E5CF0056BB9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20174B081D95E5CF0056BB9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2619,11 +2628,18 @@
 		2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HedonicScaleController.m; sourceTree = "<group>"; };
 		20190F041D9B0F68008D9802 /* credits.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = credits.md; sourceTree = "<group>"; };
 		20366FA91F04233A00A33B4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		20366FAB1F04317100A33B4D /* FoodQuest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FoodQuest.entitlements; sourceTree = "<group>"; };
+		20366FAC1F04317200A33B4D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		20755A721DB446A5007373C3 /* consent_review.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = consent_review.html; path = html/consent_review.html; sourceTree = "<group>"; };
 		207AFC071EFF181800484375 /* FQSurveyParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQSurveyParser.h; sourceTree = "<group>"; };
 		207AFC081EFF181800484375 /* FQSurveyParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQSurveyParser.m; sourceTree = "<group>"; };
 		2082A07A1D9B253200D121C4 /* foodpics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = foodpics.h; path = FoodQuest/foodpics.h; sourceTree = "<group>"; };
 		2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foodquest_launch750_1334.png; path = images/foodquest_launch750_1334.png; sourceTree = "<group>"; };
+		208CE6101F0D933600163009 /* text_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = text_icon.png; path = images/text_icon.png; sourceTree = "<group>"; };
+		208CE6191F0D966600163009 /* settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings_icon.png; path = images/settings_icon.png; sourceTree = "<group>"; };
+		208CE61B1F0D99CC00163009 /* eligibility_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eligibility_icon.png; path = images/eligibility_icon.png; sourceTree = "<group>"; };
+		208CE61D1F0D9DAC00163009 /* EligibilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EligibilityViewController.h; sourceTree = "<group>"; };
+		208CE61E1F0D9DAC00163009 /* EligibilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EligibilityViewController.m; sourceTree = "<group>"; };
 		208E7BCF1DC0045100DC4F13 /* withdrawal_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = withdrawal_content.html; path = html/withdrawal_content.html; sourceTree = "<group>"; };
 		208E7BD01DC0045100DC4F13 /* datagathering_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = datagathering_content.html; path = html/datagathering_content.html; sourceTree = "<group>"; };
 		208E7BD11DC0045100DC4F13 /* overview_content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = overview_content.html; path = html/overview_content.html; sourceTree = "<group>"; };
@@ -2651,6 +2667,7 @@
 		2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsentViewController.m; sourceTree = "<group>"; };
 		20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference_selected.png; path = images/no_preference_selected.png; sourceTree = "<group>"; };
 		20A141591DA3D9F2009C8AE5 /* no_preference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference.png; path = images/no_preference.png; sourceTree = "<group>"; };
+		20BB06581F16F42800F7D06B /* eligibility_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eligibility_icon2.png; path = images/eligibility_icon2.png; sourceTree = "<group>"; };
 		20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = "<group>"; };
 		20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
@@ -2674,6 +2691,9 @@
 		20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKScaleRangeDescriptionLabel.h; path = ../../ResearchKit/ResearchKit/Common/ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
 		20E8818F1ED600E300C7EB21 /* ImageHedonicScaleAnswerFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHedonicScaleAnswerFormat.h; sourceTree = "<group>"; };
 		20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHedonicScaleAnswerFormat.m; sourceTree = "<group>"; };
+		20FDED591F1409FE00479C62 /* WithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawViewController.h; sourceTree = "<group>"; };
+		20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawViewController.m; sourceTree = "<group>"; };
+		20FDED5C1F14105400479C62 /* withdraw_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = withdraw_icon.png; path = images/withdraw_icon.png; sourceTree = "<group>"; };
 		20FE27CE1E8D767C00630E8D /* surveys */ = {isa = PBXFileReference; lastKnownFileType = folder; path = surveys; sourceTree = "<group>"; };
 		20FE27D01E8D99A800630E8D /* SurveyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyTableViewCell.h; sourceTree = "<group>"; };
 		20FE27D11E8D99A800630E8D /* SurveyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyTableViewCell.m; sourceTree = "<group>"; };
@@ -2692,12 +2712,12 @@
 				20C027251DB1BA290056A9A8 /* FirebaseCore.framework in Frameworks */,
 				20C0272E1DB1BDEC0056A9A8 /* FirebaseRemoteConfig.framework in Frameworks */,
 				20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */,
-				209285911DC3C5A400FC3472 /* GoogleNetworkingUtilities.framework in Frameworks */,
 				20C0272F1DB1BDEC0056A9A8 /* GoogleIPhoneUtilities.framework in Frameworks */,
 				2092859E1DC3C5B500FC3472 /* FirebaseStorage.framework in Frameworks */,
 				20C027261DB1BA290056A9A8 /* FirebaseInstanceID.framework in Frameworks */,
 				20174B291D95E65E0056BB9F /* ResearchKit.framework in Frameworks */,
 				2005EBEE1E70E9AB00331D86 /* YAML.framework in Frameworks */,
+				20366FAD1F04317200A33B4D /* HealthKit.framework in Frameworks */,
 				20C027291DB1BA290056A9A8 /* GoogleUtilities.framework in Frameworks */,
 				20C027241DB1BA290056A9A8 /* FirebaseAnalytics.framework in Frameworks */,
 			);
@@ -2747,6 +2767,7 @@
 		20174B041D95E5CF0056BB9F /* FoodQuest */ = {
 			isa = PBXGroup;
 			children = (
+				20366FAB1F04317100A33B4D /* FoodQuest.entitlements */,
 				20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */,
 				20C027301DB27F390056A9A8 /* FQConstants.h */,
 				20C027311DB281100056A9A8 /* FQUtilities.m */,
@@ -2760,6 +2781,10 @@
 				20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */,
 				2098F20C1D9AA8F30095D9B3 /* ConsentViewController.h */,
 				2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */,
+				20FDED591F1409FE00479C62 /* WithdrawViewController.h */,
+				20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */,
+				208CE61D1F0D9DAC00163009 /* EligibilityViewController.h */,
+				208CE61E1F0D9DAC00163009 /* EligibilityViewController.m */,
 				2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */,
 				2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */,
 				20E8818F1ED600E300C7EB21 /* ImageHedonicScaleAnswerFormat.h */,
@@ -2776,10 +2801,6 @@
 				2091C6191EBA934C00F35227 /* ImagePreferenceQuestionView.m */,
 				209285A71DC3FB5600FC3472 /* SubjectInfoController.h */,
 				209285A81DC3FB5600FC3472 /* SubjectInfoController.m */,
-				2005EBF21E70EEB800331D86 /* SurveyViewController.h */,
-				2005EBF31E70EEB900331D86 /* SurveyViewController.m */,
-				20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */,
-				20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */,
 				2005EBF71E72EBB900331D86 /* FQSurvey.h */,
 				2005EBF81E72EBB900331D86 /* FQSurvey.m */,
 				20174B111D95E5CF0056BB9F /* Main.storyboard */,
@@ -2787,6 +2808,10 @@
 				20FE27D11E8D99A800630E8D /* SurveyTableViewCell.m */,
 				2005EC0A1E7377B300331D86 /* SelectSurveyTableViewController.h */,
 				2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */,
+				2005EBF21E70EEB800331D86 /* SurveyViewController.h */,
+				2005EBF31E70EEB900331D86 /* SurveyViewController.m */,
+				20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */,
+				20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */,
 				20D06E0C1D985CF000231A28 /* FoodTabBarControllerViewController.h */,
 				20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */,
 				20174B141D95E5CF0056BB9F /* Assets.xcassets */,
@@ -2821,6 +2846,12 @@
 			isa = PBXGroup;
 			children = (
 				20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */,
+				20FDED5C1F14105400479C62 /* withdraw_icon.png */,
+				208CE61B1F0D99CC00163009 /* eligibility_icon.png */,
+				20BB06581F16F42800F7D06B /* eligibility_icon2.png */,
+				208CE6191F0D966600163009 /* settings_icon.png */,
+				208CE6101F0D933600163009 /* text_icon.png */,
+				200929A31F0BF3E000DD6168 /* overview_icon.png */,
 				2017BDC11DAAFE3F00421D25 /* clipboard_icon.png */,
 				2017BDC21DAAFE3F00421D25 /* scale_icon.png */,
 				2017BDC31DAAFE3F00421D25 /* sign_icon.png */,
@@ -4065,6 +4096,7 @@
 		208E7BE11DC015E800DC4F13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20366FAC1F04317200A33B4D /* HealthKit.framework */,
 				208E7BE21DC015E900DC4F13 /* MessageUI.framework */,
 			);
 			name = Frameworks;
@@ -4121,13 +4153,18 @@
 		20174AFA1D95E5CF0056BB9F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Behavioral Cybernetics";
 				TargetAttributes = {
 					20174B011D95E5CF0056BB9F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = F67L2YUZ54;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -4748,6 +4785,7 @@
 				200245E31EDA195D0009769F /* 660.jpg in Resources */,
 				200245841EDA195D0009769F /* 565.jpg in Resources */,
 				200247711EDA195F0009769F /* 1161.jpg in Resources */,
+				20BB06591F16F42800F7D06B /* eligibility_icon2.png in Resources */,
 				200244A21EDA195C0009769F /* 339.jpg in Resources */,
 				200245141EDA195C0009769F /* 453.jpg in Resources */,
 				200245E81EDA195D0009769F /* 665.jpg in Resources */,
@@ -4837,6 +4875,7 @@
 				200244DF1EDA195C0009769F /* 400.jpg in Resources */,
 				200244181EDA195C0009769F /* 201.jpg in Resources */,
 				2002449E1EDA195C0009769F /* 335.jpg in Resources */,
+				20FDED5D1F14105400479C62 /* withdraw_icon.png in Resources */,
 				200243C91EDA195B0009769F /* 122.jpg in Resources */,
 				200243741EDA195B0009769F /* 37.jpg in Resources */,
 				200247301EDA195F0009769F /* 1096.jpg in Resources */,
@@ -4942,6 +4981,7 @@
 				200244EA1EDA195C0009769F /* 411.jpg in Resources */,
 				200247921EDA195F0009769F /* 1194.jpg in Resources */,
 				2002469F1EDA195E0009769F /* 848.jpg in Resources */,
+				200929A41F0BF3E000DD6168 /* overview_icon.png in Resources */,
 				200247C51EDA195F0009769F /* 1245.jpg in Resources */,
 				2002476C1EDA195F0009769F /* 1156.jpg in Resources */,
 				200245921EDA195D0009769F /* 579.jpg in Resources */,
@@ -5108,6 +5148,7 @@
 				2002449A1EDA195C0009769F /* 331.jpg in Resources */,
 				200245BD1EDA195D0009769F /* 622.jpg in Resources */,
 				200245B41EDA195D0009769F /* 613.jpg in Resources */,
+				208CE61C1F0D99CC00163009 /* eligibility_icon.png in Resources */,
 				200247271EDA195F0009769F /* 1087.jpg in Resources */,
 				200245A51EDA195D0009769F /* 598.jpg in Resources */,
 				200247351EDA195F0009769F /* 1101.jpg in Resources */,
@@ -5115,6 +5156,7 @@
 				200245E21EDA195D0009769F /* 659.jpg in Resources */,
 				200245B51EDA195D0009769F /* 614.jpg in Resources */,
 				200244B61EDA195C0009769F /* 359.jpg in Resources */,
+				208CE6111F0D933600163009 /* text_icon.png in Resources */,
 				200246E31EDA195E0009769F /* 1019.jpg in Resources */,
 				2002466A1EDA195E0009769F /* 795.jpg in Resources */,
 				200247311EDA195F0009769F /* 1097.jpg in Resources */,
@@ -5359,6 +5401,7 @@
 				2002448F1EDA195C0009769F /* 320.jpg in Resources */,
 				200246431EDA195E0009769F /* 756.jpg in Resources */,
 				200243E01EDA195C0009769F /* 145.jpg in Resources */,
+				208CE61A1F0D966600163009 /* settings_icon.png in Resources */,
 				200247471EDA195F0009769F /* 1119.jpg in Resources */,
 				200243AC1EDA195B0009769F /* 93.jpg in Resources */,
 				2002446C1EDA195C0009769F /* 285.jpg in Resources */,
@@ -5481,6 +5524,7 @@
 				20C027351DB3C9EB0056A9A8 /* FEQHedonicScaleSlider.m in Sources */,
 				20089AEC1E96FFB2000164CF /* SurveyTaskViewController.m in Sources */,
 				20174B101D95E5CF0056BB9F /* PreferenceViewController.m in Sources */,
+				20FDED5B1F1409FF00479C62 /* WithdrawViewController.m in Sources */,
 				20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */,
 				20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */,
 				2005EBF91E72EBB900331D86 /* FQSurvey.m in Sources */,
@@ -5489,6 +5533,7 @@
 				209285A91DC3FB5600FC3472 /* SubjectInfoController.m in Sources */,
 				2091C62A1EBAC0A800F35227 /* ImagePreferenceChoice.m in Sources */,
 				20174B071D95E5CF0056BB9F /* main.m in Sources */,
+				208CE61F1F0D9DAC00163009 /* EligibilityViewController.m in Sources */,
 				2091C6241EBAA3BE00F35227 /* ImagePreferenceStepViewController.m in Sources */,
 				20E881911ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m in Sources */,
 				2005EBF41E70EEB900331D86 /* SurveyViewController.m in Sources */,
@@ -5548,9 +5593,11 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -5595,9 +5642,11 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -5623,6 +5672,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FoodQuest/FoodQuest.entitlements;
 				DEVELOPMENT_TEAM = F67L2YUZ54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5641,6 +5691,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FoodQuest/FoodQuest.entitlements;
 				DEVELOPMENT_TEAM = F67L2YUZ54;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

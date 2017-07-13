@@ -36,7 +36,7 @@
 
 - (void)stepViewControllerWillAppear:(ORKStepViewController *)stepViewController; {
 
-    NSLog(@"step will appear");
+  //  NSLog(@"step will appear");
     
    // ORKStepHeaderView *headerView = [stepViewController headerView];
    // ORKHeadlineLabel *captionLabel = [headerView captionLabel]; // subclass of ORKLabel

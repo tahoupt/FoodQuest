@@ -1,0 +1,37 @@
+label: "FoodSurvé Eligibility"
+
+title: "Eligibility to participate in FoodSurvé study"
+
+identifier: eligibility
+
+instructions: "This study assesses food preferences, and how they might change, during pregnancy. We need to ask you a few questions to determine if you meet the criteria for participating in this study."
+    
+comment: |
+    This is an example of checking subject's criteria for inclusion in a study
+
+
+permissions: "This scale is free to use without permission."
+
+revision_history: |
+    Yaml-encoded by T. Houpt  2017-7-5.
+
+sections:
+
+     - title:
+       key:
+
+
+       questions:
+
+          - key: birth_date
+            stem: "What is your date of birth?"
+            type: date_of_birth
+            
+          - key: gender
+            stem: "What is your gender?"
+            type: gender
+
+          - key: pregnancy
+            stem: "Are you now, or have you ever been, pregnant?"
+            type: boolean
+

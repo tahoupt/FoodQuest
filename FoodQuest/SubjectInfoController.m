@@ -96,7 +96,7 @@
     // You could do something with the result here.
     
     
-    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,nil);
     
     
     [self saveUserInfoToFirebase];

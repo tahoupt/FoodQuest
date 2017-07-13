@@ -61,6 +61,9 @@
     
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displaySurveyController:) name:@"LaunchFromURLNotification" object:nil];
+
+    
 
 }
 
@@ -68,6 +71,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+//-(void)viewWillAppear:(BOOL)animated {
+//
+//    [super viewWillAppear:animated];
+//    
+//
+//
+//}
+//
+
 
 #pragma mark - Table view data source
 
@@ -87,7 +102,7 @@
    // return [tableView numberOfRowsInSection:section];
     
     if (0 == section) {
-        NSLog(@"number of rows: %ld", [_surveys count]);
+        NSLog(@"number of rows: %ld", (unsigned long)[_surveys count]);
         return [_surveys count];
     }
     return 0;
@@ -148,11 +163,83 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
+        NSLog(@"prepare survey segue");
+
+
     NSDictionary * selectedSurvey = [_surveys objectAtIndex:[[self.tableView indexPathForSelectedRow] row] ];
     
     [(SurveyViewController *)[segue destinationViewController] setSurvey:selectedSurvey];
     
 }
 
+-(void)displaySurveyController:(NSNotification *)notification ; {
+
+    // TODO: respond to notification here
+    // get surveyID from the notification
+    // get index of survey with surveyID in _surveys array
+    // select the survey row in self.tableView,
+    // show the survey view controller
+    
+    NSLog(@"Got notification");
+    
+    NSString *surveyID = [[notification userInfo] valueForKey:@"surveyID"];
+    
+    NSInteger surveyIndex;
+    
+    if (nil != surveyID) {
+    
+        surveyIndex = [self indexOfSurveyWithID:surveyID ];
+    
+        if (-1 != surveyIndex) {
+        
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:surveyIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone ];
+        
+            [self performSegueWithIdentifier:@"SurveySegue" sender:self];
+                
+        }
+    }
+    
+    // TODO: put up alert if can't find the requested survey id
+    
+
+}
+
+
+-(NSInteger )indexOfSurveyWithID:(NSString *)surveyID; {
+
+    // TODO: move this to utilities file
+    
+    NSString * surveysPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"surveys"];
+    
+    NSString *surveyName = [NSString stringWithFormat:@"%@.yaml", surveyID];
+        
+    
+     NSError * error;
+    NSArray * directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:surveysPath error:&error];
+    
+    NSLog(@"directoryContents ====== %@",directoryContents);
+    
+    NSInteger index = 0;
+    
+    for (NSString *filename in directoryContents) {
+    
+        if ([filename hasSuffix:@"yaml"]) {
+        
+            if ([filename isEqualToString:surveyName]) {
+            
+                return index;
+            
+            }
+        
+            index ++;
+        
+        }
+    }
+    
+    return -1;
+    
+
+
+}
 
 @end

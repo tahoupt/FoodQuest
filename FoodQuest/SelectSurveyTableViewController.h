@@ -12,4 +12,7 @@
 
 @property NSMutableArray *surveys;
 
+
+-(void)displaySurveyController:(NSNotification *)notification ;
+
 @end

@@ -77,7 +77,7 @@
 
     for (NSInteger i = 0; i < numPreferenceSteps; i++) {
     
-        NSString *identifier = [NSString stringWithFormat:@"preference_%ld",i];
+        NSString *identifier = [NSString stringWithFormat:@"preference_%ld",(long)i];
         
         
         // NOTE: we need to make modified ImagePreferenceChoiceAnswerFormat into a subclass
@@ -108,7 +108,7 @@
     // You could do something with the result here.
     
     
-    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,nil);
     
     
     [self saveResultToFirebase:resultDictionary];
@@ -118,8 +118,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     // go back to main table view
-    [self.tabBarController setSelectedIndex:0];
+ //   [self.tabBarController setSelectedIndex:0];
     // or set selectedViewContoller
+
+ [self.navigationController popToRootViewControllerAnimated:YES];
 
 
 }
@@ -145,10 +147,10 @@
 
 -(ImagePreferenceChoiceAnswerFormat *)imageChoiceWithImageIndex1:(NSInteger)index1 andImageIndex2:(NSInteger)index2 showNoPreferenceButton:(BOOL)noPrefFlag;  {
 
-NSString *imageName1 = [NSString stringWithFormat:@"%ld.jpg",index1];
-    NSString *imageName2 = [NSString stringWithFormat:@"%ld.jpg",index2];
-    NSString *value1 =  [NSString stringWithFormat:@"%ld",index1];
-    NSString *value2 =  [NSString stringWithFormat:@"%ld",index2];
+NSString *imageName1 = [NSString stringWithFormat:@"%ld.jpg",(long)index1];
+    NSString *imageName2 = [NSString stringWithFormat:@"%ld.jpg",(long)index2];
+    NSString *value1 =  [NSString stringWithFormat:@"%ld",(long)index1];
+    NSString *value2 =  [NSString stringWithFormat:@"%ld",(long)index2];
 
     
     ImagePreferenceChoice *image1 = [ImagePreferenceChoice choiceWithNormalImage: [UIImage imageNamed:imageName1] selectedImage:[self framedImageNamed:imageName1] text:value1 value:value1];

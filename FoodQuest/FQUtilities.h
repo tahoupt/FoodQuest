@@ -12,9 +12,12 @@
 #import <UIKit/UIKit.h>
 #import "ResearchKit/ResearchKit.h"
 
-NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult);
+NSDictionary *surveyWithID(NSString *surveyID);
+
+NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDictionary *survey);
 void SaveResultToFirebase(NSDictionary *result_data);
 
+NSDictionary *QuestionFromIdentifier(NSString *key,NSDictionary *survey);
 
 @interface NSString(FQSurvey)
 -(NSString *) stringValue;

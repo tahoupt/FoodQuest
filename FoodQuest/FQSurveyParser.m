@@ -14,6 +14,22 @@
 #import "ImagePreferenceChoiceAnswerFormat.h"
 #import "ImageHedonicScaleAnswerFormat.h"
 
+BOOL AlreadyInArray(NSInteger index,NSArray *indexes);
+
+
+BOOL AlreadyInArray(NSInteger index,NSArray *indexes) {
+
+    for (NSNumber *i in indexes) {
+        if (index == [i integerValue]) {
+                return YES;
+        }
+    }
+
+    return NO;
+}
+
+
+
 @implementation FQSurveyParser
 
 -(id)initWithSurvey:(NSDictionary *)s;
@@ -52,12 +68,29 @@
                 }
                             
                 return [[ORKTextChoiceAnswerFormat alloc] 
-                                                                initWithStyle: ORKChoiceAnswerStyleMultipleChoice
+                                                                initWithStyle: ORKChoiceAnswerStyleSingleChoice
                                                                 textChoices: answerChoices];
                                                                 
                                                                 
             }, // kFQSurveyMultipleChoiceType
 
+ kFQSurveyMultipleChoiceMultipleAnswersType:
+ 
+            ^ORKAnswerFormat *(NSDictionary *question) {
+                
+                NSMutableArray *answerChoices = [NSMutableArray array];
+                for (NSDictionary *answer in [question objectForKey:@"answers"]) {
+                    ORKTextChoice * choice = [ORKTextChoice choiceWithText:[answer objectForKey:@"text"] detailText:NULL value:[answer objectForKey:@"value"] exclusive:YES];
+                    [answerChoices addObject:choice];
+                }
+                            
+                return [[ORKTextChoiceAnswerFormat alloc] 
+                                                                initWithStyle: ORKChoiceAnswerStyleMultipleChoice
+                                                                textChoices: answerChoices];
+                                                                
+                                                                
+            }, // kFQSurveyMultipleChoiceMultipleAnswerType
+            
 kFQSurveyDateOfBirthType:
 
             ^ORKAnswerFormat *(NSDictionary *question){
@@ -65,7 +98,7 @@ kFQSurveyDateOfBirthType:
                     return [ORKHealthKitCharacteristicTypeAnswerFormat answerFormatWithCharacteristicType: [HKCharacteristicType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth]];
                 }
                 else {
-                    return [ORKAnswerFormat dateTimeAnswerFormat];
+                    return [[ORKDateAnswerFormat alloc] initWithStyle:ORKDateAnswerStyleDate];
                 }
             }, // kFQSurveyDateOfBirthType
             
@@ -240,7 +273,7 @@ kFQSurveyRandomHedonicScaleType:
 
 
 
--(ORKAnswerFormat *)parseSurveyQuestion:(NSDictionary *)question; {
+-(ORKAnswerFormat *)answerFormatForSurveyQuestion:(NSDictionary *)question; {
 
     if ([question objectForKey:@"type"] == nil ) {
                 NSLog(@"null type");
@@ -264,5 +297,193 @@ kFQSurveyRandomHedonicScaleType:
     
     return answer;
 }
+
+-(NSArray *)stepsForSurveyQuestion:(NSDictionary *)question; {
+
+    // need to handle kFQSurveyInstructionType and the 2 random types differently
+    // from a regular question, which can be handled by straight answerFormatForSurveyQuestion calls
+
+    NSMutableArray *steps = [NSMutableArray array];
+
+    if (![self recognizesKey:[question objectForKey:@"type"] ]) {
+                NSLog(@"unrecognized type");
+                
+    }
+    
+    else if ([question objectForKey:@"type"] == nil ) {
+                NSLog(@"null type");
+
+    }
+    
+   
+    else if ([[question objectForKey:@"type"] isEqualToString:kFQSurveyInstructionType]) {
+    
+        ORKInstructionStep *sectionInstructionStep =  [[ORKInstructionStep alloc] initWithIdentifier:[question objectForKey:@"key"]];
+              
+        sectionInstructionStep.title = [question objectForKey:@"stem"];
+        sectionInstructionStep.text = [question objectForKey:@"instructions"];
+       
+        [steps addObject:sectionInstructionStep];
+        
+        return steps;
+    }
+    
+    else if ([[question objectForKey:@"type"] isEqualToString: kFQSurveyRandomImagePairsType]) {
+    
+        NSInteger numQuestions;
+        if (nil ==  [question objectForKey:@"repeat"]) {
+            numQuestions = 1;
+        }
+        else {
+            numQuestions = [[question objectForKey:@"repeat"] integerValue];
+        }                   
+        
+        NSUInteger numFoodPictures = [[_images objectForKey:@"descriptions"] count];
+        
+        for (NSInteger i = 0; i< numQuestions; i++) {
+
+            NSMutableArray *usedRandomScaleIndexes = [NSMutableArray array];
+
+            // imageIndexes for file names are 1-indexed, but descriptions are 0-indexed
+            NSInteger image1Index = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+            
+            while (AlreadyInArray(image1Index,usedRandomScaleIndexes)) {
+                image1Index = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+            }
+            [usedRandomScaleIndexes addObject:[NSNumber numberWithInteger:image1Index]];
+            
+            
+            NSInteger image2Index = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+                
+            while (AlreadyInArray(image2Index,usedRandomScaleIndexes)) {
+                image2Index = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+            }
+            [usedRandomScaleIndexes addObject:[NSNumber numberWithInteger:image2Index]];
+
+
+            NSString *image1Label = [[_images mutableArrayValueForKey:@"descriptions"] objectAtIndex:image1Index-1];
+            NSString *image2Label = [[_images mutableArrayValueForKey:@"descriptions"] objectAtIndex:image2Index-1];
+            BOOL show_image_labels = NO;
+            BOOL allow_no_preference = NO;
+            BOOL show_answer = NO;
+            NSDictionary *answer = [[question objectForKey:@"answers"] firstObject];
+            if ([answer objectForKey:@"show_image_labels"]) {
+                show_image_labels = [[answer objectForKey:@"show_image_labels"] boolValue];
+            }
+           if ([answer objectForKey:@"allow_no_preference"]) {
+                allow_no_preference = [[answer objectForKey:@"allow_no_preference"] boolValue];
+            }
+           if ([answer objectForKey:@"show_answer"]) {
+                show_answer = [[answer objectForKey:@"show_answer"] boolValue];
+            }
+            
+            ORKAnswerFormat *answerFormat = [[ImagePreferenceChoiceAnswerFormat alloc] 
+                        initWithImageIndex1: image1Index
+                        imageLabel1:image1Label
+                        andImageIndex2: image2Index
+                        imageLabel2:image2Label
+                        imageType: [_images objectForKey:@"extension" ] 
+                        showImageLabels: show_image_labels
+                        showNoPreferenceButton:allow_no_preference
+                        showAnswer:show_answer]; 
+                    
+            NSString *identifier = [NSString stringWithFormat:@"%@%ld", [question objectForKey:@"key"], (long)i];
+            ORKQuestionStep *questionStep = [ORKQuestionStep questionStepWithIdentifier:identifier  
+                    title:[question objectForKey:@"stem"]   answer:answerFormat];
+                    
+            [steps addObject:questionStep];
+
+        } // next random ImagePreferenceChoiceAnswerFormat  
+    
+    }
+    
+    else if ([[question objectForKey:@"type"] isEqualToString: kFQSurveyRandomHedonicScaleType]) {
+    
+        NSDictionary *answer = [[question objectForKey:@"answers" ] firstObject ];
+        NSString *scale_type =  [answer objectForKey:@"scale_type"] ;
+        BOOL show_image_labels = NO;
+        BOOL allow_no_preference = NO;
+        BOOL show_answer = NO;
+        if ([answer objectForKey:@"show_image_labels"]) {
+            show_image_labels = [[answer objectForKey:@"show_image_labels"] boolValue];
+        }
+       if ([answer objectForKey:@"allow_no_preference"]) {
+            allow_no_preference = [[answer objectForKey:@"allow_no_preference"] boolValue];
+        }
+       if ([answer objectForKey:@"show_answer"]) {
+            show_answer = [[answer objectForKey:@"show_answer"] boolValue];
+        }
+        
+        
+        NSInteger numQuestions;
+        if (nil ==  [question objectForKey:@"repeat"]) {
+            numQuestions = 1;
+        }
+        else {
+            numQuestions = [[question objectForKey:@"repeat"] integerValue];
+        }
+        
+        NSUInteger numFoodPictures = [[_images objectForKey:@"descriptions"] count];
+        
+        NSMutableArray *usedRandomScaleIndexes = [NSMutableArray array];
+
+        for (NSInteger i = 0; i< numQuestions; i++) {
+
+            // imageIndexes for file names are 1-indexed, but descriptions are 0-indexed
+
+            NSInteger imageIndex = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+           
+            while (AlreadyInArray(imageIndex,usedRandomScaleIndexes)) {
+            
+                imageIndex = arc4random_uniform((unsigned int)numFoodPictures) + 1;
+            }
+            [usedRandomScaleIndexes addObject:[NSNumber numberWithInteger:imageIndex]];
+            
+             NSString *imageLabel = [[_images mutableArrayValueForKey:@"descriptions"] objectAtIndex:imageIndex-1];
+             
+            ORKAnswerFormat *answerFormat;
+             
+            if ([scale_type isEqualToString:kFQLabeledMagnitudeSurveyScaleType]) {
+                answerFormat =  [[LHSImageScaleAnswerFormat alloc] 
+                    initWithImageIndex:imageIndex 
+                    imageType: [_images objectForKey:@"extension" ]  
+                    imageLabel:imageLabel
+                    showImageLabel:show_image_labels];
+            }
+            else  if ([scale_type isEqualToString:kFQNatickSurveyScaleType]) {
+            
+            
+                answerFormat =  [[NatickImageScaleAnswerFormat alloc] 
+                    initWithImageIndex:imageIndex 
+                    imageType: [_images objectForKey:@"extension" ]  
+                    imageLabel:imageLabel
+                    showImageLabel:show_image_labels];
+                    
+                                
+            }
+            
+            NSString *identifier = [NSString stringWithFormat:@"%@%ld", [question objectForKey:@"key"], (long)i];
+            
+            ORKQuestionStep *questionStep = [ORKQuestionStep questionStepWithIdentifier:identifier  
+                        title:[question objectForKey:@"stem"]   answer:answerFormat];
+                        
+            [steps addObject:questionStep];
+        } // next random image hedonic scaling format
+    }
+         
+    else {
+        ORKAnswerFormat *answerFormat = [self answerFormatForSurveyQuestion:question];
+
+        ORKQuestionStep *questionStep = [ORKQuestionStep questionStepWithIdentifier:[question objectForKey:@"key"]  
+                        title:[question objectForKey:@"stem"]   answer:answerFormat];
+                
+        [steps addObject:questionStep];
+    
+    }
+    
+    return steps;
+
+}
+
 
 @end

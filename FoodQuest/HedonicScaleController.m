@@ -95,7 +95,7 @@
     // You could do something with the result here.
 
 
-    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult);
+    NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,nil);
     
     
     [self saveResultToFirebase:resultDictionary];
@@ -105,8 +105,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     // go back to main table view
-    [self.tabBarController setSelectedIndex:0];
+//    [self.tabBarController setSelectedIndex:0];
     // or set selectedViewContoller
+
+ [self.navigationController popToRootViewControllerAnimated:YES];
+
 
 
 }
