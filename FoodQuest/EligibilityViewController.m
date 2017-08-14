@@ -158,7 +158,9 @@
         }
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:meetsCriteria] forKey:kUserMeetsCriteriaKey ];
-                            
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:birthdate] forKey:kUserDateOfBirthKey ];
+        [[NSUserDefaults standardUserDefaults] setObject:gender forKey:kUserSexKey ];
+
     
         
     }

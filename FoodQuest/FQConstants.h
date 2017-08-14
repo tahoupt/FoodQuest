@@ -18,11 +18,20 @@
 
 
 // user default keys
-#define kUserDefaultUserIDKey @"UserID"
-#define kUserMeetsCriteriaKey @"meetsCriteria"
-#define kUserGaveConsentDateKey @"gaveConsentDate"
-#define kUserWithdrawalDateKey @"withdrawalDate"
-#define kUserParticipatingFlagKey @"participatingFlag"
+#define kUserDefaultUserIDKey @"user_id"
+#define kUserDateOfBirthKey @"date_of_birth"
+#define kUserSexKey @"sex"
+#define kUserEmailKey @"email"
+#define kUserPhoneKey @"phone"
+#define kUserFirstNameKey @"first_name"
+#define kUserLastNameKey @"last_name"
+#define kUserTitleKey @"title"
+#define kUserMeetsCriteriaKey @"meets_criteria"
+#define kUserGaveConsentDateKey @"consent_date"
+#define kUserGaveConsentDateFormatKey @"consent_date_format"
+#define kUserConsentPDFLinkKey @"consent_link"
+#define kUserWithdrawalDateKey @"withdrawal_date"
+#define kUserParticipatingFlagKey @"participating"
 
 
 

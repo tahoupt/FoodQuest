@@ -85,7 +85,7 @@
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
     
-    NSDictionary *queries = [self queriesFromQueryString:[url query]];
+    NSDictionary *queries = [self queriesFromURL:url ];
     
     NSString *newUserID = [queries objectForKey:@"user"];
     NSString *surveyID = [queries objectForKey:@"survey"];
@@ -158,15 +158,16 @@
 }
 
 
--(NSDictionary *)queriesFromQueryString:(NSString *)queryString; {
+-(NSDictionary *)queriesFromURL:(NSURL *)theURL; {
 
-    NSMutableDictionary *queries = [[NSMutableDictionary alloc] init];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:theURL resolvingAgainstBaseURL:NO];
     
-    NSArray *qs = [queryString componentsSeparatedByString:@"&"];
+    NSArray *queryItems =[components queryItems];
     
-    for (NSString *q in qs) {
-        NSArray *q_parts = [q componentsSeparatedByString:@"="];
-        [queries setObject:[q_parts lastObject] forKey: [q_parts firstObject]];
+        NSMutableDictionary *queries = [[NSMutableDictionary alloc] init];
+    
+    for (NSURLQueryItem *item in queryItems) {
+        [queries setObject:item.value forKey: item.name];
     }
     
     return queries;
@@ -205,6 +206,7 @@
     }
     else {
     
+
         // TODO: how to check if already in the middle of a survey?
 
    // https://stackoverflow.com/questions/24939465/dismiss-modal-then-immediately-push-view-controller

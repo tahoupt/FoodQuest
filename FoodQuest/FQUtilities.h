@@ -16,8 +16,13 @@ NSDictionary *surveyWithID(NSString *surveyID);
 
 NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDictionary *survey);
 void SaveResultToFirebase(NSDictionary *result_data);
+void SaveSubjectToFirebase(void);
 
 NSDictionary *QuestionFromIdentifier(NSString *key,NSDictionary *survey);
+
+/** convert "THoupt@fsu.edu" to "thoupt_at_fsu.edu"
+*/
+NSString *UserIDFromEmail(NSString *email); 
 
 @interface NSString(FQSurvey)
 -(NSString *) stringValue;

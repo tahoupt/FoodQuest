@@ -220,10 +220,8 @@ void SaveResultToFirebase(NSDictionary *result_data) {
     // only save to database if we have recruitment userid
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
   
-  
     // TODO: put up alert that they need to sign up to save results
     if (nil == userID) { userID = @"thoupt"; }
-    
 
     if (nil != userID){
         
@@ -234,6 +232,90 @@ void SaveResultToFirebase(NSDictionary *result_data) {
 
     }
   
+}
+
+void SaveSubjectToFirebase(void) {
+
+    /* subject_data fields:
+        userID : 
+        first_name
+        last_name
+        consent_date : date string from consent form
+        consent_date_format
+        participating : Boolean if currently participating
+        withdrawal_date : time stamp, only present if subject withdrew from study
+        date_of_birth
+        sex
+        email
+        phone
+        device  derived from UIDevice call
+            name
+            systemName
+            systemVersion
+            model
+            localizedModel
+            identifierForVendor
+        has_confirmed : time stamp for when user responded to confirmation email/text
+        
+    */
+    
+    NSMutableDictionary *subject_data = [NSMutableDictionary dictionary];
+
+    // only save to database if we have recruitment userid
+    // TODO: this might be replaced with a normalized version of email address?
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
+    
+    // date of birth and sex should have been stored in userdefaults during eligibility 
+    subject_data[kUserDateOfBirthKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDateOfBirthKey];
+    subject_data[kUserSexKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserSexKey];
+    
+    // names, email,  phone number, consent pdf link,  and consent date were saved when consent was given
+    subject_data[kUserFirstNameKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserFirstNameKey];
+    subject_data[kUserLastNameKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserLastNameKey];
+    subject_data[kUserTitleKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserTitleKey];
+    subject_data[kUserEmailKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserEmailKey];
+    subject_data[kUserPhoneKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserPhoneKey];
+    subject_data[kUserGaveConsentDateKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateKey];
+    subject_data[kUserGaveConsentDateFormatKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateFormatKey];
+    subject_data[kUserGaveConsentDateFormatKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateFormatKey];
+    subject_data[kUserParticipatingFlagKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserParticipatingFlagKey];
+   
+    // maybe we withdrew?
+    subject_data[kUserWithdrawalDateKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserWithdrawalDateKey];    
+    
+    
+    // get device info
+    
+    UIDevice *device = [UIDevice currentDevice];
+    NSMutableDictionary *device_data = [NSMutableDictionary dictionary];
+    device_data[@"name"] = device.name;
+    device_data[@"systemName"] = device.systemName;
+    device_data[@"systemVersion"] = device.systemVersion;
+    device_data[@"model"] = device.model;
+    device_data[@"localizedModel"] = device.localizedModel;
+    device_data[@"identifierForVendor"] = [device.identifierForVendor UUIDString];
+    
+    subject_data[@"device"] = device_data;
+    
+  
+    if (nil == userID) { userID = @"thoupt2"; }
+    
+    
+
+    if (nil != userID){
+        
+      FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+      
+      // Push data to Firebase Database
+      [[[[firebaseRef child:kFirebaseDirectory] child:@"subjects"] child:userID]  setValue:subject_data];
+
+    }
+  
+}
+
+NSString *UserIDFromEmail(NSString *email) {
+    return [[email lowercaseString] stringByReplacingOccurrencesOfString:@"@" withString:@"_at_"];
+
 }
 
 

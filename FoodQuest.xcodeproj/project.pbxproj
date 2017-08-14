@@ -1244,6 +1244,7 @@
 		20190F051D9B0F68008D9802 /* credits.md in Sources */ = {isa = PBXBuildFile; fileRef = 20190F041D9B0F68008D9802 /* credits.md */; };
 		20366FAA1F04233A00A33B4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20366FA91F04233A00A33B4D /* GoogleService-Info.plist */; };
 		20366FAD1F04317200A33B4D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20366FAC1F04317200A33B4D /* HealthKit.framework */; };
+		206A15ED1F17AD3500A1E9BA /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 206A15EC1F17AD3500A1E9BA /* SettingsViewController.m */; };
 		20755A731DB446A5007373C3 /* consent_review.html in Resources */ = {isa = PBXBuildFile; fileRef = 20755A721DB446A5007373C3 /* consent_review.html */; };
 		207AFC091EFF181800484375 /* FQSurveyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 207AFC081EFF181800484375 /* FQSurveyParser.m */; };
 		2082A07E1D9B2D0300D121C4 /* foodquest_launch750_1334.png in Resources */ = {isa = PBXBuildFile; fileRef = 2082A07D1D9B2D0300D121C4 /* foodquest_launch750_1334.png */; };
@@ -2630,6 +2631,8 @@
 		20366FA91F04233A00A33B4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		20366FAB1F04317100A33B4D /* FoodQuest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FoodQuest.entitlements; sourceTree = "<group>"; };
 		20366FAC1F04317200A33B4D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		206A15EB1F17AD3500A1E9BA /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		206A15EC1F17AD3500A1E9BA /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		20755A721DB446A5007373C3 /* consent_review.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = consent_review.html; path = html/consent_review.html; sourceTree = "<group>"; };
 		207AFC071EFF181800484375 /* FQSurveyParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQSurveyParser.h; sourceTree = "<group>"; };
 		207AFC081EFF181800484375 /* FQSurveyParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQSurveyParser.m; sourceTree = "<group>"; };
@@ -2814,6 +2817,8 @@
 				20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */,
 				20D06E0C1D985CF000231A28 /* FoodTabBarControllerViewController.h */,
 				20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */,
+				206A15EB1F17AD3500A1E9BA /* SettingsViewController.h */,
+				206A15EC1F17AD3500A1E9BA /* SettingsViewController.m */,
 				20174B141D95E5CF0056BB9F /* Assets.xcassets */,
 				20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */,
 				20174B191D95E5CF0056BB9F /* Info.plist */,
@@ -5537,6 +5542,7 @@
 				2091C6241EBAA3BE00F35227 /* ImagePreferenceStepViewController.m in Sources */,
 				20E881911ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m in Sources */,
 				2005EBF41E70EEB900331D86 /* SurveyViewController.m in Sources */,
+				206A15ED1F17AD3500A1E9BA /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

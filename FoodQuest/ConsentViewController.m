@@ -67,7 +67,40 @@
 //                              localizedLearnMoreHTMLContent:@"Lorem ipsum..."];
 //                          
 
+// get userid, email, and phone number:
 
+     ORKFormStep *formStep = [[ORKFormStep alloc] initWithIdentifier:@"Enrollment Form"
+                                       title:@"Form"
+                                        text:@"Form groups multi-entry in one page"];
+    NSMutableArray *items = [NSMutableArray new];
+    
+    ORKAnswerFormat *userIdFormat = [[ORKTextAnswerFormat alloc] initWithMaximumLength:15];
+    ORKFormItem *useridItem = [[ORKFormItem alloc] initWithIdentifier:@"useridItem"
+                                         text:@"User ID (from your invitation)"
+                                 answerFormat:userIdFormat];
+    useridItem.placeholder = @"userid";
+    useridItem.optional = NO;
+    [items addObject:useridItem];
+    
+    ORKAnswerFormat *emailFormat = [[ORKEmailAnswerFormat alloc] init];
+    ORKFormItem *emailItem = [[ORKFormItem alloc] initWithIdentifier:@"emailItem"
+                                         text:@"Email Address (for receiving study info)"
+                                 answerFormat:emailFormat];
+    emailItem.placeholder = @"me@email.com";
+    emailItem.optional = NO;
+    [items addObject:emailItem];
+    
+    
+    ORKAnswerFormat *phoneFormat = [[ORKTextAnswerFormat alloc] initWithMaximumLength:15];
+    ORKFormItem *phoneItem = [[ORKFormItem alloc] initWithIdentifier:@"phoneItem"
+                                         text:@"Phone number (for receiving text reminders)"
+                                 answerFormat:phoneFormat];
+    phoneItem.placeholder = @"(012)345-6789";
+    phoneItem.optional = NO;
+    [items addObject:phoneItem];
+    
+    formStep.formItems = items;
+    
     _consent = [[ORKConsentDocument alloc] init];
     _consent.title = [NSString stringWithFormat:@"%@ Consent",kStudyTitle];
     _consent.signaturePageTitle = [NSString stringWithFormat:@"Signature Page for Consent for %@ Study",kStudyTitle];
@@ -132,10 +165,20 @@
            
             [signatureResult applyToDocument:consentCopy];
             
+
+
+        // get subjects name & signing dates out of the signatureResult
+           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.givenName forKey: kUserFirstNameKey];
+           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.familyName forKey: kUserLastNameKey];
+           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.title forKey: kUserTitleKey];
+           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDate forKey: kUserGaveConsentDateKey];
+           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDateFormatString forKey: kUserGaveConsentDateFormatKey];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserParticipatingFlagKey];
+
             
             // Then, dismiss the task view controller.
             
-        //    [self dismissViewControllerAnimated:YES completion:^{
+        //   [self dismissViewControllerAnimated:YES completion:^{
                 
                 NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
                 
@@ -157,8 +200,9 @@
                 //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
                 
                         [self putPDFinFirebaseStorage];
-                        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserGaveConsentDateKey];
-                         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserParticipatingFlagKey];
+                        
+                         
+
                          
                          // TODO: store consent date/participation in firebase
                         [self wantsPDFEmailed];
@@ -168,7 +212,7 @@
 
                 } // has user_id
             
-      //      }]; // dismiss the task view controller.
+     //   }]; // dismiss the task view controller.
 
         
         } // ORKTaskViewControllerFinishReasonCompleted 
@@ -205,22 +249,23 @@
         [_alert addAction:defaultAction];
         [_alert addAction:cancelAction];
         
+        
         [_taskViewController presentViewController:_alert animated:YES completion:nil];
 
 }
 
 -(void)yesAction; {
 
+     //  [_taskViewController dismissViewControllerAnimated:YES completion:nil];
+
         [self sendPDFEmail];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 -(void)noAction; {
+       [_taskViewController dismissViewControllerAnimated:YES completion:nil];
 
-        [self sendPDFEmail];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self closeViewController];
 }
 
 
@@ -229,6 +274,8 @@
         if (![MFMailComposeViewController canSendMail]) {
            //  TODO: put up alert that email not available
            NSLog(@"Mail services are not available.");
+           [self closeViewController];
+
            return;
         }
 
@@ -244,7 +291,7 @@
 
 
         // Present the view controller modally.
-        [self presentViewController:pdfEmail animated:YES completion:nil];
+        [_taskViewController presentViewController:pdfEmail animated:YES completion:nil];
 
 
 }
@@ -254,7 +301,11 @@
        // Check the result or perform other tasks.
      
        // Dismiss the mail compose view controller.
-       [self dismissViewControllerAnimated:YES completion:nil];
+       [_taskViewController dismissViewControllerAnimated:YES completion:^{        
+       // dismiss the taskviewcontroller and pop
+            [self closeViewController];
+       }];
+
 }
 
 
@@ -288,10 +339,22 @@
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 // NOTE: store this url in the user's firebase database entry
                 NSURL *downloadURL = metadata.downloadURL;
+                [[NSUserDefaults standardUserDefaults] setObject:[downloadURL absoluteString] forKey: kUserConsentPDFLinkKey];
+                
+                // since we saved the consent, we can now create the subject record
+                SaveSubjectToFirebase();
             }
         }];
 }
 
+-(void)closeViewController; {
+        // dismiss the taskviewcontroller and pop
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+       // NOTE: Unbalanced calls to begin/end appearance transitions for <ConsentViewController: 
+       // try poping without animation?
+}
 
 
 @end

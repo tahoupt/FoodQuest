@@ -24,5 +24,9 @@
 
 @property  (strong, nonatomic) SurveyViewController *surveyViewController;
 
+
+-(NSDictionary *)queriesFromURL:(NSURL *)theURL;
+-(void)launchSurveyWithID:(NSString *)surveyID;
+
 @end
 
