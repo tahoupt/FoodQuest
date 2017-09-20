@@ -22,7 +22,9 @@
        didFinishWithReason:(ORKTaskViewControllerFinishReason)reason
                      error:(NSError *)error;
                      
-/** called by alert on completion */
--(void)popAndDismissTaskViewController;
+/** called by alert on completion and cancel*/
+-(void)pop;
+/** called by alert on completion and contiue to join */
+-(void)continueToSettingsController; 
 
 @end

@@ -17,6 +17,8 @@ NSDictionary *surveyWithID(NSString *surveyID);
 NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDictionary *survey);
 void SaveResultToFirebase(NSDictionary *result_data);
 void SaveSubjectToFirebase(void);
+void WithdrawSubjectFromFirebase(void);
+
 
 NSDictionary *QuestionFromIdentifier(NSString *key,NSDictionary *survey);
 

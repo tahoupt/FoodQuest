@@ -28,7 +28,8 @@
     [tapBackground setNumberOfTapsRequired:1];
     [self.view addGestureRecognizer:tapBackground];
     
-    _validUserID = NO;
+    // NOTE: deprecating userid, so make it always valid
+    _validUserID = YES;
     _validEmail = NO;
     _validPhoneNumber = NO;
     
@@ -36,7 +37,21 @@
     _foundEmailError= NO;
     _foundPhoneNumberError= NO;
   
-
+   
+    
+    NSString *storedPhoneNumber =   [[NSUserDefaults standardUserDefaults] objectForKey:kUserPhoneKey ];
+    if (nil != storedPhoneNumber) {
+        storedPhoneNumber = [self formatPhoneNumber:storedPhoneNumber deleteLastChar:NO];
+        _phoneNumber.text = storedPhoneNumber;
+    }
+   
+    NSString *storedEmail = [[NSUserDefaults standardUserDefaults] objectForKey:kUserEmailKey ];
+    if (nil != storedEmail) {
+        _email.text = storedEmail;    
+    }
+ 
+    
+    
 }
 -(void) dismissKeyboard:(id)sender
 {
@@ -78,7 +93,7 @@
         if (_foundPhoneNumberError) {
                 [self validatePhoneNumber:self];
         }
-        return false;
+        return NO;
     }
     
     else if (textField.tag == 103 && _foundEmailError) {
@@ -87,12 +102,12 @@
         return NO;
     }
     
-    else if (textField.tag == 104 && _foundUserIDError) {
-        textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        [self validateUserID:self];
-        return NO; 
-
-    }
+//    else if (textField.tag == 104 && _foundUserIDError) {
+//        textField.text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+//        [self validateUserID:self];
+//        return NO; 
+//
+//    }
 
     return YES; 
 }
@@ -100,37 +115,38 @@
 // phone number field should have textField.tag==102, and we should be delegate of the textfield
 // https://stackoverflow.com/questions/1246439/uitextfield-for-phone-number
 -(NSString*) formatPhoneNumber:(NSString*) simpleNumber deleteLastChar:(BOOL)deleteLastChar {
-if(simpleNumber.length==0) return @"";
-// use regex to remove non-digits(including spaces) so we are left with just the numbers 
-NSError *error = NULL;
- NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[\\s-\\(\\)]" options:NSRegularExpressionCaseInsensitive error:&error];
- simpleNumber = [regex stringByReplacingMatchesInString:simpleNumber options:0 range:NSMakeRange(0, [simpleNumber length]) withTemplate:@""];
 
-// check if the number is to long
-if(simpleNumber.length>10) {
-    // remove last extra chars.
-    simpleNumber = [simpleNumber substringToIndex:10];
-}
+    if(simpleNumber.length==0) return @"";
+    // use regex to remove non-digits(including spaces) so we are left with just the numbers 
+    NSError *error = NULL;
+     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[\\s-\\(\\)]" options:NSRegularExpressionCaseInsensitive error:&error];
+     simpleNumber = [regex stringByReplacingMatchesInString:simpleNumber options:0 range:NSMakeRange(0, [simpleNumber length]) withTemplate:@""];
 
-if(deleteLastChar) {
-    // should we delete the last digit?
-    simpleNumber = [simpleNumber substringToIndex:[simpleNumber length] - 1];
-}
+    // check if the number is to long
+    if(simpleNumber.length>10) {
+        // remove last extra chars.
+        simpleNumber = [simpleNumber substringToIndex:10];
+    }
 
-// 123 456 7890
-// format the number.. if it's less then 7 digits.. then use this regex.
-if(simpleNumber.length<7)
-simpleNumber = [simpleNumber stringByReplacingOccurrencesOfString:@"(\\d{3})(\\d+)"
-                                                           withString:@"($1) $2"
-                                                              options:NSRegularExpressionSearch
-                                                                range:NSMakeRange(0, [simpleNumber length])];
+    if(deleteLastChar) {
+        // should we delete the last digit?
+        simpleNumber = [simpleNumber substringToIndex:[simpleNumber length] - 1];
+    }
 
-else   // else do this one..
-    simpleNumber = [simpleNumber stringByReplacingOccurrencesOfString:@"(\\d{3})(\\d{3})(\\d+)"
-                                                           withString:@"($1) $2-$3"
-                                                              options:NSRegularExpressionSearch
-                                                                range:NSMakeRange(0, [simpleNumber length])];
-return simpleNumber;
+    // 123 456 7890
+    // format the number.. if it's less then 7 digits.. then use this regex.
+    if(simpleNumber.length<7)
+    simpleNumber = [simpleNumber stringByReplacingOccurrencesOfString:@"(\\d{3})(\\d+)"
+                                                               withString:@"($1) $2"
+                                                                  options:NSRegularExpressionSearch
+                                                                    range:NSMakeRange(0, [simpleNumber length])];
+
+    else   // else do this one..
+        simpleNumber = [simpleNumber stringByReplacingOccurrencesOfString:@"(\\d{3})(\\d{3})(\\d+)"
+                                                               withString:@"($1) $2-$3"
+                                                                  options:NSRegularExpressionSearch
+                                                                    range:NSMakeRange(0, [simpleNumber length])];
+    return simpleNumber;
 }
 
 
@@ -140,14 +156,14 @@ return simpleNumber;
     // if yes, then it has changed...
     // and set an editedFlag so we will enable continue button
     
-/* based on chromium/blink
-https://github.com/ChromiumWebApps/blink/blob/ea798590bf47f65436cd9d0803b3d7af4d5d614f/Source/core/html/forms/EmailInputType.cpp
-static const char emailPattern[] =
-	    "[a-z0-9!#$%&'*+/=?^_`{|}~.-]+" // local part
-	    "@"
-	    "[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?" // domain part
+    /* based on chromium/blink
+    https://github.com/ChromiumWebApps/blink/blob/ea798590bf47f65436cd9d0803b3d7af4d5d614f/Source/core/html/forms/EmailInputType.cpp
+    static const char emailPattern[] =
+            "[a-z0-9!#$%&'*+/=?^_`{|}~.-]+" // local part
+            "@"
+            "[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?" // domain part
 
-*/
+    */
      if ( 0 == [_email.text length]) {
          [_email setTextColor:[UIColor blackColor]];
          _validEmail = NO;
@@ -206,29 +222,29 @@ static const char emailPattern[] =
 
 }
 
--(IBAction)validateUserID:(id)sender; {
-
-     if ( 0 == [_userID.text length]) {
-         [_userID setTextColor:[UIColor blackColor]];
-        _validUserID = NO;
-     }
-     else {
-        if (3 >= [_userID.text length]) {
-            NSLog(@"userID not validated -- too short");
-            [_userID setTextColor:[UIColor redColor]];
-            _validUserID = NO;
-            _foundUserIDError = YES;
-
-        }
-        else {
-            [_userID setTextColor:[UIColor blackColor]];
-            _validUserID = YES;
-        }
-    }
-    
-    [self enableContinueButton];
-
-}
+//-(IBAction)validateUserID:(id)sender; {
+//
+//     if ( 0 == [_userID.text length]) {
+//         [_userID setTextColor:[UIColor blackColor]];
+//        _validUserID = NO;
+//     }
+//     else {
+//        if (3 >= [_userID.text length]) {
+//            NSLog(@"userID not validated -- too short");
+//            [_userID setTextColor:[UIColor redColor]];
+//            _validUserID = NO;
+//            _foundUserIDError = YES;
+//
+//        }
+//        else {
+//            [_userID setTextColor:[UIColor blackColor]];
+//            _validUserID = YES;
+//        }
+//    }
+//    
+//    [self enableContinueButton];
+//
+//}
 
 -(void)enableContinueButton; {
 

@@ -61,8 +61,11 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
 
-    [super viewDidAppear:animated];
 
+
+    [super viewDidAppear:animated];
+ 
+    NSLog(@"EligibilityViewController did appear");
 }
 
 
@@ -71,20 +74,15 @@
        didFinishWithReason:(ORKTaskViewControllerFinishReason)reason
                      error:(NSError *)error {
                      
-                     
-                     
     BOOL completedSurvey = NO;
-
     BOOL meetsCriteria = YES;
-
 
     if (ORKTaskViewControllerFinishReasonFailed == reason) {
         // error detected
     
         // TODO:
         // SaveErrorResultToFirebase(resultDictionary);
-        [self popAndDismissTaskViewController];
-
+    
 
     }
     else if (ORKTaskViewControllerFinishReasonDiscarded == reason) {
@@ -93,13 +91,10 @@
         // TODO:
         // SaveCancelledResultToFirebase(resultDictionary);
         
-        [self popAndDismissTaskViewController];
-
     }
     else if (ORKTaskViewControllerFinishReasonCompleted == reason || ORKTaskViewControllerFinishReasonSaved == reason ) {
     
-                completedSurvey = YES;
-
+        completedSurvey = YES;
 
         ORKTaskResult *taskResult = [taskViewController result];
 
@@ -107,11 +102,7 @@
         
         NSMutableDictionary *step_results = resultDictionary[@"step_results"];
         
-                // check date of birth
-        
-        // check gender
-        
-        // check pregnancy
+        // check date of birth, gender, pregnancy
         
         
         NSDictionary *b = step_results[@"birth_date"] ;
@@ -129,57 +120,52 @@
         NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date2  toDate:date1  options:0];
 
         NSInteger age = [conversionInfo year];
-
         
-         NSDictionary *g = step_results[@"gender"];
-           NSString *gender = g[@"answer"];
+        NSDictionary *g = step_results[@"gender"];
+        NSString *gender = g[@"answer"];
 
         NSDictionary *p = step_results[@"pregnancy"];
-
-         NSString *pregnant = p[@"answer"];
+        NSString *pregnant = p[@"answer"];
          
-         
-         
-         if (age < 18) {
-         
-            meetsCriteria = NO;
-
-         }
-
-        if (![gender isEqualToString:@"female"]) {
-        
-            meetsCriteria = NO;
-        
-        }
-        
-        if (![pregnant isEqualToString:@"true"]) {
-        
-            meetsCriteria = NO;
-        }
+        if (age < 18) {  meetsCriteria = NO; }
+        if (![gender isEqualToString:@"female"]) {  meetsCriteria = NO; }
+        if (![pregnant isEqualToString:@"true"]) { meetsCriteria = NO; }
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:meetsCriteria] forKey:kUserMeetsCriteriaKey ];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:birthdate] forKey:kUserDateOfBirthKey ];
         [[NSUserDefaults standardUserDefaults] setObject:gender forKey:kUserSexKey ];
 
-    
         
     }
   
+    // get rid of taskcontroller, then either return to maintable or put up alerts:
+    // either did not meet criteria, then return to maintable
+    // or eligible, so join or cancel (return to maintable)
+    
+    [self dismissViewControllerAnimated:NO completion: ^{
 
-
-        if (completedSurvey) {
-                
+            if (!completedSurvey) {
+                 [self pop];
+            }
+            else  {
+                    
                 if (meetsCriteria) {
                 
                         _alert = [UIAlertController alertControllerWithTitle:@"You Meet Criteria!"
-                                       message:@"You have met the criteria to be a subject in this study. If you want to join the study, please go the to 'Consent' form."
+                                       message:@"You have met the criteria to be a subject in this study. If you want to join the study, please continue to the 'Consent' form."
                                        preferredStyle:UIAlertControllerStyleAlert];
          
-                        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action) { [self popAndDismissTaskViewController];}];
+                        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Join Study" style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) { [self continueToSettingsController];}];
                          
                         [_alert addAction:defaultAction];
-                        [taskViewController presentViewController:_alert animated:YES completion:nil];
+                        
+                        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
+                           handler:^(UIAlertAction * action) { [self pop];}];
+                        [_alert addAction:cancelAction];
+
+
+                        [self presentViewController:_alert animated:YES completion:nil];
 
                 }
                 else {
@@ -190,30 +176,45 @@
          
                     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                        handler:^(UIAlertAction * action) {
-                         [self popAndDismissTaskViewController];
+                         [self pop];
                        }];
                      
                     
                     [_alert addAction:defaultAction];
-                    [taskViewController presentViewController:_alert animated:YES completion:nil];
+
+                    [self presentViewController:_alert animated:YES completion:nil];
 
                 
-                
                 }
-        } // completed survey
+            } // completed survey
             
-        
-       
+       }]; // dismiss task controller
 
 
 }
 
--(void)popAndDismissTaskViewController; {
+-(void)pop; {
 
-        // Then, dismiss the task view controller.
-        [self dismissViewControllerAnimated:NO completion: nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"unwindToMainTable" sender: self];
+    
+}
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    NSLog(@"prepare for segue %@",segue.identifier);
+    if ([segue.identifier isEqualToString:@"unwindToMainTable"]) {
+    
+        NSLog(@"Prepare for unwindToMainTable");
+    }
+}
+
+-(void)continueToSettingsController; {
+
+    UIViewController *settingsViewController = [self.storyboard 
+        instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+ 
+    [self presentViewController:settingsViewController animated:YES completion:NULL];
+                                                     
 }
 
 @end

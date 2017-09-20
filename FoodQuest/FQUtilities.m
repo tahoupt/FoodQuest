@@ -17,6 +17,19 @@
 }
 @end
 
+NSString *UserIDFromEmail(NSString *email) {
+
+    // replace characters not allowed in firebase key
+    //TODO: also can't be more than 768 bytes 
+
+    NSString *userid =  [[email lowercaseString] stringByReplacingOccurrencesOfString:@"@" withString:@"_at_"];
+    
+    userid = [userid stringByReplacingOccurrencesOfString:@"[$\\[\\]\\#\\/.]" withString:@"_" options:NSRegularExpressionSearch range:NSMakeRange(0, [userid length])];
+
+    return userid;
+
+}
+
 
 NSDictionary *surveyWithID(NSString *surveyID){
 
@@ -87,7 +100,7 @@ NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDicti
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
     
     // NOTE: for debugging purposes, assign temp id
-    if (nil == userID) { userID = @"thoupt"; }
+    if (nil == userID) { userID = @"temp_id"; }
     d[@"user_id"] = userID;
     
     d[@"survey_key"] = taskResult.identifier;
@@ -221,7 +234,7 @@ void SaveResultToFirebase(NSDictionary *result_data) {
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
   
     // TODO: put up alert that they need to sign up to save results
-    if (nil == userID) { userID = @"thoupt"; }
+    if (nil == userID) { userID = @"tempid"; }
 
     if (nil != userID){
         
@@ -242,6 +255,7 @@ void SaveSubjectToFirebase(void) {
         last_name
         consent_date : date string from consent form
         consent_date_format
+        consent_link : link provided by firebase storage to pdf document
         participating : Boolean if currently participating
         withdrawal_date : time stamp, only present if subject withdrew from study
         date_of_birth
@@ -264,7 +278,8 @@ void SaveSubjectToFirebase(void) {
     // only save to database if we have recruitment userid
     // TODO: this might be replaced with a normalized version of email address?
     NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
-    
+    if (nil == userID) { userID = @"thoupt2"; }
+
     // date of birth and sex should have been stored in userdefaults during eligibility 
     subject_data[kUserDateOfBirthKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDateOfBirthKey];
     subject_data[kUserSexKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserSexKey];
@@ -277,7 +292,7 @@ void SaveSubjectToFirebase(void) {
     subject_data[kUserPhoneKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserPhoneKey];
     subject_data[kUserGaveConsentDateKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateKey];
     subject_data[kUserGaveConsentDateFormatKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateFormatKey];
-    subject_data[kUserGaveConsentDateFormatKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateFormatKey];
+    subject_data[kUserConsentPDFLinkKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserConsentPDFLinkKey];
     subject_data[kUserParticipatingFlagKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserParticipatingFlagKey];
    
     // maybe we withdrew?
@@ -298,10 +313,7 @@ void SaveSubjectToFirebase(void) {
     subject_data[@"device"] = device_data;
     
   
-    if (nil == userID) { userID = @"thoupt2"; }
     
-    
-
     if (nil != userID){
         
       FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
@@ -313,9 +325,30 @@ void SaveSubjectToFirebase(void) {
   
 }
 
-NSString *UserIDFromEmail(NSString *email) {
-    return [[email lowercaseString] stringByReplacingOccurrencesOfString:@"@" withString:@"_at_"];
 
+void WithdrawSubjectFromFirebase(void) {
+
+    // only save to database if we have recruitment userid
+    // TODO: this might be replaced with a normalized version of email address?
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
+    
+    if (nil == userID) { userID = @"thoupt2"; }
+    
+    if (nil != userID){
+        
+      FIRDatabaseReference *firebaseRef = [[FIRDatabase database] reference];
+      
+         NSString *withdrawalDate =     [[NSUserDefaults standardUserDefaults] objectForKey:kUserWithdrawalDateKey];
+         NSNumber *participating =   [[NSUserDefaults standardUserDefaults] objectForKey:kUserParticipatingFlagKey];
+        
+      
+      // Push data to Firebase Database
+      [[[[[firebaseRef child:kFirebaseDirectory] child:@"subjects"] child:userID]  child:kUserWithdrawalDateKey] setValue:withdrawalDate];
+
+      [[[[[firebaseRef child:kFirebaseDirectory] child:@"subjects"] child:userID]  child:kUserParticipatingFlagKey] setValue:participating];
+      
+    }
+  
 }
 
 

@@ -19,10 +19,11 @@
 @property NSData *pdfFile;
 
 @property UIAlertController* alert;
-
+@property BOOL consentReviewHasBeenPresented;
 -(void)sendPDFEmail; 
 -(void)wantsPDFEmailed;
 -(void)yesAction;
 -(void)noAction;
+-(void)pop;
 
 @end

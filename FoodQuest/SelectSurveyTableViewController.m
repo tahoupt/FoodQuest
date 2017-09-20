@@ -8,6 +8,7 @@
 
 #import "SelectSurveyTableViewController.h"
 #import "SurveyViewController.h"
+#import "SurveyDetailViewController.h"
 #import <YAML/YAMLSerialization.h>
 
 @interface SelectSurveyTableViewController ()
@@ -165,10 +166,17 @@
     
         NSLog(@"prepare survey segue");
 
+    if ([[segue identifier ] isEqualToString:@"SurveySegue"]) {
+        NSDictionary * selectedSurvey = [_surveys objectAtIndex:[[self.tableView indexPathForSelectedRow] row] ];
+        [(SurveyViewController *)[segue destinationViewController] setSurvey:selectedSurvey];
+    }
+    if ([[segue identifier ] isEqualToString:@"SurveyDetailSegue"]) {
 
-    NSDictionary * selectedSurvey = [_surveys objectAtIndex:[[self.tableView indexPathForSelectedRow] row] ];
+        NSDictionary * selectedSurvey = [_surveys objectAtIndex:[[self.tableView indexPathForSelectedRow] row] ];
+        [(SurveyDetailViewController *)[segue destinationViewController] setSurvey:selectedSurvey];
     
-    [(SurveyViewController *)[segue destinationViewController] setSurvey:selectedSurvey];
+    
+    }
     
 }
 

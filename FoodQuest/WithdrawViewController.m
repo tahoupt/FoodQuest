@@ -8,6 +8,7 @@
 
 #import "WithdrawViewController.h"
 #import "FQConstants.h"
+#import "FQUtilities.h"
 
 @interface WithdrawViewController ()
 
@@ -39,6 +40,10 @@
 
     [super viewDidAppear:animated];
     
+    if (_withdrawFormHasBeenPresented) {
+        return;
+    }
+    
     NSMutableArray *steps = [NSMutableArray array];
 
     ORKInstructionStep *instructionStep =
@@ -63,7 +68,7 @@
     ORKTaskViewController *taskViewController = [[ORKTaskViewController alloc] initWithTask:task taskRunUUID:nil];
     taskViewController.delegate = self;
     [self presentViewController:taskViewController animated:YES completion:nil];
-    
+    _withdrawFormHasBeenPresented = YES;
 }
 
 - (void)taskViewController:(ORKTaskViewController *)taskViewController
@@ -71,15 +76,22 @@
                      error:(NSError *)error {
 
     
+    BOOL completedTask = NO;
+    
     if (ORKTaskViewControllerFinishReasonFailed == reason) {
         // error detected
     
+        completedTask = NO;
+        
         // TODO:
         // SaveErrorResultToFirebase(resultDictionary);
+        
 
     }
     else if (ORKTaskViewControllerFinishReasonDiscarded == reason) {
         // cancelled, and user asked for result s to be discarded
+
+        completedTask = NO;
 
         // TODO:
         // SaveCancelledResultToFirebase(resultDictionary);
@@ -87,18 +99,23 @@
     }
     else if (ORKTaskViewControllerFinishReasonCompleted == reason || ORKTaskViewControllerFinishReasonSaved == reason ) {
     
-       [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserWithdrawalDateKey];
+        completedTask = YES;
+    
+    
+        [[NSUserDefaults standardUserDefaults] setObject:[[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue] forKey:kUserWithdrawalDateKey];
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:kUserParticipatingFlagKey];
                          
-        // TODO: store withdraw date/participation in firebase
-
+        WithdrawSubjectFromFirebase();
     }
 
 // Then, dismiss the task view controller.
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{ 
+         // go back to main table view
+         [self.navigationController popToRootViewControllerAnimated:YES];
     
-     // go back to main table view
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    
+   
 }
 
 @end

@@ -47,7 +47,10 @@
 -(void)viewDidAppear:(BOOL)animated; {
 
     [super viewDidAppear:animated];
-    [self startConsentReviewTask];
+    
+    if (!_consentReviewHasBeenPresented) {
+        [self startConsentReviewTask];
+    }
 }
 
 
@@ -139,7 +142,7 @@
     _taskViewController.delegate = self;
     [self presentViewController:_taskViewController animated:YES completion:nil];
 
-
+    _consentReviewHasBeenPresented = YES;
 
 }
 
@@ -148,77 +151,83 @@
                      error:(NSError *)error {
 
 
-        if (reason  != ORKTaskViewControllerFinishReasonCompleted) {
+        BOOL completedTask = NO;
+        ORKTaskResult *taskResult;
+        ORKStepResult *stepResult;
+        ORKConsentSignatureResult *signatureResult;
+        ORKConsentDocument *consentCopy;
         
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+        if (reason  != ORKTaskViewControllerFinishReasonCompleted) {
+            completedTask = NO;
         }
         else {
-            ORKTaskResult *taskResult = [taskViewController result];
+        
+            completedTask   = YES;
 
-            ORKStepResult *stepResult = [taskResult stepResultForStepIdentifier:kConsentReviewStepIdentifier];
+            taskResult = [taskViewController result];
 
-            ORKConsentSignatureResult *signatureResult = (ORKConsentSignatureResult *)[stepResult.results firstObject];
-          
-          // NOTE: IMPORTANT ! apply signatureResult to a copy of the consent document!
-           ORKConsentDocument *consentCopy = [_consent copy];
-           
-            [signatureResult applyToDocument:consentCopy];
+            stepResult = [taskResult stepResultForStepIdentifier:kConsentReviewStepIdentifier];
+
+            signatureResult = (ORKConsentSignatureResult *)[stepResult.results firstObject];
+
+            if (NO == signatureResult.consented) {
+                completedTask = NO;
+            } else {
+                // NOTE: IMPORTANT ! apply signatureResult to a copy of the consent document!
+                consentCopy = [_consent copy];
+
+                [signatureResult applyToDocument:consentCopy];
+
+                // get subjects name & signing dates out of the signatureResult
+                [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.givenName forKey: kUserFirstNameKey];
+                [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.familyName forKey: kUserLastNameKey];
+                [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.title forKey: kUserTitleKey];
+                [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDate forKey: kUserGaveConsentDateKey];
+                [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDateFormatString forKey: kUserGaveConsentDateFormatKey];
+                [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserParticipatingFlagKey];
+
+            }
+        } // ORKTaskViewControllerFinishReasonCompleted
+        
             
-
-
-        // get subjects name & signing dates out of the signatureResult
-           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.givenName forKey: kUserFirstNameKey];
-           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.familyName forKey: kUserLastNameKey];
-           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.title forKey: kUserTitleKey];
-           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDate forKey: kUserGaveConsentDateKey];
-           [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDateFormatString forKey: kUserGaveConsentDateFormatKey];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserParticipatingFlagKey];
-
+        // Then, dismiss the task view controller.
             
-            // Then, dismiss the task view controller.
-            
-        //   [self dismissViewControllerAnimated:YES completion:^{
+        [self dismissViewControllerAnimated:YES completion:^{
                 
-                NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+                if (!completedTask) {
                 
-                if (nil == user_id) { user_id = @"thoupt";}
-                
-                if (nil == user_id) {
-                    // TODO: put up alert that without recruitment user_id, consent won't be saved.
-                    
+                    [self pop];
                 }
                 else {
+                    NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+                    
+                    if (nil == user_id) {
+                        // TODO: put up alert that without recruitment user_id, consent won't be saved.
+                        [self pop];
+                        return;
+                    }
 
-                    [consentCopy makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
-                     
-                        self.pdfFile = new_pdfFile;
-                            
-                //        // write pdf to temp directory
-                //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-                //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodSurveConsent.pdf"];
-                //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
-                
-                        [self putPDFinFirebaseStorage];
+                        [consentCopy makePDFWithCompletionHandler:^(NSData * new_pdfFile, NSError * error) {
+                         
+                            self.pdfFile = new_pdfFile;
+                                    
+                        //        // write pdf to temp directory
+                        //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+                        //        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"FoodSurveConsent.pdf"];
+                        //        [self.pdfFile writeToFile:filePath options:NSDataWritingAtomic error:nil];
                         
-                         
+                            [self putPDFinFirebaseStorage];
+                                                        
+                            // popping view controller will be handled in sendemail callbacks
 
-                         
-                         // TODO: store consent date/participation in firebase
-                        [self wantsPDFEmailed];
+                            [self wantsPDFEmailed];
 
+                        }];   //   makePDFWithCompletionHandler
 
-                    }];   //   makePDFWithCompletionHandler
-
-                } // has user_id
+                    
+                }  // completedTask
             
-     //   }]; // dismiss the task view controller.
-
-        
-        } // ORKTaskViewControllerFinishReasonCompleted 
-
-
-        // popping view controller will be handled in sendemail callbacks
+        }]; // dismiss the task view controller.
 
 }
 
@@ -249,23 +258,22 @@
         [_alert addAction:defaultAction];
         [_alert addAction:cancelAction];
         
+        [self presentViewController:_alert animated:YES completion:nil];
         
-        [_taskViewController presentViewController:_alert animated:YES completion:nil];
-
+        
 }
 
 -(void)yesAction; {
 
-     //  [_taskViewController dismissViewControllerAnimated:YES completion:nil];
-
-        [self sendPDFEmail];
-
+// TODO: does alert dismiss itself?
+    [self sendPDFEmail];
 }
 
 -(void)noAction; {
-       [_taskViewController dismissViewControllerAnimated:YES completion:nil];
 
-        [self closeViewController];
+// TODO: does alert dismiss itself?
+
+    [self pop];
 }
 
 
@@ -274,7 +282,7 @@
         if (![MFMailComposeViewController canSendMail]) {
            //  TODO: put up alert that email not available
            NSLog(@"Mail services are not available.");
-           [self closeViewController];
+           [self pop];
 
            return;
         }
@@ -291,7 +299,7 @@
 
 
         // Present the view controller modally.
-        [_taskViewController presentViewController:pdfEmail animated:YES completion:nil];
+        [self presentViewController:pdfEmail animated:YES completion:nil];
 
 
 }
@@ -301,9 +309,8 @@
        // Check the result or perform other tasks.
      
        // Dismiss the mail compose view controller.
-       [_taskViewController dismissViewControllerAnimated:YES completion:^{        
-       // dismiss the taskviewcontroller and pop
-            [self closeViewController];
+       [self dismissViewControllerAnimated:YES completion:^{        
+            [self pop];
        }];
 
 }
@@ -318,21 +325,11 @@
         // Get a reference to the storage service, using the default Firebase App
         FIRStorage *storage = [FIRStorage storage];
         FIRStorageReference *consentDocRef = [storage referenceWithPath:consent_file_path];
-
-
-    //    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info.plist" ofType:@"plist"];
-    //    NSDictionary *googleServiceInfo = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    //    NSString *storageBucketName = [googleServiceInfo objectForKey:@"STORAGE_BUCKET"];
-    //    NSString *storageURL = [NSString stringWithFormat:@"gs://%@",storageBucketName];
-    //
-    //
-    //    // Create a storage reference from our storage service
-    //    FIRStorageReference *storageRef = [storage referenceForURL:storageURL];
-
         
         // Upload the file to the path
         
-        FIRStorageUploadTask *uploadTask = [consentDocRef putData:self.pdfFile metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
+       //  FIRStorageUploadTask *uploadTask =
+        [consentDocRef putData:self.pdfFile metadata:nil completion:^(FIRStorageMetadata *metadata, NSError *error) {
             if (error != nil) {
                 // Uh-oh, an error occurred!
             } else {
@@ -347,13 +344,8 @@
         }];
 }
 
--(void)closeViewController; {
-        // dismiss the taskviewcontroller and pop
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
-       // NOTE: Unbalanced calls to begin/end appearance transitions for <ConsentViewController: 
-       // try poping without animation?
+-(void)pop; {
+    [self performSegueWithIdentifier:@"unwindToMainTable" sender: self];
 }
 
 

@@ -18,7 +18,7 @@
 @property BOOL foundEmailError;
 @property BOOL foundPhoneNumberError;
 
-@property (weak, nonatomic) IBOutlet UITextField *userID; // tag 104
+// @property (weak, nonatomic) IBOutlet UITextField *userID; // tag 104
 @property (weak, nonatomic) IBOutlet UITextField *email; // tag 103
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber; // tag 102
 
@@ -26,7 +26,7 @@
 
 -(IBAction)validateEmailAddress:(id)sender;
 -(IBAction)validatePhoneNumber:(id)sender;
--(IBAction)validateUserID:(id)sender;
+// -(IBAction)validateUserID:(id)sender;
 -(IBAction)continueButtonPressed:(id)sender;
 
 - (BOOL)textField:(UITextField *)textField 

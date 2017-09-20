@@ -12,4 +12,6 @@
 
 @interface WithdrawViewController : UIViewController  <ORKTaskViewControllerDelegate>
 
+@property BOOL withdrawFormHasBeenPresented;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "SurveyViewController.h"
-#import "SurveyTaskViewController.h"
+
 #import "ImagePreferenceChoiceAnswerFormat.h"
 #import "ImageHedonicScaleAnswerFormat.h"
 
@@ -51,6 +51,11 @@
 
     [super viewDidAppear:animated];
 
+    // if survey has already been presented, then don't present it again 
+    // (when taskViewController is dismissed, it triggers viewDidAppear again, which would present another taskViewController, and repeat...)
+    if (_surveyHasBeenPresented) {
+        return;
+    }
     FQSurveyParser *parser = [[FQSurveyParser alloc] initWithSurvey:_survey];
 
 
@@ -84,7 +89,6 @@ HKCharacteristicTypeIdentifierBiologicalSex
 
 
 // assume that self.survey has been set by calling view
-
 
 
     NSMutableArray *steps = [NSMutableArray array];
@@ -123,13 +127,10 @@ HKCharacteristicTypeIdentifierBiologicalSex
     
     
         for (NSDictionary *question in [section objectForKey:@"questions"]) {
-        
             NSArray *questionSteps = [parser stepsForSurveyQuestion:question];
-           
             if (0 < [questionSteps count]) {
                  [steps addObjectsFromArray:questionSteps];
             }
-
         } // questions
     
         section_index++; // next section
@@ -140,74 +141,61 @@ HKCharacteristicTypeIdentifierBiologicalSex
     ORKOrderedTask *task = [[ORKOrderedTask alloc] initWithIdentifier:[_survey objectForKey:@"identifier" ] steps:steps];
 
     // start task with our subclass of ORKTaskViewController, so that it can act as StepViewControllerDelegate
-    SurveyTaskViewController *taskViewController = [[SurveyTaskViewController alloc] initWithTask:task taskRunUUID:nil];
-    taskViewController.delegate = self;
-    [self presentViewController:taskViewController animated:YES completion:nil];
+    _taskViewController = [[SurveyTaskViewController alloc] initWithTask:task taskRunUUID:nil];
+    _taskViewController.delegate = self;
+    [self presentViewController:_taskViewController animated:YES completion:nil];
+    _surveyHasBeenPresented = YES;
     
 }
 
 - (void)taskViewController:(ORKTaskViewController *)taskViewController
        didFinishWithReason:(ORKTaskViewControllerFinishReason)reason
                      error:(NSError *)error {
-
+    
+    BOOL completedTask = NO;
     
     if (ORKTaskViewControllerFinishReasonFailed == reason) {
         // error detected
     
         // TODO:
         // SaveErrorResultToFirebase(resultDictionary);
-
+        completedTask = NO;
     }
     else if (ORKTaskViewControllerFinishReasonDiscarded == reason) {
-        // cancelled, and user asked for result s to be discarded
+        // cancelled, and user asked for results to be discarded
 
         // TODO:
         // SaveCancelledResultToFirebase(resultDictionary);
+        // or would saving canceled results be unethical?
 
+        completedTask = NO;
     }
     else if (ORKTaskViewControllerFinishReasonCompleted == reason || ORKTaskViewControllerFinishReasonSaved == reason ) {
     
-        ORKTaskResult *taskResult = [taskViewController result];
-
-        NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,_survey);
+        completedTask = YES;
         
-        SaveResultToFirebase(resultDictionary);
+        ORKTaskResult *taskResult = [taskViewController result];
+        
+        NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+    
+        if (nil == userID) { 
+            // TODO: put up alert that we haven't joined yet so can't save results
+        }
+        else {
+            NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,_survey);
+            SaveResultToFirebase(resultDictionary);
+        }
 
     }
-    
-    
-    
-    // https://stackoverflow.com/questions/39830955/pop-to-root-view-controller-from-modal
-    //    You can check that current controller is presented, 
-    //    if it is presented then dismiss it and then go to the rootViewController 
-    //    other wise go directly the rootViewController
-    
-    // google self.navigationcontroller is nil after pushviewcontroller
-    // https://stackoverflow.com/questions/8845355/uiviewcontroller-navigationcontroller-becomes-nil
-    // https://stackoverflow.com/questions/7767049/self-navigationcontroller-is-null
-    
-    // try pushViewController of menu and survey table on navigation controller?
-    
-    // try     [self presentModalViewController: _surveyMenuController animated:YES]; ??
-
-    // try making properties of controllers (_navigationController etc) in App Delegate be (strong, nonatomic)
     
     // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
     // and then using [menuNavigationController pushViewController:_surveryViewController] to display survey
     
     // dismiss taskViewController
-     [self dismissViewControllerAnimated:YES  completion:nil];
+    [self dismissViewControllerAnimated:YES  completion:^{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
 
-    [self.navigationController popToRootViewControllerAnimated:YES];
-
-//    if (self.presentingViewController != nil) {
-//        [self dismissViewControllerAnimated:YES  completion: ^ { 
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        }];
-//    }
-//    else {
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//    }
 
 }
 

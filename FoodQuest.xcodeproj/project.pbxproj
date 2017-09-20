@@ -1225,6 +1225,7 @@
 		2005EC0C1E7377B300331D86 /* SelectSurveyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */; };
 		20089AEC1E96FFB2000164CF /* SurveyTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */; };
 		200929A41F0BF3E000DD6168 /* overview_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 200929A31F0BF3E000DD6168 /* overview_icon.png */; };
+		20121F471F6C020A0030E06A /* JoinStudy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20121F451F6C020A0030E06A /* JoinStudy.storyboard */; };
 		20174B071D95E5CF0056BB9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B061D95E5CF0056BB9F /* main.m */; };
 		20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B091D95E5CF0056BB9F /* AppDelegate.m */; };
 		20174B0D1D95E5CF0056BB9F /* OverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */; };
@@ -1272,6 +1273,7 @@
 		20A1415A1DA3D9F2009C8AE5 /* no_preference_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */; };
 		20A1415B1DA3D9F2009C8AE5 /* no_preference.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A141591DA3D9F2009C8AE5 /* no_preference.png */; };
 		20BB06591F16F42800F7D06B /* eligibility_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BB06581F16F42800F7D06B /* eligibility_icon2.png */; };
+		20BD5CB71F6DFB370090451D /* FQExternalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BD5CB61F6DFB370090451D /* FQExternalStoryboardSegue.m */; };
 		20C027181DB1B79F0056A9A8 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */; };
 		20C0271B1DB1B7BD0056A9A8 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */; };
 		20C0271C1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */; };
@@ -1288,7 +1290,9 @@
 		20D06E0E1D985CF000231A28 /* FoodTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */; };
 		20D06E161D98A13400231A28 /* cheeseburger_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */; };
 		20D06E171D98A13400231A28 /* salad_selected.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 20D06E151D98A13400231A28 /* salad_selected.jpeg */; };
+		20E105761F52030B004B4C44 /* SurveyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E105751F52030B004B4C44 /* SurveyDetailViewController.m */; };
 		20E881911ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */; };
+		20EFBDC31F6ED8A8004FED06 /* FQMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EFBDC21F6ED8A8004FED06 /* FQMainTableViewController.m */; };
 		20FDED5B1F1409FF00479C62 /* WithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */; };
 		20FDED5D1F14105400479C62 /* withdraw_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FDED5C1F14105400479C62 /* withdraw_icon.png */; };
 		20FE27CF1E8D767C00630E8D /* surveys in Resources */ = {isa = PBXBuildFile; fileRef = 20FE27CE1E8D767C00630E8D /* surveys */; };
@@ -2605,6 +2609,7 @@
 		20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyTaskViewController.h; sourceTree = "<group>"; };
 		20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyTaskViewController.m; sourceTree = "<group>"; };
 		200929A31F0BF3E000DD6168 /* overview_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = overview_icon.png; path = images/overview_icon.png; sourceTree = "<group>"; };
+		20121F461F6C020A0030E06A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JoinStudy.storyboard; sourceTree = "<group>"; };
 		20174B021D95E5CF0056BB9F /* FoodQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20174B061D95E5CF0056BB9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20174B081D95E5CF0056BB9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2671,6 +2676,8 @@
 		20A141581DA3D9F2009C8AE5 /* no_preference_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference_selected.png; path = images/no_preference_selected.png; sourceTree = "<group>"; };
 		20A141591DA3D9F2009C8AE5 /* no_preference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_preference.png; path = images/no_preference.png; sourceTree = "<group>"; };
 		20BB06581F16F42800F7D06B /* eligibility_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eligibility_icon2.png; path = images/eligibility_icon2.png; sourceTree = "<group>"; };
+		20BD5CB51F6DFB370090451D /* FQExternalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQExternalStoryboardSegue.h; sourceTree = "<group>"; };
+		20BD5CB61F6DFB370090451D /* FQExternalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQExternalStoryboardSegue.m; sourceTree = "<group>"; };
 		20C027171DB1B79F0056A9A8 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		20C027191DB1B7BD0056A9A8 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = "<group>"; };
 		20C0271A1DB1B7BD0056A9A8 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
@@ -2691,9 +2698,13 @@
 		20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTabBarControllerViewController.m; sourceTree = "<group>"; };
 		20D06E141D98A13400231A28 /* cheeseburger_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cheeseburger_selected.jpeg; path = images/cheeseburger_selected.jpeg; sourceTree = "<group>"; };
 		20D06E151D98A13400231A28 /* salad_selected.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = salad_selected.jpeg; path = images/salad_selected.jpeg; sourceTree = "<group>"; };
+		20E105741F52030B004B4C44 /* SurveyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyDetailViewController.h; sourceTree = "<group>"; };
+		20E105751F52030B004B4C44 /* SurveyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyDetailViewController.m; sourceTree = "<group>"; };
 		20E216661DB41B920052908B /* ORKScaleRangeDescriptionLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORKScaleRangeDescriptionLabel.h; path = ../../ResearchKit/ResearchKit/Common/ORKScaleRangeDescriptionLabel.h; sourceTree = "<group>"; };
 		20E8818F1ED600E300C7EB21 /* ImageHedonicScaleAnswerFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHedonicScaleAnswerFormat.h; sourceTree = "<group>"; };
 		20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHedonicScaleAnswerFormat.m; sourceTree = "<group>"; };
+		20EFBDC11F6ED8A8004FED06 /* FQMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FQMainTableViewController.h; sourceTree = "<group>"; };
+		20EFBDC21F6ED8A8004FED06 /* FQMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FQMainTableViewController.m; sourceTree = "<group>"; };
 		20FDED591F1409FE00479C62 /* WithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawViewController.h; sourceTree = "<group>"; };
 		20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawViewController.m; sourceTree = "<group>"; };
 		20FDED5C1F14105400479C62 /* withdraw_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = withdraw_icon.png; path = images/withdraw_icon.png; sourceTree = "<group>"; };
@@ -2775,50 +2786,23 @@
 				20C027301DB27F390056A9A8 /* FQConstants.h */,
 				20C027311DB281100056A9A8 /* FQUtilities.m */,
 				20C027331DB281330056A9A8 /* FQUtilities.h */,
-				207AFC071EFF181800484375 /* FQSurveyParser.h */,
-				207AFC081EFF181800484375 /* FQSurveyParser.m */,
+				205ABC281F714E7000DCD5F6 /* Surveys */,
 				20174B311D95EA9D0056BB9F /* ResearchKit.h */,
 				20174B081D95E5CF0056BB9F /* AppDelegate.h */,
 				20174B091D95E5CF0056BB9F /* AppDelegate.m */,
 				20174B0B1D95E5CF0056BB9F /* OverviewViewController.h */,
 				20174B0C1D95E5CF0056BB9F /* OverviewViewController.m */,
-				2098F20C1D9AA8F30095D9B3 /* ConsentViewController.h */,
-				2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */,
-				20FDED591F1409FE00479C62 /* WithdrawViewController.h */,
-				20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */,
-				208CE61D1F0D9DAC00163009 /* EligibilityViewController.h */,
-				208CE61E1F0D9DAC00163009 /* EligibilityViewController.m */,
-				2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */,
-				2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */,
-				20E8818F1ED600E300C7EB21 /* ImageHedonicScaleAnswerFormat.h */,
-				20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */,
-				20174B0E1D95E5CF0056BB9F /* PreferenceViewController.h */,
-				20174B0F1D95E5CF0056BB9F /* PreferenceViewController.m */,
-				2091C6281EBAC0A800F35227 /* ImagePreferenceChoice.h */,
-				2091C6291EBAC0A800F35227 /* ImagePreferenceChoice.m */,
-				2091C6251EBAC06500F35227 /* ImagePreferenceChoiceAnswerFormat.h */,
-				2091C6261EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m */,
-				2091C6221EBAA3BE00F35227 /* ImagePreferenceStepViewController.h */,
-				2091C6231EBAA3BE00F35227 /* ImagePreferenceStepViewController.m */,
-				2091C6181EBA934C00F35227 /* ImagePreferenceQuestionView.h */,
-				2091C6191EBA934C00F35227 /* ImagePreferenceQuestionView.m */,
+				205ABC291F714EE200DCD5F6 /* Preference */,
 				209285A71DC3FB5600FC3472 /* SubjectInfoController.h */,
 				209285A81DC3FB5600FC3472 /* SubjectInfoController.m */,
-				2005EBF71E72EBB900331D86 /* FQSurvey.h */,
-				2005EBF81E72EBB900331D86 /* FQSurvey.m */,
 				20174B111D95E5CF0056BB9F /* Main.storyboard */,
-				20FE27D01E8D99A800630E8D /* SurveyTableViewCell.h */,
-				20FE27D11E8D99A800630E8D /* SurveyTableViewCell.m */,
-				2005EC0A1E7377B300331D86 /* SelectSurveyTableViewController.h */,
-				2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */,
-				2005EBF21E70EEB800331D86 /* SurveyViewController.h */,
-				2005EBF31E70EEB900331D86 /* SurveyViewController.m */,
-				20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */,
-				20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */,
+				20EFBDC11F6ED8A8004FED06 /* FQMainTableViewController.h */,
+				20EFBDC21F6ED8A8004FED06 /* FQMainTableViewController.m */,
+				20BD5CB51F6DFB370090451D /* FQExternalStoryboardSegue.h */,
+				20BD5CB61F6DFB370090451D /* FQExternalStoryboardSegue.m */,
 				20D06E0C1D985CF000231A28 /* FoodTabBarControllerViewController.h */,
 				20D06E0D1D985CF000231A28 /* FoodTabBarControllerViewController.m */,
-				206A15EB1F17AD3500A1E9BA /* SettingsViewController.h */,
-				206A15EC1F17AD3500A1E9BA /* SettingsViewController.m */,
+				205ABC271F714DEC00DCD5F6 /* Join Study */,
 				20174B141D95E5CF0056BB9F /* Assets.xcassets */,
 				20174B161D95E5CF0056BB9F /* LaunchScreen.storyboard */,
 				20174B191D95E5CF0056BB9F /* Info.plist */,
@@ -4080,6 +4064,64 @@
 				2002434F1EDA195B0009769F /* 1314.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		205ABC271F714DEC00DCD5F6 /* Join Study */ = {
+			isa = PBXGroup;
+			children = (
+				20121F451F6C020A0030E06A /* JoinStudy.storyboard */,
+				208CE61D1F0D9DAC00163009 /* EligibilityViewController.h */,
+				208CE61E1F0D9DAC00163009 /* EligibilityViewController.m */,
+				206A15EB1F17AD3500A1E9BA /* SettingsViewController.h */,
+				206A15EC1F17AD3500A1E9BA /* SettingsViewController.m */,
+				2098F20C1D9AA8F30095D9B3 /* ConsentViewController.h */,
+				2098F20D1D9AA8F30095D9B3 /* ConsentViewController.m */,
+				20FDED591F1409FE00479C62 /* WithdrawViewController.h */,
+				20FDED5A1F1409FE00479C62 /* WithdrawViewController.m */,
+			);
+			name = "Join Study";
+			sourceTree = "<group>";
+		};
+		205ABC281F714E7000DCD5F6 /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				207AFC071EFF181800484375 /* FQSurveyParser.h */,
+				207AFC081EFF181800484375 /* FQSurveyParser.m */,
+				2005EBF71E72EBB900331D86 /* FQSurvey.h */,
+				2005EBF81E72EBB900331D86 /* FQSurvey.m */,
+				20FE27D01E8D99A800630E8D /* SurveyTableViewCell.h */,
+				20FE27D11E8D99A800630E8D /* SurveyTableViewCell.m */,
+				2005EC0A1E7377B300331D86 /* SelectSurveyTableViewController.h */,
+				2005EC0B1E7377B300331D86 /* SelectSurveyTableViewController.m */,
+				20E105741F52030B004B4C44 /* SurveyDetailViewController.h */,
+				20E105751F52030B004B4C44 /* SurveyDetailViewController.m */,
+				2005EBF21E70EEB800331D86 /* SurveyViewController.h */,
+				2005EBF31E70EEB900331D86 /* SurveyViewController.m */,
+				20089AEA1E96FFB2000164CF /* SurveyTaskViewController.h */,
+				20089AEB1E96FFB2000164CF /* SurveyTaskViewController.m */,
+			);
+			name = Surveys;
+			sourceTree = "<group>";
+		};
+		205ABC291F714EE200DCD5F6 /* Preference */ = {
+			isa = PBXGroup;
+			children = (
+				2017BDCB1DAB0EF300421D25 /* HedonicScaleController.h */,
+				2017BDCC1DAB0EF300421D25 /* HedonicScaleController.m */,
+				20E8818F1ED600E300C7EB21 /* ImageHedonicScaleAnswerFormat.h */,
+				20E881901ED600E400C7EB21 /* ImageHedonicScaleAnswerFormat.m */,
+				20174B0E1D95E5CF0056BB9F /* PreferenceViewController.h */,
+				20174B0F1D95E5CF0056BB9F /* PreferenceViewController.m */,
+				2091C6281EBAC0A800F35227 /* ImagePreferenceChoice.h */,
+				2091C6291EBAC0A800F35227 /* ImagePreferenceChoice.m */,
+				2091C6251EBAC06500F35227 /* ImagePreferenceChoiceAnswerFormat.h */,
+				2091C6261EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m */,
+				2091C6221EBAA3BE00F35227 /* ImagePreferenceStepViewController.h */,
+				2091C6231EBAA3BE00F35227 /* ImagePreferenceStepViewController.m */,
+				2091C6181EBA934C00F35227 /* ImagePreferenceQuestionView.h */,
+				2091C6191EBA934C00F35227 /* ImagePreferenceQuestionView.m */,
+			);
+			name = Preference;
 			sourceTree = "<group>";
 		};
 		20755A741DB446AF007373C3 /* html */ = {
@@ -5395,6 +5437,7 @@
 				200247541EDA195F0009769F /* 1132.jpg in Resources */,
 				200246021EDA195D0009769F /* 691.jpg in Resources */,
 				20174B131D95E5CF0056BB9F /* Main.storyboard in Resources */,
+				20121F471F6C020A0030E06A /* JoinStudy.storyboard in Resources */,
 				2002477A1EDA195F0009769F /* 1170.jpg in Resources */,
 				200245151EDA195C0009769F /* 454.jpg in Resources */,
 				2002454B1EDA195D0009769F /* 508.jpg in Resources */,
@@ -5519,6 +5562,7 @@
 			files = (
 				207AFC091EFF181800484375 /* FQSurveyParser.m in Sources */,
 				2091C6271EBAC06600F35227 /* ImagePreferenceChoiceAnswerFormat.m in Sources */,
+				20BD5CB71F6DFB370090451D /* FQExternalStoryboardSegue.m in Sources */,
 				208E7BE61DC03EC000DC4F13 /* YesNoAction.m in Sources */,
 				20FE27D21E8D99A800630E8D /* SurveyTableViewCell.m in Sources */,
 				20D06E0E1D985CF000231A28 /* FoodTabBarControllerViewController.m in Sources */,
@@ -5528,6 +5572,7 @@
 				2098F20E1D9AA8F30095D9B3 /* ConsentViewController.m in Sources */,
 				20C027351DB3C9EB0056A9A8 /* FEQHedonicScaleSlider.m in Sources */,
 				20089AEC1E96FFB2000164CF /* SurveyTaskViewController.m in Sources */,
+				20E105761F52030B004B4C44 /* SurveyDetailViewController.m in Sources */,
 				20174B101D95E5CF0056BB9F /* PreferenceViewController.m in Sources */,
 				20FDED5B1F1409FF00479C62 /* WithdrawViewController.m in Sources */,
 				20174B0A1D95E5CF0056BB9F /* AppDelegate.m in Sources */,
@@ -5536,6 +5581,7 @@
 				20C027321DB281100056A9A8 /* FQUtilities.m in Sources */,
 				20190F051D9B0F68008D9802 /* credits.md in Sources */,
 				209285A91DC3FB5600FC3472 /* SubjectInfoController.m in Sources */,
+				20EFBDC31F6ED8A8004FED06 /* FQMainTableViewController.m in Sources */,
 				2091C62A1EBAC0A800F35227 /* ImagePreferenceChoice.m in Sources */,
 				20174B071D95E5CF0056BB9F /* main.m in Sources */,
 				208CE61F1F0D9DAC00163009 /* EligibilityViewController.m in Sources */,
@@ -5562,6 +5608,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		20121F451F6C020A0030E06A /* JoinStudy.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20121F461F6C020A0030E06A /* Base */,
+			);
+			name = JoinStudy.storyboard;
+			sourceTree = "<group>";
+		};
 		20174B111D95E5CF0056BB9F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
