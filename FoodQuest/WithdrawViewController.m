@@ -50,7 +50,7 @@
       [[ORKInstructionStep alloc] initWithIdentifier:@"instruction"];
       
     instructionStep.title = [NSString stringWithFormat:@"Are you sure you want to withdraw from %@?",kStudyTitle];
-    instructionStep.text = @"Withdrawing from the study will reset the app to its origianl state (before you joined the study).";
+    instructionStep.text = @"Withdrawing from the study will reset the app to its original state (before you joined the study).";
     
     [steps addObject:instructionStep];
     
@@ -106,6 +106,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:kUserParticipatingFlagKey];
                          
         WithdrawSubjectFromFirebase();
+        
+        // TODO: remove userdefaults for all the other fields, too?
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultUserIDKey];
     }
 
 // Then, dismiss the task view controller.

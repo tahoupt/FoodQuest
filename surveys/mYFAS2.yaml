@@ -1,0 +1,116 @@
+label: mYFAS2
+
+title: Modified Yale Food Addiction Scale 2.0
+
+identifier: myfas2
+
+instructions: |
+    This survey asks about your eating habits in the past year. People sometimes have difficulty controlling how much they eat of certain foods such as:  
+    -  Sweets like ice cream, chocolate, doughnuts, cookies, cake, candy
+    -  Starches like white bread, rolls, pasta, and rice
+    -  Salty snacks like chips, pretzels, and crackers
+    -  Fatty foods like steak, bacon, hamburgers, cheeseburgers, pizza, and French fries
+    -  Sugary drinks like soda pop, lemonade, sports drinks, and energy drinks
+    When the following questions ask about “CERTAIN FOODS” please think of ANY foods or beverages similar to those listed in the food or beverage groups above or ANY OTHER foods you have had difficulty with in the past year
+
+reference: "Schulte EM, Gearhardt AN. Development of the Modified Yale Food Addiction Scale Version 2.0. Eur Eat Disord Rev. 2017 Jul;25(4):302-308. PMID: 28370722"
+
+permissions:
+
+revision_history: "Yaml-encoded from pdf document downloaded on 2017-9-12  by T. Houpt from http://fastlab.psych.lsa.umich.edu/yale-food-addiction-scale/"
+
+comment: |
+
+    http://fastlab.psych.lsa.umich.edu/yale-food-addiction-scale/
+    
+sections:
+      - title:
+        key:
+      
+        answers: &frequency_choices
+            - text: Never
+              value: 0
+            - text: Less than monthly
+              value: 1
+            - text: Once a month
+              value: 2
+            - text: 2-3 times a month
+              value: 3
+            - text: Once a week
+              value: 4
+            - text: 2-3 times a week
+              value: 5
+            - text: 4-6 times a week
+              value: 6
+            - text: Every day
+              value: 7
+                                                  
+        questions:
+            - key: Q1
+              stem: "I ate to the point where I felt physically ill."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q2
+              stem: "I spent a lot of time feeling sluggish or tired from overeating."
+              type: multiple_choice
+              answers: *frequency_choices
+ 
+            - key: Q3
+              stem: "I avoided work, school or social activities because I was afraid I would overeat there."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q4
+              stem: "If I had emotional problems because I hadn’t eaten certain foods, I would eat those foods to feel better."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q5
+              stem: "My eating behavior caused me a lot of distress."
+              type: multiple_choice
+              answers: *frequency_choices
+ 
+            - key: Q6
+              stem: "I had significant problems in my life because of food and eating. These may have been problems with my daily routine, work, school, friends, family, or health."
+              type: multiple_choice
+              answers: *frequency_choices
+
+
+            - key: Q7
+              stem: "My overeating got in the way of me taking care of my family or doing household chores."
+              type: multiple_choice
+              answers: *frequency_choices
+ 
+            - key: Q8
+              stem: "I kept eating in the same way even though my eating caused emotional problems."
+              type: multiple_choice
+              answers: *frequency_choices
+ 
+
+            - key: Q9
+              stem: "Eating the same amount of food did not give me as much enjoyment as it used to."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q10
+              stem: "I had such strong urges to eat certain foods that I couldn’t think of anything else."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q11
+              stem: "I tried and failed to cut down on or stop eating certain foods."
+              type: multiple_choice
+              answers: *frequency_choices
+ 
+            - key: Q12
+              stem: "I was so distracted by eating that I could have been hurt (e.g., when driving a car, crossing the street, operating machinery)."
+              type: multiple_choice
+              answers: *frequency_choices
+
+            - key: Q13
+              stem: "My friends or family were worried about how much I overate."
+              type: multiple_choice
+              answers: *frequency_choices
+              
+              

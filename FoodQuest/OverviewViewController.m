@@ -26,22 +26,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)unwindToMainMenu:(UIStoryboardSegue*)sender
-{
-    UIViewController *sourceViewController = sender.sourceViewController;
-    // Pull any data from the view controller which initiated the unwind segue.
-}
-
 
 -(void)viewDidAppear:(BOOL)animated; {
 
     [super viewDidAppear:animated];
+    
+    if (_taskHasBeenPresented) {
+        return;
+    }
     [self startConsentTask];
 
 }
-
-
-
 
 -(void)startConsentTask; {
 
@@ -148,6 +143,7 @@
     taskViewController.delegate = self;
     [self presentViewController:taskViewController animated:YES completion:nil];
 
+    _taskHasBeenPresented = YES;
 
 
 }
@@ -158,13 +154,17 @@
 
     ORKTaskResult *taskResult = [taskViewController result];
     // You could do something with the result here.
+    // but it's just the overview, so no need to do anything
 
     // Then, dismiss the task view controller.
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
     
-    // go back to main table view
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
+        // TODO: put up an alert asking if they want to join the study?
+    
+        // go back to main table view
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    }];
 
 }
 

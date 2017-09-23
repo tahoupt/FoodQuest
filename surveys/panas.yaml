@@ -25,6 +25,19 @@ permissions: "Copyright © 1988 by the American Psychological Association."
 
 revision_history: "Yaml-encoded from Watson 1988 reference by T. Houpt  2017-3-8. modified instructions for iOS version (eg select answer, rather than mark answer) "
 
+healthkit:
+    - key: stephour01
+      data_type: stepCount
+      interval: 3600
+    - key: stephour06
+      data_type: stepCount
+      interval: 21600
+    - key: stephour24
+      data_type: stepCount
+      interval: 86400
+
+
+
 sections:
       - title:
         key:

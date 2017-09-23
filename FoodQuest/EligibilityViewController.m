@@ -25,6 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //  if already joined then put up alert so we can't join again
+    [self alreadyJoined];
+    
     NSError * error;
 
     NSString * surveysPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"surveys"];
@@ -61,8 +64,6 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
 
-
-
     [super viewDidAppear:animated];
  
     NSLog(@"EligibilityViewController did appear");
@@ -70,6 +71,33 @@
 
 
 
+-(BOOL)alreadyJoined; {
+
+
+    NSString *user_id = [[NSUserDefaults standardUserDefaults] objectForKey: kUserDefaultUserIDKey];
+    
+    if (nil != user_id) {
+    
+        // TODO: put up alert that we've already joined
+                      _alert = [UIAlertController alertControllerWithTitle:@"Already Participating."
+                                       message:@"You've already joined the study, so you don't need to join again. Thanks again for your participation!"
+                                       preferredStyle:UIAlertControllerStyleAlert];
+         
+                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                       handler:^(UIAlertAction * action) {
+                         [self pop];
+                       }];
+                     
+                    
+                    [_alert addAction:defaultAction];
+
+                    [self presentViewController:_alert animated:YES completion:nil];
+    
+        return YES;
+    }
+    
+    return NO;
+}
 - (void)taskViewController:(ORKTaskViewController *)taskViewController
        didFinishWithReason:(ORKTaskViewControllerFinishReason)reason
                      error:(NSError *)error {
@@ -151,7 +179,7 @@
                     
                 if (meetsCriteria) {
                 
-                        _alert = [UIAlertController alertControllerWithTitle:@"You Meet Criteria!"
+                        _alert = [UIAlertController alertControllerWithTitle:@"You Meet the Criteria!"
                                        message:@"You have met the criteria to be a subject in this study. If you want to join the study, please continue to the 'Consent' form."
                                        preferredStyle:UIAlertControllerStyleAlert];
          

@@ -16,9 +16,19 @@
 @property SurveyTaskViewController *taskViewController;
 @property IBOutlet UIViewController *homeViewController;
 
+@property HKHealthStore *healthStore;
+@property NSInteger last24hStepCount;
+
 - (NSSet *)dataTypesToWrite;
 - (NSSet *)dataTypesToRead;
 
 // flag so that survey is not presented again when taskViewCOntroller is dismissed (which triggers viewDidAppear again)
 @property BOOL surveyHasBeenPresented;
+
+-(void)pop;
+
+-( NSMutableDictionary *)getHealthKitData;
+
+- (void)fetchHKQuantityWithIdentifier:(NSString *)identifier andKey:(NSString *)key forInterval:(double)interval completion:(void (^)(NSString *,NSString *,double,NSError *))completionHandler;
+
 @end

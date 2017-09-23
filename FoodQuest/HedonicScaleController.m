@@ -50,7 +50,7 @@
       [[ORKInstructionStep alloc] initWithIdentifier:@"instruction"];
       
     instructionStep.title = @"Food Rating";
-    instructionStep.text = @"This survey will ask you to rate your liking for foods.";
+    instructionStep.text = @"This survey demonstrates the 2 different scales for subjects to rate their liking for foods.";
     
     [steps addObject:instructionStep];
 
@@ -63,14 +63,14 @@
    
    LHSImageScaleAnswerFormat *scaleFormat =  [[LHSImageScaleAnswerFormat alloc]initWithImageIndex:213 imageType:@"jpg" imageLabel:@"" showImageLabel:YES];
     
-    ORKQuestionStep *ratingStep = [ORKQuestionStep questionStepWithIdentifier:kIdentifierRating title:@"How would you rate this food?"  answer:scaleFormat];
+    ORKQuestionStep *ratingStep = [ORKQuestionStep questionStepWithIdentifier:kIdentifierRating title:@"How would you rate this food?\n(Labeled Magnitude Hedonic Scale)"  answer:scaleFormat];
 
     
     [steps addObject:ratingStep];
 
    NatickImageScaleAnswerFormat *natickFormat =  [[NatickImageScaleAnswerFormat alloc]initWithImageIndex:220 imageType:@"jpg" imageLabel:@""  showImageLabel:YES];
     
-    ORKQuestionStep *natickRatingStep = [ORKQuestionStep questionStepWithIdentifier:@"natickrating" title:@"How would you rate this food?"  answer:natickFormat];
+    ORKQuestionStep *natickRatingStep = [ORKQuestionStep questionStepWithIdentifier:@"natickrating" title:@"How would you rate this food?\n(Natick 9-point Hedonic Scale)"  answer:natickFormat];
 
     
     [steps addObject:natickRatingStep];

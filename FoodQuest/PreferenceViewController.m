@@ -57,7 +57,7 @@
       [[ORKInstructionStep alloc] initWithIdentifier:@"instruction"];
       
     instructionStep.title = @"Preference Survey";
-    instructionStep.text = @"This survey will ask you about your food preferences.";
+    instructionStep.text = @"This survey demonstrates a couple of variations on using food image pairs to ask about food preferences. In this demo, random food images are presented each time (although particular comparisons could also be specified).";
     
     [steps addObject:instructionStep];
 

@@ -12,5 +12,7 @@
 
 @interface OverviewViewController : UIViewController <ORKTaskViewControllerDelegate>
 
+@property BOOL taskHasBeenPresented;
+
 @end
 

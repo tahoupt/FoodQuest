@@ -153,6 +153,8 @@ HKCharacteristicTypeIdentifierBiologicalSex
                      error:(NSError *)error {
     
     BOOL completedTask = NO;
+    ORKTaskResult *taskResult;
+    NSMutableDictionary *resultDictionary;
     
     if (ORKTaskViewControllerFinishReasonFailed == reason) {
         // error detected
@@ -173,32 +175,87 @@ HKCharacteristicTypeIdentifierBiologicalSex
     else if (ORKTaskViewControllerFinishReasonCompleted == reason || ORKTaskViewControllerFinishReasonSaved == reason ) {
     
         completedTask = YES;
-        
         ORKTaskResult *taskResult = [taskViewController result];
-        
-        NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
-    
-        if (nil == userID) { 
-            // TODO: put up alert that we haven't joined yet so can't save results
-        }
-        else {
-            NSMutableDictionary *resultDictionary = FQTaskResultToDictionary(taskResult,_survey);
-            SaveResultToFirebase(resultDictionary);
-        }
+        resultDictionary = FQTaskResultToDictionary(taskResult,_survey);
 
     }
     
-    // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
-    // and then using [menuNavigationController pushViewController:_surveryViewController] to display survey
+    [self dismissViewControllerAnimated:NO completion: ^{
+
+        if (!completedTask) {
+             [self pop];
+        }
+        else {
+        
+            NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey];
+        
+            if (nil == userID) { 
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Survey Results Saved"
+                                           message:@"Thank you for completing this survey. Because you have not joined the study, your results have not been saved."
+                                           preferredStyle:UIAlertControllerStyleAlert];
+             
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                             [self pop];
+                           }];
+                         
+                        
+                [alert addAction:defaultAction];
+
+                [self presentViewController:alert animated:YES completion:nil];        
+            }
+            else {
+                                
+                // get device info so you can verify who's connected
+                resultDictionary[@"uuid"] = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+     
+                NSMutableDictionary *healthkitDictionary = [self getHealthKitData];
+                
+                if (nil != healthkitDictionary) {
+                    resultDictionary[@"healthkit"] = healthkitDictionary;
+                }
+                
+                SaveResultToFirebase(resultDictionary);
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Survey Results Saved"
+                                           message:@"Thank you for completing this survey. Your results have been saved to the study database."
+                                           preferredStyle:UIAlertControllerStyleAlert];
+             
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action) {
+                             [self pop];
+                           }];
+                         
+                        
+                [alert addAction:defaultAction];
+
+                [self presentViewController:alert animated:YES completion:nil];
+
+            }
+        
+        }
+
+    }]; // dismiss taskviewcontroller
     
-    // dismiss taskViewController
-    [self dismissViewControllerAnimated:YES  completion:^{
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }];
-
-
+    
+    
 }
 
+-(void)pop; {
+   // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
+    // and then using [menuNavigationController pushViewController:_surveryViewController] to display survey
+    
+ 
+// dismiss taskViewController and pop up
+    if (nil != [self presentedViewController]) {
+        [self dismissViewControllerAnimated:YES  completion:^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+    }
+    else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+
+}
 
 // Returns the types of data that Fit wishes to write to HealthKit.
 - (NSSet *)dataTypesToWrite {
@@ -234,6 +291,85 @@ HKCharacteristicTypeIdentifierBiologicalSex
 }
 
 
+-( NSMutableDictionary *)getHealthKitData; {
+
+
+    if (nil == _survey[@"healthkit"]) {  return nil; }
+    
+
+    __block NSMutableDictionary *hkResults = [NSMutableDictionary dictionary];
+    __block NSMutableArray *errors = [NSMutableArray array];
+
+    dispatch_group_t serviceGroup = dispatch_group_create();
+
+    NSArray *healthKitSamples = _survey[@"healthkit"];
+    for (NSDictionary *sample in healthKitSamples) {
+        dispatch_group_enter(serviceGroup);
+        [self fetchHKQuantityWithIdentifier:sample[@"data_type"] andKey:sample[@"key"] forInterval:[sample[@"interval"] doubleValue] completion:^(NSString *key,NSString *data_type, double results, NSError* error){
+
+            hkResults[key] = @{ @"data":[NSNumber numberWithDouble:results],@"type":data_type};
+            if (nil != error) { [errors addObject:error]; }
+            else { [errors addObject:[NSNull null]]; }
+            dispatch_group_leave(serviceGroup);
+        }];
+    }
+        
+    dispatch_group_wait(serviceGroup,DISPATCH_TIME_FOREVER);
+    // Won't get here until everything has finished    
+
+    for (NSDictionary *sample in healthKitSamples) {
+        NSLog(@"%@: %lf",sample[@"key"],[hkResults[sample[@"key"]][@"data"] doubleValue]);
+    }
+    
+    return hkResults;
+    
+}
+
+
+- (void)fetchHKQuantityWithIdentifier:(NSString *)identifier andKey:(NSString *)key forInterval:(double)interval completion:(void (^)(NSString *,NSString *,double,NSError *))completionHandler; {
+
+// You need only a single HealthKit store per app. These are long-lived objects. Create the store once, and keep a reference for later use.
+    if (![HKHealthStore isHealthDataAvailable]) {
+        return;
+    }
+    
+    self.healthStore = [[HKHealthStore alloc] init];
+
+    // just add @"HKQuantityTypeIdentifier" to beginning of capitalized identifier
+    NSString *capitalizedIentifier = [[[identifier substringToIndex:1] uppercaseString] stringByAppendingString:[identifier substringFromIndex:1]];
+    HKQuantityTypeIdentifier hkIdentifier = [@"HKQuantityTypeIdentifier" stringByAppendingString:capitalizedIentifier];
+
+    NSLog(@"hkid: %@", hkIdentifier);
+    
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+     
+    NSDate *endDate = [NSDate date];
+      
+    NSDate *startDate = [calendar dateByAddingUnit:NSCalendarUnitSecond value: (-1 * interval)toDate:endDate options:0];
+     
+    HKQuantityType *sampleType = [HKQuantityType quantityTypeForIdentifier:hkIdentifier];
+    
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+ 
+    HKStatisticsQuery *query = [[HKStatisticsQuery alloc] initWithQuantityType:sampleType quantitySamplePredicate:predicate options:HKStatisticsOptionCumulativeSum completionHandler:^(HKStatisticsQuery *query, HKStatistics *result, NSError *error) {
+        if (!result) {
+            if (completionHandler) {
+                completionHandler(key, identifier,NAN, error);
+            }
+            return;
+        }
+ 
+        double totalSteps = [result.sumQuantity doubleValueForUnit:[HKUnit countUnit]];
+        if (completionHandler) {
+            completionHandler(key,identifier,totalSteps, error);
+        }
+    }];
+ 
+    [self.healthStore executeQuery:query];
+
+
+}
 
 
 @end
