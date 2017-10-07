@@ -1,0 +1,151 @@
+
+label: "rhodes"
+
+title: "Rhodes Index of Nausea, Vomiting and Retching"
+
+identifier: rhodes
+
+instructions: "Please select the option that most clearly corresponds to your experience."
+
+comment:
+
+scoring:
+
+reference:
+
+permissions: "Copyright 1996. Curators of Missouri, Vera A. Rhodes, RN, EdS, FAAN"
+
+revision_history: |
+    Yaml-encoded from http://www.helpher.org/downloads/rhodes-index.pdf
+    and http://www.hyperemesis.org/health-professionals/diagnosis-assessment/rhodes-index.php
+    by T. Houpt  2017-9-26.
+    "no" was changed to "none" in frequency questions.
+    Assigned numeric values to each answer option...
+
+sections:
+
+     - title:
+       key:
+       questions:
+          - key: vomiting_freq
+            type: multiple_choice
+            stem: In the last 12 hours, I threw up _______ times.
+            answers:
+                - text: 7 or more
+                  value: 7
+                - text: 5-6
+                  value: 5
+                - text: 3-4
+                  value: 3
+                - text:  1-2
+                  value: 1
+                - text: none
+                  value: 0
+
+          - key: retching_distress
+            type: multiple_choice
+            stem: In the last 12 hours, from retching and dry heaves, I have felt _______ distress.
+            answers:
+                - text: no
+                  value: 0
+                - text: mild
+                  value: 1
+                - text: moderate
+                  value: 2
+                - text: great
+                  value: 3
+                - text: severe
+                  value: 4
+
+          - key: vomiting_distress
+            type: multiple_choice
+            stem: In the last 12 hours, from vomiting or throwing up, I have felt _______ distress.
+            answers:
+                - text: severe
+                  value: 4
+                - text: great
+                  value: 3
+                - text: moderate
+                  value: 2
+                - text: mild
+                  value: 1
+                - text: no
+                  value: 0
+
+          - key: nausea_duration
+            type: multiple_choice
+            stem: "In the last 12 hours, I have felt nauseated or sick to my stomach:"
+            answers:
+                - text: not at all
+                  value: 0
+                - text: 1 hour or less
+                  value: 1
+                - text: 2-3 hours
+                  value: 2
+                - text: 4-6 hours
+                  value: 4
+                - text: more than 6 hours
+                  value: 6
+
+
+          - key: nausea_distress
+            type: multiple_choice
+            stem: In the last 12 hours, from nausea/sickness to my stomach, I have felt _______ distress.
+            answers:
+                - text: no
+                  value: 0
+                - text: mild
+                  value: 1
+                - text: moderate
+                  value: 2
+                - text: great
+                  value: 3
+                - text: severe
+                  value: 4
+
+          - key: vomiting_amount
+            type: multiple_choice
+            stem: In the last 12 hours, each time I threw up, I produced _______ amount.
+            answers:
+                - text: very large (3 cups or more)
+                  value: 3
+                - text: large (2 - 3 cups)
+                  value: 2
+                - text: moderate (1/2 - 2 cups)
+                  value: 1
+                - text: small (up to 1/2 cup)
+                  value: 0.5
+                - text: I did not throw up
+                  value: na
+
+
+          - key: nausea_freq
+            type: multiple_choice
+            stem: In the last 12 hours, I have felt nauseated or sick to my stomach _______ times.
+            answers:
+               - text: 7 or more
+                 value: 7
+               - text: 5-6
+                 value: 5
+               - text: 3-4
+                 value: 3
+               - text: 1-2
+                 value: 2
+               - text: none
+                 value: 0
+
+
+          - key: retching_freq
+            type: multiple_choice
+            stem: In the last 12 hours, I have had periods of retching or dry heaves, wihout bringing anything up _______ times.
+            answers:
+                - text: none
+                  value: 0
+                - text: 1-2
+                  value: 1
+                - text: 3-4
+                  value: 3
+                - text: 5-6
+                  value: 5
+                - text: 7 or more
+                  value: 7
