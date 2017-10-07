@@ -13,6 +13,7 @@
 @interface SurveyViewController : UIViewController <ORKTaskViewControllerDelegate>
 
 @property NSDictionary *survey;
+@property NSString *shortID;
 @property SurveyTaskViewController *taskViewController;
 @property IBOutlet UIViewController *homeViewController;
 

@@ -214,6 +214,11 @@ HKCharacteristicTypeIdentifierBiologicalSex
                 if (nil != healthkitDictionary) {
                     resultDictionary[@"healthkit"] = healthkitDictionary;
                 }
+                if (nil != _shortID) {
+                
+                    resultDictionary[@"shortID"] = _shortID;
+            
+                }
                 
                 SaveResultToFirebase(resultDictionary);
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Survey Results Saved"

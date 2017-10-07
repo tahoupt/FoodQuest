@@ -87,7 +87,8 @@
     
     NSDictionary *queries = [self queriesFromURL:url ];
     
-    NSString *newUserID = [queries objectForKey:@"user"];
+    NSString *user_id = [queries objectForKey:@"user"];
+    NSString *shortID = [queries objectForKey:@"id"];
     NSString *surveyID = [queries objectForKey:@"survey"];
       
     // if launched using an URL scheme ("<kSurveyURL>://?user=<userid>&survey=<surveyid>"), 
@@ -102,21 +103,23 @@
          || [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilecal"]) {
 
         
-        // NOTE: validate newUserID
+        // NOTE: validate user_id
 
-        NSString *oldUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey ];
-        
-        if (nil != oldUserID) {
-            if (![oldUserID isEqualToString:newUserID]) {
-                // NOTE: put up alert asking if we want to overwrite the oldUserID
-                //       [[NSUserDefaults standardUserDefaults] setObject:newUserID forKey:kUserDefaultUserIDKey ];
-                return NO;
+        if (nil != user_id) {
+            NSString *oldUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey ];
+            
+            if (nil != oldUserID) {
+                if (![oldUserID isEqualToString:user_id]) {
+                    // NOTE: put up alert asking if we want to overwrite the oldUserID
+                    //       [[NSUserDefaults standardUserDefaults] setObject:user_id forKey:kUserDefaultUserIDKey ];
+                    return NO;
+                }
             }
         }
         
         if (nil != surveyID) {
             // launch the selected survey
-            [self launchSurveyWithID:surveyID];
+            [self launchSurveyWithID:surveyID andShortID:shortID];
         }
         
         return YES;
@@ -175,7 +178,7 @@
 }
 
 
--(void)launchSurveyWithID:(NSString *)surveyID; {
+-(void)launchSurveyWithID:(NSString *)surveyID andShortID:(NSString *)shortID; {
 
     
     // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
@@ -214,6 +217,7 @@
         _surveyViewController = [_storyboard instantiateViewControllerWithIdentifier:@"SurveyViewController"];
     
         [_surveyViewController setSurvey: survey];
+        if (nil != shortID) { [_surveyViewController setShortID: shortID]; }
          
          // as in LaunchMe sample code
          UINavigationController *navController = (UINavigationController *)self.window.rootViewController;

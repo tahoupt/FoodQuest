@@ -185,6 +185,9 @@
                 [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDate forKey: kUserGaveConsentDateKey];
                 [[NSUserDefaults standardUserDefaults] setObject: signatureResult.signature.signatureDateFormatString forKey: kUserGaveConsentDateFormatKey];
                 [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kUserParticipatingFlagKey];
+                // unwithdraw if previously withdrawn...
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserWithdrawalDateKey];
+                
 
             }
         } // ORKTaskViewControllerFinishReasonCompleted
