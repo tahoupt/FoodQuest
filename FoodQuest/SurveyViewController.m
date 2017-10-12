@@ -249,18 +249,29 @@ HKCharacteristicTypeIdentifierBiologicalSex
    // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
     // and then using [menuNavigationController pushViewController:_surveryViewController] to display survey
     
- 
-// dismiss taskViewController and pop up
-    if (nil != [self presentedViewController]) {
-        [self dismissViewControllerAnimated:YES  completion:^{
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }];
-    }
-    else {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+    [self performSegueWithIdentifier:@"unwindToSurveyTable" sender: self];
+
+//// dismiss taskViewController and pop up
+//    if (nil != [self presentedViewController]) {
+//        [self dismissViewControllerAnimated:YES  completion:^{
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }];
+//    }
+//    else {
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }
 
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    NSLog(@"prepare for segue %@",segue.identifier);
+    if ([segue.identifier isEqualToString:@"unwindToSurveyTable"]) {
+    
+        NSLog(@"Prepare for unwindToMainTable");
+    }
+}
+
 
 // Returns the types of data that Fit wishes to write to HealthKit.
 - (NSSet *)dataTypesToWrite {

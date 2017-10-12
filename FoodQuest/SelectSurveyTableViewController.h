@@ -15,4 +15,6 @@
 
 -(void)displaySurveyController:(NSNotification *)notification ;
 
+- (IBAction)unwindToSurveyTable:(UIStoryboardSegue *)unwindSegue;
+
 @end

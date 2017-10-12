@@ -26,7 +26,7 @@
 
 
 -(NSDictionary *)queriesFromURL:(NSURL *)theURL;
--(void)launchSurveyWithID:(NSString *)surveyID;
+-(void)launchSurveyWithID:(NSString *)surveyID andShortID:(NSString *)shortID;
 
 @end
 
