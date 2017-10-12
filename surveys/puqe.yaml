@@ -1,0 +1,76 @@
+label: PUQE-12
+
+identifier: puqe
+
+title:  "Pregnancy-Unique Quantification of Emesis (PUQE) Scale"
+
+instructions:
+
+comment:
+
+scoring:
+
+
+
+reference: "Koren G, Boskovic R, Hard M, Maltepe C, Navioz Y, Einarson A. Motherisk-PUQE (pregnancy-unique quantification of emesis and nausea) scoring system for nausea and vomiting of pregnancy. Am J Obstet Gynecol 2002;186S (5 Suppl):S228–S231.; Koren G, Piwko C, Ahn E, Boskovic R, Maltepe C, Einarson A, et al. Validation studies for the Pregnancy Unique-Quantification of Emesis (PUQE) scores. J Obstet Gynecol 2005;25(3):241–4."
+
+permissions:
+
+
+revision_history: "Converted to YAML from Am J Obstet Gynecol 180(2002)S228-S231 by T Houpt 9/26/2017"
+
+
+scoring: "Total score: mild, <6; moderate, 7 to 12; severe, >13."
+
+
+sections:
+
+     - title:
+       key:
+       questions:
+
+                - key: nausea_freq
+                  type: multiple_choice
+                  stem: In the last 12 hours, for how long have you felt nauseated or sick to your stomach
+                  answers:
+                    - text: Not at all
+                      value: 1
+                    - text: 1 hour or less
+                      value: 2
+                    - text: 2 to 3 hours
+                      value: 3
+                    - text: 4 to 6 hours
+                      value: 4
+                    - text: more than 6 hours
+                      value: 5
+
+
+                - key: vomiting_freq
+                  type: multiple_choice
+                  stem: In the last 12 hours, have you vomited or thrown up
+                  answers:
+                    - text: 7 or more times
+                      value: 5
+                    - text: 5 to 6
+                      value: 4
+                    - text: 3 to 4
+                      value: 3
+                    - text: 1 to 2
+                      value: 2
+                    - text: I did not throw up
+                      value: 1
+
+                - key: retching_freq
+                  type: multiple_choice
+                  stem: In the last 12 hours, how many times have you had retching or dry heaves without bringing anything up
+                  answers:
+                    - text: No time
+                      value: 1
+                    - text: 1 - 2
+                      value: 2
+                    - text: 3 - 4
+                      value: 3
+                    - text: 5 - 6
+                      value: 4
+                    - text: 7 or more
+                      value: 5
