@@ -363,6 +363,8 @@ HKCharacteristicTypeIdentifierBiologicalSex
     NSDate *endDate = [NSDate date];
       
     NSDate *startDate = [calendar dateByAddingUnit:NSCalendarUnitSecond value: (-1 * interval)toDate:endDate options:0];
+    
+    NSLog(@"start: %lf end: %lf", [startDate timeIntervalSince1970], [endDate timeIntervalSince1970]);
      
     HKQuantityType *sampleType = [HKQuantityType quantityTypeForIdentifier:hkIdentifier];
     

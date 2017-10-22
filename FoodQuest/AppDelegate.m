@@ -90,6 +90,7 @@
     NSString *user_id = [queries objectForKey:@"user"];
     NSString *shortID = [queries objectForKey:@"id"];
     NSString *surveyID = [queries objectForKey:@"survey"];
+    NSString *confirmation_code =  [queries objectForKey:@"confirm"];
       
     // if launched using an URL scheme ("<kSurveyURL>://?user=<userid>&survey=<surveyid>"), 
     // only launch if coming from sms or mail (or safari or ical for testing)
@@ -120,6 +121,13 @@
         if (nil != surveyID) {
             // launch the selected survey
             [self launchSurveyWithID:surveyID andShortID:shortID];
+        }
+        
+        if (nil != confirmation_code) {
+        
+            [self setConfirmationCode:confirmation_code];
+        
+        
         }
         
         return YES;
@@ -226,6 +234,37 @@
      
      }
  
+}
+
+-(void)setConfirmationCode:(NSString *)code; {
+
+     [[NSUserDefaults standardUserDefaults] setObject:code forKey:kUserConfirmationCodeKey];
+     // check to see if confirmation code matches?
+     
+    UIAlertController *alert;
+
+    if (YES) {
+        alert = [UIAlertController alertControllerWithTitle:@"Confirmation received"
+                                       message:@"Your enrollment has been confirmed. Thank you for joining  this study."
+                                       preferredStyle:UIAlertControllerStyleAlert];
+    }
+    else {
+        alert = [UIAlertController alertControllerWithTitle:@"Confirmation mismatch"
+                                       message:@"We don't recognize your confirmation code. Please try joining the study again."
+                                       preferredStyle:UIAlertControllerStyleAlert];
+    }
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+               handler:nil];
+
+            
+    [alert addAction:defaultAction];
+
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+                
+    [navController presentViewController:alert animated:YES completion:nil];
+                
+
 }
 
 - (UIViewController *)topViewController{

@@ -19,6 +19,7 @@
 
 // user default keys
 #define kUserDefaultUserIDKey @"user_id"
+#define kUserConfirmationCodeKey @"confirmation_code"
 #define kUserDateOfBirthKey @"date_of_birth"
 #define kUserSexKey @"sex"
 #define kUserEmailKey @"email"

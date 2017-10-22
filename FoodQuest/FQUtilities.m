@@ -294,6 +294,10 @@ void SaveSubjectToFirebase(void) {
     subject_data[kUserGaveConsentDateFormatKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserGaveConsentDateFormatKey];
     subject_data[kUserConsentPDFLinkKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserConsentPDFLinkKey];
     subject_data[kUserParticipatingFlagKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserParticipatingFlagKey];
+ 
+     subject_data[kUserConfirmationCodeKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserConfirmationCodeKey];
+   
+    
    
     // maybe we withdrew? or maybe we didn't, so set to null
     subject_data[kUserWithdrawalDateKey] = [[NSUserDefaults standardUserDefaults] objectForKey: kUserWithdrawalDateKey];    
