@@ -17,6 +17,8 @@
 @property SurveyTaskViewController *taskViewController;
 @property IBOutlet UIViewController *homeViewController;
 
+@property NSString *unwindSegueID; // to allow conditional unwind depending on caller (e.g. either back to survey table or back to main table)
+
 @property HKHealthStore *healthStore;
 @property NSInteger last24hStepCount;
 

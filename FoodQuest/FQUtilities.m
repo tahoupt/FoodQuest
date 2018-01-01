@@ -31,15 +31,35 @@ NSString *UserIDFromEmail(NSString *email) {
 }
 
 
-NSDictionary *surveyWithID(NSString *surveyID){
+NSString *surveyPath(NSString *surveyID) {
 
-    // TODO: add error check and return nil if an error
-    
-    NSString * surveysPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"surveys"];
+ NSString * surveysPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"surveys"];
     
     NSString *surveyName = [NSString stringWithFormat:@"%@.yaml", surveyID];
     
     NSString* path = [surveysPath stringByAppendingPathComponent:surveyName];
+
+    return path;
+}
+
+BOOL surveyWithIDExists(NSString *surveyID) {
+    
+    NSString* path = surveyPath(surveyID);
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    BOOL isDir;
+    if ([fileManager fileExistsAtPath:path isDirectory:&isDir] && !isDir) {
+        return YES;
+    }
+    return NO;
+
+}
+
+NSDictionary *surveyWithID(NSString *surveyID){
+
+    if (! surveyWithIDExists(surveyID)) { return nil; }
+    
+    NSString* path = surveyPath(surveyID);
     
     NSString *yamlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
 
@@ -50,10 +70,11 @@ NSDictionary *surveyWithID(NSString *surveyID){
                                         options:  kYAMLReadOptionStringScalars
                                         error: &error];
                                                     
-                                                    
+                         
+    // TODO: add error check and return nil if an error
+
     return [yamlObjects firstObject];                                               
     
-
 
 }
 

@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class SelectSurveyTableViewController;
+
 @interface FQMainTableViewController : UITableViewController
 
-- (IBAction)unwindToMainTable:(UIStoryboardSegue *)unwindSegue;
+
+@property  (nonatomic, strong) IBOutlet SelectSurveyTableViewController *surveyTableController;
+
+@property NSString *currentSurveyID;
+@property NSString *currentShortID;
+
+
+-(IBAction)unwindToMainTable:(UIStoryboardSegue *)unwindSegue;
+
+-(void)displaySurveyControllerForSurveyID:(NSString *)surveyID andShortID:(NSString *)shortID ; 
 
 @end

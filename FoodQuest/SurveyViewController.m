@@ -249,7 +249,9 @@ HKCharacteristicTypeIdentifierBiologicalSex
    // GOT TO WORK BY MAKING appdelegate window rootviewcontroller = menuNavigationController (and not introViewController), a
     // and then using [menuNavigationController pushViewController:_surveryViewController] to display survey
     
-    [self performSegueWithIdentifier:@"unwindToSurveyTable" sender: self];
+    // _unwindSegueID is set by call segue, 
+    // e.g. to be @"unwindToSurveyTable" or @"unwindToMainTable"
+    [self performSegueWithIdentifier:_unwindSegueID sender: self];
 
 //// dismiss taskViewController and pop up
 //    if (nil != [self presentedViewController]) {
@@ -267,6 +269,10 @@ HKCharacteristicTypeIdentifierBiologicalSex
 
     NSLog(@"prepare for segue %@",segue.identifier);
     if ([segue.identifier isEqualToString:@"unwindToSurveyTable"]) {
+    
+        NSLog(@"Prepare for unwindToSurveyTable");
+    }
+    if ([segue.identifier isEqualToString:@"unwindToMainTable"]) {
     
         NSLog(@"Prepare for unwindToMainTable");
     }

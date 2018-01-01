@@ -13,6 +13,8 @@
 #import "ResearchKit/ResearchKit.h"
 
 NSDictionary *surveyWithID(NSString *surveyID);
+BOOL surveyWithIDExists(NSString *surveyID);
+NSString *surveyPath(NSString *surveyID); // path of <surveyID>.yaml in bundle/surveys
 
 NSMutableDictionary *FQTaskResultToDictionary(ORKTaskResult *taskResult, NSDictionary *survey);
 void SaveResultToFirebase(NSDictionary *result_data);

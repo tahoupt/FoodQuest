@@ -10,6 +10,7 @@
 #import "SurveyViewController.h"
 #import "SurveyDetailViewController.h"
 #import <YAML/YAMLSerialization.h>
+#import "AppDelegate.h" // in order to set surveryTableController in appDelegate
 
 @interface SelectSurveyTableViewController ()
 
@@ -62,6 +63,8 @@
     
     }
     
+    
+     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displaySurveyController:) name:@"LaunchFromURLNotification" object:nil];
 
     
@@ -160,15 +163,29 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
         NSLog(@"prepare survey segue");
 
     if ([[segue identifier ] isEqualToString:@"SurveySegue"]) {
+    
         NSDictionary * selectedSurvey = [_surveys objectAtIndex:[[self.tableView indexPathForSelectedRow] row] ];
+        
         [(SurveyViewController *)[segue destinationViewController] setSurvey:selectedSurvey];
+        
+        [(SurveyViewController *)[segue destinationViewController] setShortID:_urlShortID];
+        
+        // when survey is completed, unwind to either surveyTableViewController
+        // or to FQMainTableVIew (if responding to an URL)
+        if (_respondingToURL) {
+            [(SurveyViewController *)[segue destinationViewController] setUnwindSegueID:@"unwindToMainTable"];
+        }
+        else {
+            [(SurveyViewController *)[segue destinationViewController] setUnwindSegueID:@"unwindToSurveyTable"];
+         }
+       
     }
     if ([[segue identifier ] isEqualToString:@"SurveyDetailSegue"]) {
 
@@ -178,6 +195,61 @@
     
     }
     
+}
+
+-(void)viewDidAppear:(BOOL)animated; {
+
+    [super viewDidAppear:animated];
+
+    if (_respondingToURL) {
+    
+       [self  displaySurveyControllerForSurveyID:_urlSurveyID andShortID:_urlShortID];
+            
+        // clean up from responding to URL
+       _respondingToURL = NO;
+       _urlSurveyID = nil;
+       _urlShortID = nil;
+       
+    }
+
+}
+
+-(void)prepareToDisplayURLSurveyID:(NSString *)surveyID andShortID:(NSString *)shortID; {
+
+    _respondingToURL = YES;
+    _urlSurveyID = surveyID;
+    _urlShortID = shortID;
+
+}
+
+-(void)displaySurveyControllerForSurveyID:(NSString *)surveyID andShortID:(NSString *)shortID; {
+
+    // TODO: respond to notification here
+    // get surveyID from the notification
+    // get index of survey with surveyID in _surveys array
+    // select the survey row in self.tableView,
+    // show the survey view controller
+    
+    NSLog(@"Got survey ID call");
+        
+    NSInteger surveyIndex;
+    
+    if (nil != surveyID) {
+    
+        surveyIndex = [self indexOfSurveyWithID:surveyID ];
+    
+        if (-1 != surveyIndex) {
+        
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:surveyIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone ];
+        
+            [self performSegueWithIdentifier:@"SurveySegue" sender:self];
+                
+        }
+    }
+    
+    // TODO: put up alert if can't find the requested survey id
+    
+
 }
 
 -(void)displaySurveyController:(NSNotification *)notification ; {
@@ -250,13 +322,15 @@
 
 }
 
-- (IBAction)unwindToSurveyTable:(UIStoryboardSegue *)unwindSegue
+- (IBAction)unwindToSurveyTable:(UIStoryboardSegue *)unwindSegue;
 {
 
     NSLog(@"unwind to survey table");
 
 
 }
+
+
 
 
 @end

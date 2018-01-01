@@ -12,6 +12,7 @@
 #import "FQUtilities.h"
 #import "SurveyViewController.h"
 #import "SelectSurveyTableViewController.h"
+#import "FQMainTableViewController.h"
 
 
 @interface AppDelegate ()
@@ -57,15 +58,21 @@
      
     _menuNavigationController = [_storyboard instantiateViewControllerWithIdentifier:@"MenuNavigationController"];
     
-        self.window.rootViewController = _menuNavigationController;
+    self.window.rootViewController = _menuNavigationController;
 
 
     _menuViewController = [_storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+        
+    
     _surveyTableController = [_storyboard instantiateViewControllerWithIdentifier:@"SurveyTableViewController"];
     
-    
-        
     [self.window makeKeyAndVisible];
+    
+    // check if launching because of a custom url (otherwise launchURL stays nil)
+    _launchURL = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+
+
+   // [self launchSurveyWithID:@"panas" andShortID:@"12345"];
 
     return YES;
     
@@ -74,72 +81,101 @@
         
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options; {
 
-    // respond to the URL scheme ("<kSurveyURL>://?user=<userid>&survey=<surveyid>"), and store the userid in UserDefaults
+    // respond to app being opened by a customURL
+    // reject (return NO) if not called by an acceptable source application
     
-    // NOTE: check if we already have a userid in user defaults, but up warning if its going to change?
+    // this method called either:
+    //
+    // 1) in response to the app being opened by URL:
+    // in which cause _launchURL has already been set, and it will be 
+    // processed further when FQMainTableViewController viewDidLoad
+    //
+    // or
+    //
+    // 2) app was already running when url was received, 
+    // (and so FQMainTableViewController already loaded), 
+    // so we can handleURL right away
     
-    // NOTE: include some checking of someother key (or structure of userid) 
-    // to make sure its a valid userid and authentically sent by experimenter? 
-
-    NSLog(@"Calling Application Bundle ID: %@", [options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey]);
-    NSLog(@"URL scheme:%@", [url scheme]);
-    NSLog(@"URL query: %@", [url query]);
     
-    NSDictionary *queries = [self queriesFromURL:url ];
-    
-    NSString *user_id = [queries objectForKey:@"user"];
-    NSString *shortID = [queries objectForKey:@"id"];
-    NSString *surveyID = [queries objectForKey:@"survey"];
-    NSString *confirmation_code =  [queries objectForKey:@"confirm"];
-      
-    // if launched using an URL scheme ("<kSurveyURL>://?user=<userid>&survey=<surveyid>"), 
-    // only launch if coming from sms or mail (or safari or ical for testing)
-    // see http://labs.wrprojects.com/apple-ios-9-3-native-app-bundle-identifiers/
-    
-    if (    
-        [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey]  isEqualToString:@"com.apple.mobilemail"]
+    // check if called by an acceptable source application
+    if (   [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey]  isEqualToString:@"com.apple.mobilemail"]
         || [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.MobileSMS"]
         || [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilesafari"]
 
          || [[options valueForKey:UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.apple.mobilecal"]) {
 
-        
-        // NOTE: validate user_id
-
-        if (nil != user_id) {
-            NSString *oldUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey ];
-            
-            if (nil != oldUserID) {
-                if (![oldUserID isEqualToString:user_id]) {
-                    // NOTE: put up alert asking if we want to overwrite the oldUserID
-                    //       [[NSUserDefaults standardUserDefaults] setObject:user_id forKey:kUserDefaultUserIDKey ];
-                    return NO;
-                }
-            }
+        // launched from acceptable source application
+                
+        if ( nil == _launchURL) { // we were already running when url was received
+            [self respondToURL: url];
         }
-        
-        if (nil != surveyID) {
-            // launch the selected survey
-            [self launchSurveyWithID:surveyID andShortID:shortID];
-        }
-        
-        if (nil != confirmation_code) {
-        
-            [self setConfirmationCode:confirmation_code];
-        
-        
-        }
-        
         return YES;
 
     }
-    else {
-        
-        // TODO: put up alert that we don't accept communications from other apps
     
-    }
+    // TODO: put up alert that we don't accept communications from other apps
+    
+    // because from bad source app, set launchURL to nil so FQMainTableViewController won't process it...
   
+    _launchURL = nil;
+
     return NO;
+}
+
+-(BOOL)respondToURL:(NSURL *)url; {
+
+    // respond to the URL scheme ("<kSurveyURL>://?user=<userid>&survey=<surveyid>&id=<shortid>&confirm=<confirmationCode>")
+    
+    // called either by application:openURL:options (if app was already running) or by FQMainTableViewController viewDidLoad (if app was launched by the url)
+    
+    // handles 3 types of queries:
+    // 1) user -- not currently implemented
+    // 2) survey (with surveyID) and id (shortID to label sms batch that requested survey)
+    // 3) confirm (with confirmation code sent by sms as part of onboarding to confirm joining the study)
+    
+
+    // clear launchURL, because we are about to process it
+    
+    if (url ==   _launchURL) { _launchURL = nil; }
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+    
+    NSDictionary *queries = [self queriesFromURL:url ];
+    NSString *user_id = [queries objectForKey:@"user"];
+    NSString *shortID = [queries objectForKey:@"id"];
+    NSString *surveyID = [queries objectForKey:@"survey"];
+    NSString *confirmation_code =  [queries objectForKey:@"confirm"];
+    
+        
+    // TODO: validate user_id
+
+    if (nil != user_id) {
+        NSString *oldUserID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultUserIDKey ];
+        
+        if (nil != oldUserID) {
+            if (![oldUserID isEqualToString:user_id]) {
+                // NOTE: put up alert asking if we want to overwrite the oldUserID
+                //       [[NSUserDefaults standardUserDefaults] setObject:user_id forKey:kUserDefaultUserIDKey ];
+                return NO;
+            }
+        }
+    }
+    
+    if (nil != surveyID) {
+        // launch the selected survey
+        [self launchSurveyWithID:surveyID andShortID:shortID];
+        return YES;
+    }
+    
+    if (nil != confirmation_code) {
+        // set the confirmation code as part of onboarding
+        [self setConfirmationCode:confirmation_code];
+        return YES;
+    }
+        
+    // didn't recognize the queries, so do nothing...
+    return NO;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -168,6 +204,20 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder; {
+
+// YES if the app’s state should be preserved or NO if it should not.
+
+// You can add version information or any other contextual data to the provided coder object as needed. During restoration, you can use that information to help decide whether or not to proceed with restoring your app to its previous state.
+
+    return YES;
+
+}
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder; {
+
+    // Asks the delegate whether the app’s saved state information should be restored.
+    return YES;
+}
 
 -(NSDictionary *)queriesFromURL:(NSURL *)theURL; {
 
@@ -206,35 +256,30 @@
     
     }
 
-    
 
-    NSDictionary *survey = surveyWithID(surveyID);
+
+    // bind _mainTableController by explict setting of appdelegate.mainTableController 
+    // in mainTableController didLoad
+
+   if (surveyWithIDExists(surveyID)) {
     
-    if (nil == survey) {
+        if (_mainTableController != nil) {
+            [_mainTableController displaySurveyControllerForSurveyID:surveyID andShortID:shortID];
+    
+        }
+        else {
+            // TODO: post error if mainTableController has not been instantiated
+        }
+
+   } else {
     
          // TODO: post alert if survey is not recognized
 
     }
-    else {
     
-
-        // TODO: how to check if already in the middle of a survey?
-
-   // https://stackoverflow.com/questions/24939465/dismiss-modal-then-immediately-push-view-controller
-    
-        _surveyViewController = [_storyboard instantiateViewControllerWithIdentifier:@"SurveyViewController"];
-    
-        [_surveyViewController setSurvey: survey];
-        if (nil != shortID) { [_surveyViewController setShortID: shortID]; }
-         
-         // as in LaunchMe sample code
-         UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
-                
-         [navController pushViewController:_surveyViewController animated:NO];
-     
-     }
- 
 }
+
+
 
 -(void)setConfirmationCode:(NSString *)code; {
 
