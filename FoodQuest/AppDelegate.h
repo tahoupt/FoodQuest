@@ -41,6 +41,8 @@
 -(BOOL)respondToURL:(NSURL *)url;
 -(NSDictionary *)queriesFromURL:(NSURL *)theURL;
 -(void)launchSurveyWithID:(NSString *)surveyID andShortID:(NSString *)shortID;
+// check if surveyID/shortID tuple is stored in NSDefaults, indicating that we've already taken the survey
+-(BOOL)alreadyTookSurvey:(NSString *)surveyID andShortID:(NSString *)shortID;
 -(void)setConfirmationCode:(NSString *)code;
 
 - (UIViewController *)topViewController;

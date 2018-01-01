@@ -216,7 +216,15 @@ HKCharacteristicTypeIdentifierBiologicalSex
                 }
                 if (nil != _shortID) {
                 
+                    //responding to sms with a shortID, so save the push survey shortID and timestamp in userdefault
+                    // so we don't take the same push survey twice.
                     resultDictionary[@"shortID"] = _shortID;
+                    
+                    NSMutableArray *priorSurveys = [[NSUserDefaults standardUserDefaults] objectForKey:kUserPriorSurveysKey];
+                    if (nil == priorSurveys) { priorSurveys = [NSMutableArray array]; }
+                    NSArray *this_survey = @[resultDictionary[@"survey_key"],resultDictionary[@"shortID"],resultDictionary[@"start_time"]];
+                    [priorSurveys addObject:this_survey];
+                    [[NSUserDefaults standardUserDefaults] setObject:priorSurveys forKey:kUserPriorSurveysKey];
             
                 }
                 

@@ -33,7 +33,7 @@
 #define kUserConsentPDFLinkKey @"consent_link"
 #define kUserWithdrawalDateKey @"withdrawal_date"
 #define kUserParticipatingFlagKey @"participating"
-
+#define kUserPriorSurveysKey @"priorSurveys" // an array of [<surveyID>,<shortID>, <timestamp>] arrays, to record surveys already taken...
 
 
 // Overview: definitions for consent section summaries

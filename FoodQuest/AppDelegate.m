@@ -162,6 +162,13 @@
     }
     
     if (nil != surveyID) {
+    
+        // check if already responded to survey
+        if ([self alreadyTookSurvey: surveyID andShortID:shortID]) {
+            return NO;
+        }
+    
+    
         // launch the selected survey
         [self launchSurveyWithID:surveyID andShortID:shortID];
         return YES;
@@ -177,6 +184,8 @@
     return NO;
 
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -233,6 +242,38 @@
     
     return queries;
 
+}
+
+
+-(BOOL)alreadyTookSurvey:(NSString *)surveyID andShortID:(NSString *)shortID; {
+
+    NSArray *priorSurveys = [[NSUserDefaults standardUserDefaults] objectForKey:kUserPriorSurveysKey];
+     
+     if (nil != priorSurveys) {
+         for (NSArray *survey in priorSurveys) {
+             if ([surveyID isEqualToString:survey[0]] && [shortID isEqualToString:survey[1]]) {
+             
+                    UIAlertController *alert;
+
+                    alert = [UIAlertController alertControllerWithTitle:@"Survey Already Completed"
+                                                   message:@"You've already taken this aurvey! Thanks for your participation."
+                                                   preferredStyle:UIAlertControllerStyleAlert];
+                                                   
+                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+
+                    [alert addAction:defaultAction];
+
+                    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+                        
+                    [navController presentViewController:alert animated:YES completion:nil];
+                
+                    return YES;
+             
+             } // surveyID and shortID matched
+         } // next survey
+     } // has prior surveys
+    
+    return NO;
 }
 
 
